@@ -1,0 +1,3 @@
+# oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym
+
+Aplikacja do wykrywania plagiatów w kodzie źródłowym
