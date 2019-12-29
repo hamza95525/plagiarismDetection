@@ -1,11 +1,14 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
 #include <QStateMachine>
 #include <QHistoryState>
 #include <QFileDialog>
 #include <QDebug>
 #include <QMessageBox>
+#include <QString>
+#include <QDirIterator>
+
+//#include "../../src/mainCompare2Files.cpp"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -41,10 +44,12 @@ MainWindow::MainWindow(QWidget *parent) :
     Open->assignProperty(ui->pbStart, "text", "START");
     Open->assignProperty(ui->pbSelect, "enabled", true);
     Open->addTransition(this, SIGNAL(opened()), Compare);
+    Open->addTransition(this, SIGNAL(error()), Error);
 
     Error->assignProperty(ui->pbStart, "enabled", false);
     Error->assignProperty(ui->pbSelect, "enabled", true);
-    Error->assignProperty(ui->tePath, "placeholderText", "Wrong path or permissions!");
+    //Error->assignProperty(ui->tePath, "placeholderText", "Wrong path or permissions!");
+    Error->addTransition(ui->tePath, SIGNAL(textChanged()), PathSelected);
 
     Compare->assignProperty(ui->pbStart, "text", "CANCEL");
     Compare->assignProperty(ui->pbSelect, "enabled", false);
@@ -52,9 +57,13 @@ MainWindow::MainWindow(QWidget *parent) :
     Compare->addTransition(ui->pbStart, SIGNAL(clicked()), PathSelected);
     Compare->addTransition(ui->tePath, SIGNAL(textChanged()), PathSelected);
     Compare->addTransition(ui->horizontalSlider, &QSlider::sliderReleased, Compare);
+    Compare->addTransition(this, SIGNAL(done()), ViewResult);
 
     ViewResult->assignProperty(ui->pbStart, "enabled", false);
-
+    ViewResult->assignProperty(ui->pbSelect, "enabled", true);
+    ViewResult->assignProperty(ui->pbStart, "text", "DONE");
+    ViewResult->addTransition(ui->tePath, SIGNAL(textChanged()), PathSelected);
+    ViewResult->addTransition(ui->horizontalSlider, &QSlider::sliderReleased, Compare);
 
 
 
@@ -71,24 +80,34 @@ MainWindow::~MainWindow()
 
 void MainWindow::dialog()
 {
-    this->fileName = QFileDialog::getOpenFileName(this,
-                                                  tr("Open file"), "",
-                                                  tr("All files (*)"));
-    ui->tePath->setPlainText(fileName);
+    this->directoryName = QFileDialog::getExistingDirectory(this,
+                                                  tr("Open file"), "..");
+    ui->tePath->setPlainText(directoryName);
 }
 
 void MainWindow::open()
 {
-    QFile file(ui->tePath->toPlainText());
-    if (!file.open(QIODevice::ReadOnly)) {
-                QMessageBox::information(this, tr("Error"), file.errorString());
-                emit error();
-                return;
-            }
-    else {
-        QMessageBox::information(this, tr("Success"), QString("File selected."));
-        emit opened();
+//    QDir dir(ui->tePath->toPlainText());
+//    QStringList filesList = dir.entryList(QDir::Files | QDir::Readable, QDir::Type); // filtry na rozszerzenia: QStringList() << "*.cpp" << "*.txt",
+//    for(QString fileName : filesList) {
+//        fileName.prepend((dir.absolutePath()).append("/"));
+//        QFile file(fileName);
+//         qDebug() << fileName; // okazało się, że QDir::entryList() zbiera ścieżkę względną, wypisuję wczytane pliki do konsoli
+//    }
+    QDirIterator dirIter(ui->tePath->toPlainText(), QDir::Files | QDir::Readable, QDirIterator::Subdirectories);
+    while(dirIter.hasNext())
+    {
+        QFile file(dirIter.next());
+        qDebug() << dirIter.fileName();
+        if (!file.open(QIODevice::ReadOnly)) {
+            QMessageBox::information(this, tr("Error"), file.errorString());
+            emit error();
+            return;
+        }
+
     }
+    QMessageBox::information(this, tr("Success"), QString("File selected."));
+    emit opened();
 }
 
 void MainWindow::compare()
