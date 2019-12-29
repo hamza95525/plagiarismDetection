@@ -1,25 +1,23 @@
-#include "../includes/Includes.h"
+#include <iostream>
+#include "GnomeWidgetFactory.h"
+#include "KdeWidgetFactory.h"
+#include "Dummy.h"
+#include "Demo.h"
 
-int main(int argc, char* argv[]) {
+int main() {
 
-    if( argc < 2 ) {
-        perror("Wrong number of parameters!\n");
-        return -1;
-    }
+    auto dummy = Dummy{};
 
-    std::ifstream file1;
-    file1.open(argv[1]);
-    if( !file1.is_open() ){
-        std::cout<<"Error opening: "<<argv[1]<<std::endl;
-        return -1;
-    }
+    std::cout << "dummy.integrate(2, 4) = " << dummy.integrate(2, 4) << std::endl;
 
-    std::ifstream file2;
-    file2.open(argv[2]);
-    if( !file2.is_open() ){
-        std::cout<<"Error opening: "<<argv[2]<<std::endl;
-        return -1;
-    }
+    std::shared_ptr<KdeWidgetFactory> implementation = std::make_shared<KdeWidgetFactory>(3);
+    std::shared_ptr<GnomeWidgetFactory> implementation1 = std::make_shared<GnomeWidgetFactory>(4);
+
+    Demo d(implementation);
+    d.run("Button");
+
+    Demo q(implementation1);
+    q.run("Check");
 
     Compare s{};
 

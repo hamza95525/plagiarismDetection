@@ -10,7 +10,9 @@
 class Compare{
 
 public:
+    int linesToCompare(std::ifstream& file);
     int numOfLines(std::ifstream& file);
+    float percentage(int equalLines, int allLines);
     bool passLines(std::string S);
     void simpleCompare(std::ifstream& file1, std::ifstream& file2);
 
