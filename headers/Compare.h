@@ -11,6 +11,7 @@ class Compare{
 
 public:
     int numOfLines(std::ifstream& file);
+    bool passLines(std::string S);
     void simpleCompare(std::ifstream& file1, std::ifstream& file2);
 
 };

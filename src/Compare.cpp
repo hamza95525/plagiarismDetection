@@ -35,9 +35,22 @@ void Compare::simpleCompare(std::ifstream& file1, std::ifstream& file2){
     }
 
     for(int i =0; i<numOfLinesFile1; i++){
-        for(int j=0; j<numOfLinesFile1;j++){
-            if( tab1[i] == tab2[j] )
+        for(int j=0; j<numOfLinesFile2;j++){
+
+            if(( tab1[i] == tab2[j] ) && !passLines(tab1[i]) && !passLines(tab2[j]) )
                 std::cout<<"Lines number: "<< i+1 << " and "<< j+1 << "  are equal!\n"<<tab1[i] << "  |  " << tab2[j] << std::endl;
         }
     }
+}
+//===============================================================================================
+
+bool Compare::passLines(std::string S) {
+    std::string words[] = { "#include", "switch", "int main", "return", "using namespace", "\n", "{", "}"}; //words that almost every cplusplus code has
+
+    for(const auto & word : words){
+        if( S.find(word) != std::string::npos || S == "" )       //if word is found in string or string is empty then true is returned
+            return true;
+    }
+
+    return false;
 }
