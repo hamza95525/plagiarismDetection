@@ -1,0 +1,52 @@
+@startuml
+
+
+'FileSelected -up FileSelected : <b>pbSelect</b> clicked(bool)
+'NoFileSelected -down NoFileSelected : pbSelect clicked(bool)
+
+[*] -down-> SelectFile
+SelectFile -down-> PathSelected : <b>tePath</b>  changed()
+Error -down-> PathSelected : <b>tePath</b>  changed()
+PathSelected -right-> Open : <b>pbStart</b> clicked()
+Open -right-> Compare : <b>this</b> opened()
+Open -down-> Error : <b>this</b> error()
+Compare -left-> PathSelected : <b>tePath</b>  changed() \n OR \n <b>horizontalSlider</b>  changed() \nOR\n <b>pbStart</b>  clicked()
+Compare -right-> ViewResult : <b>this</b>  done()
+ViewResult -left-> PathSelected : <b>tePath</b>  changed() \n OR \n <b>horizontalSlider</b>  changed()
+
+
+SelectFile: <b>pbStart</b>  enabled  <b> false</b>
+SelectFile: <b>pbSelect</b>  enabled  <b> true</b>
+SelectFile: <b>tePath</b>  placeholderText  <b> "No file selected..."</b>
+
+PathSelected: <b>pbStart</b>  enabled  <b> true</b>
+PathSelected: <b>pbStart</b>  placeholderText  <b> "START"</b>
+PathSelected: <b>pbSelect</b>  enabled  <b> true</b>
+PathSelected: <b>tePath</b>  placeholderText  <b> "/path/to/file.c"</b>
+
+Open: state  <b>entered()</b>  ->  this   <b>open()</b>
+
+'Uploaded: state  <b>opened()</b>  ->  this   <b>open()</b>
+
+Error: <b>pbStart</b>  enabled  <b> false</b>
+Error: <b>pbSelect</b>  enabled  <b> true</b>
+Error: <b>tePath</b>  placeholderText  <b> "Wrong path or permissions!"</b>
+
+'Compare: <b>pbStart</b>  enabled  <b> true</b>
+Compare: <b>pbStart</b>  placeholderText  <b> "CANCEL"</b>
+Compare: <b>pbSelect</b>  enabled  <b> false</b>
+Compare: state  <b>entered()</b>  ->  <b>this</b>  compare()
+
+ViewResult: <b>pbStart</b>  enabled  <b> false</b>
+
+note bottom of ViewResult
+    - view results in some way
+end note
+note bottom of Compare
+    - state exists only due to existence of large files,
+      which might take long time to process
+    - we need to find something to test that state
+end note
+'Result: <b>pbStart</b>  placeholderText  <b> "START"</b>
+
+@enduml
