@@ -1,29 +1,15 @@
-#include <iostream>
-#include "GnomeWidgetFactory.h"
-#include "KdeWidgetFactory.h"
-#include "Dummy.h"
-#include "Demo.h"
+a
+b
+c
 
-int main() {
+d
+e
+f
 
-    auto dummy = Dummy{};
+gh
 
-    std::cout << "dummy.integrate(2, 4) = " << dummy.integrate(2, 4) << std::endl;
 
-    std::shared_ptr<KdeWidgetFactory> implementation = std::make_shared<KdeWidgetFactory>(3);
-    std::shared_ptr<GnomeWidgetFactory> implementation1 = std::make_shared<GnomeWidgetFactory>(4);
+asda
 
-    Demo d(implementation);
-    d.run("Button");
-
-    Demo q(implementation1);
-    q.run("Check");
-
-    Compare s{};
-
-    s.simpleCompare(file1, file2);
-
-    file1.close();
-    file2.close();
-    return 0;
-}
+das
+a

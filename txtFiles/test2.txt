@@ -1,31 +1,15 @@
-#include "../includes/Includes.h"
+a
+b
+c
 
-int main(int argc, char* argv[]) {
+d
+e
+f
 
-    if( argc < 2 ) {
-        perror("Wrong number of parameters!\n");
-        return -1;
-    }
+gh
 
-    std::ifstream file1;
-    file1.open(argv[1]);
-    if( !file1.is_open() ){
-        std::cout<<"Error opening: "<<argv[1]<<std::endl;
-        return -1;
-    }
 
-    std::ifstream file2;
-    file2.open(argv[2]);
-    if( !file2.is_open() ){
-        std::cout<<"Error opening: "<<argv[2]<<std::endl;
-        return -1;
-    }
+asda
 
-    Compare s{};
-
-    s.simpleCompare(file1, file2);
-
-    file1.close();
-    file2.close();
-    return 0;
-}
+das
+a

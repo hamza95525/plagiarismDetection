@@ -26,7 +26,11 @@ int main(int argc, char* argv[]) {
 
     Compare s{};
 
-    s.simpleCompare(file1, file2);
+    float res = s.simpleCompare(file1, file2);
+    float resPass = s.comparePassingLines(file1, file2);
+
+    std::cout<<"Percentage of repetition(Passing commonly used words): " << resPass << "%\n";
+    std::cout<<"Percentage of repetition(without passing commonly used words): " << res << "%\n";
 
     file1.close();
     file2.close();
