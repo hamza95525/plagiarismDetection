@@ -7,9 +7,9 @@ int Compare::numOfLines(std::ifstream& file){
     int num = 0;
     std::string temp;
     while(std::getline(file, temp)) { //counting number of all lines
-        if ( temp.length() != 0)
             num++;
     }
+
     file.clear();
     file.seekg(0, std::ios::beg);          //after counting number of lines, we have to set position to start of the file
 
@@ -21,7 +21,7 @@ int Compare::linesToCompare(std::ifstream &file) {
     int num = 0;
     std::string temp;
     while (std::getline(file, temp)) {
-        if (!passLines(temp) && temp.length() != 0)
+        if ( !passLines(temp) )
             num++;
     }
 
@@ -46,18 +46,28 @@ float Compare::comparePassingLines(std::ifstream& file1, std::ifstream& file2){
     std::string tab2[numOfLinesFile2];
 
     int counter = 0; //how many lines was matching
+    int lengthTab1 = 0; //all of the lines in the lines tab
+    int lengthTab2 = 0;
 
     std::string temp1; //temporary string to use in getline function - first file
     std::string temp2; //second file
 
-    for(int i = 0; i<numOfLinesFile1; i++){
-        getline(file1,temp1);
-        getline(file2,temp2);
-        if( temp1.length() != 0)
-            tab1[i] = temp1;
+    for(int i = 0; i<numOfLinesFile1; i++) {
+        getline(file1, temp1);
+        getline(file2, temp2);
 
-        if( temp2.length() !=0 )
+        if(!( temp1.empty() || temp2.find_first_not_of(' ') == std::string::npos || temp1.find_first_not_of('\n') )) {
+            tab1[i] = temp1;
+            lengthTab1++;
+        }
+        else
+            continue;
+
+        if(!( temp2.empty() || temp2.find_first_not_of(' ') == std::string::npos || temp2.find_first_not_of('\n'))) {
             tab2[i] = temp2;
+            lengthTab2++;
+        } else
+            continue;
     }
 
     file1.clear();
@@ -66,16 +76,17 @@ float Compare::comparePassingLines(std::ifstream& file1, std::ifstream& file2){
     file2.clear();
     file2.seekg(0, std::ios::beg);
 
-    for(int i =0; i<numOfLinesFile1; i++){
-        for(int j=0; j<numOfLinesFile2;j++){
-            if( tab1[i] == tab2[j] ) {
+    for(int i = 0; i<=numOfLinesFile1; i++){
+        for(int j = 0; j<=numOfLinesFile2;j++){
+            if( tab1[i] == tab2[j] && !tab1[i].empty()  && !tab2[j].empty() ) {
                 counter++;
+                std::cout << tab1[i] << counter << lengthTab2 << tab2[j] << std::endl;
             }
         }
     }
 
-    float P = percentage(counter, numOfLinesFile2);
-    return counter;
+    float P = percentage(counter, lengthTab2+1);
+    return P;
 }
 //===============================================================================================
 float Compare::simpleCompare(std::ifstream &file1, std::ifstream &file2) {
@@ -86,19 +97,28 @@ float Compare::simpleCompare(std::ifstream &file1, std::ifstream &file2) {
     std::string tab2[numOfLinesFile2];
 
     int counter = 0; //how many lines was matching
+    int lengthTab1 = 0; //all of the lines in the lines tab
+    int lengthTab2 = 0;
 
     std::string temp1; //temporary string to use in getline function - first file
     std::string temp2; //second file
 
-    for(int i = 0; i<numOfLinesFile1; i++){
+    for(int i = 0; i< numOfLinesFile1; i++){
         getline(file1,temp1);
         getline(file2,temp2);
 
-        if( temp1.length() != 0)
+        if(!( temp1.empty() || temp2.find_first_not_of(' ') == std::string::npos || temp1.find_first_not_of('\n') )) {
             tab1[i] = temp1;
+            lengthTab1++;
+        }
+        else
+            continue;
 
-        if( temp2.length() != 0)
+        if(!( temp2.empty() || temp2.find_first_not_of(' ') == std::string::npos || temp2.find_first_not_of('\n'))) {
             tab2[i] = temp2;
+            lengthTab2++;
+        } else
+            continue;
     }
 
     file1.clear();
@@ -107,15 +127,16 @@ float Compare::simpleCompare(std::ifstream &file1, std::ifstream &file2) {
     file2.clear();
     file2.seekg(0, std::ios::beg);
 
-    for(int i =0; i<numOfLinesFile1; i++){
-        for(int j=0; j<numOfLinesFile2;j++){
-            if( tab1[i] == tab2[j] ) {
+    for(int i = 0; i<=numOfLinesFile1; i++){
+        for(int j = 0; j<=numOfLinesFile2;j++){
+            if( tab1[i] == tab2[j] && !tab1[i].empty()  && !tab2[j].empty() ) {
                 counter++;
+                std::cout << tab1[i] << counter << lengthTab2<< tab2[j] << std::endl;
             }
         }
     }
 
-    float P = percentage(counter, numOfLinesFile2);
+    float P = percentage(counter, lengthTab2+1);
     return P;
 }
 
