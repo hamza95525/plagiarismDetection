@@ -17,17 +17,17 @@ public:
 
 signals:
     void error();
-    void opened();
     void done();
 
 public slots:
     void dialog();
     void open();
-    void compare();
+    double compare(std::string, std::string);
 
 private:
     Ui::MainWindow *ui;
     QString directoryName;
+    std::vector <std::vector <std::string>> allProjects;
 };
 
 #endif // MAINWINDOW_H
