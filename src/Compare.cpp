@@ -3,6 +3,21 @@
 //
 #include "../includes/Includes.h"
 
+void Compare::deleteEmptyLines(const std::string &FilePath)
+{
+    std::ifstream in(FilePath);
+    std::string line, text;
+
+    while (std::getline(in, line))
+        if ( !(line.empty() || line.find_first_not_of(' ') == std::string::npos) )
+            text += line + "\n";
+    in.close();
+    
+    std::ofstream out(FilePath);
+    out << text;
+}
+//=======================================
+
 int Compare::numOfLines(std::ifstream& file){
     int num = 0;
     std::string temp;
@@ -17,79 +32,29 @@ int Compare::numOfLines(std::ifstream& file){
 }
 //==============================================================================================
 
-int Compare::linesToCompare(std::ifstream &file) {
-    int num = 0;
-    std::string temp;
-    while (std::getline(file, temp)) {
-        if ( !passLines(temp) )
-            num++;
-    }
-
-    file.clear();
-    file.seekg(0, std::ios::beg);
-
-    return num;
-}
-//==============================================================================================
-
 float Compare::percentage(int equalLines, int allLines) {
     float P = ( float(equalLines) / float(allLines) ) * 100;
     return P;
 }
 //==============================================================================================
 
-float Compare::comparePassingLines(std::ifstream& file1, std::ifstream& file2){
-    int numOfLinesFile1 = linesToCompare(file1);
-    std::string tab1[numOfLinesFile1]; // creating array of string to store lines
-
-    int numOfLinesFile2 = linesToCompare(file2);
-    std::string tab2[numOfLinesFile2];
-
-    int counter = 0; //how many lines was matching
-    int lengthTab1 = 0; //all of the lines in the lines tab
-    int lengthTab2 = 0;
-
-    std::string temp1; //temporary string to use in getline function - first file
-    std::string temp2; //second file
-
-    for(int i = 0; i<numOfLinesFile1; i++) {
-        getline(file1, temp1);
-        getline(file2, temp2);
-
-        if(!( temp1.empty() || temp2.find_first_not_of(' ') == std::string::npos || temp1.find_first_not_of('\n') )) {
-            tab1[i] = temp1;
-            lengthTab1++;
-        }
-        else
-            continue;
-
-        if(!( temp2.empty() || temp2.find_first_not_of(' ') == std::string::npos || temp2.find_first_not_of('\n'))) {
-            tab2[i] = temp2;
-            lengthTab2++;
-        } else
-            continue;
+float Compare::simpleCompare(const std::string &FilePath1, const std::string &FilePath2) {
+    std::ifstream file1;
+    file1.open(FilePath1);
+    if( !file1.is_open() ){
+        std::cout<<"Error opening: "<<FilePath1<<std::endl;
+        return -1;
     }
 
-    file1.clear();
-    file1.seekg(0, std::ios::beg);
-
-    file2.clear();
-    file2.seekg(0, std::ios::beg);
-
-    for(int i = 0; i<=numOfLinesFile1; i++){
-        for(int j = 0; j<=numOfLinesFile2;j++){
-            if( tab1[i] == tab2[j] && !tab1[i].empty()  && !tab2[j].empty() ) {
-                counter++;
-                std::cout << tab1[i] << counter << lengthTab2 << tab2[j] << std::endl;
-            }
-        }
+    std::ifstream file2;
+    file2.open(FilePath2);
+    if( !file1.is_open() ){
+        std::cout<<"Error opening: "<<FilePath2<<std::endl;
+        return -1;
     }
 
-    float P = percentage(counter, lengthTab2+1);
-    return P;
-}
-//===============================================================================================
-float Compare::simpleCompare(std::ifstream &file1, std::ifstream &file2) {
+    deleteEmptyLines(FilePath1); deleteEmptyLines(FilePath2);
+
     int numOfLinesFile1 = numOfLines(file1);
     std::string tab1[numOfLinesFile1]; // creating array of string to store lines
 
@@ -100,54 +65,30 @@ float Compare::simpleCompare(std::ifstream &file1, std::ifstream &file2) {
     int lengthTab1 = 0; //all of the lines in the lines tab
     int lengthTab2 = 0;
 
-    std::string temp1; //temporary string to use in getline function - first file
-    std::string temp2; //second file
+    std::string temp; //temporary string to use in getline function
 
     for(int i = 0; i< numOfLinesFile1; i++){
-        getline(file1,temp1);
-        getline(file2,temp2);
-
-        if(!( temp1.empty() || temp2.find_first_not_of(' ') == std::string::npos || temp1.find_first_not_of('\n') )) {
-            tab1[i] = temp1;
-            lengthTab1++;
-        }
-        else
-            continue;
-
-        if(!( temp2.empty() || temp2.find_first_not_of(' ') == std::string::npos || temp2.find_first_not_of('\n'))) {
-            tab2[i] = temp2;
-            lengthTab2++;
-        } else
-            continue;
+        getline(file1,temp);
+        tab1[i] = temp;
+        lengthTab1++;
     }
 
-    file1.clear();
-    file1.seekg(0, std::ios::beg);
+    for(int i = 0; i< numOfLinesFile2; i++){
+        getline(file2,temp);
+        tab2[i] = temp;
+        lengthTab2++;
+    }
 
-    file2.clear();
-    file2.seekg(0, std::ios::beg);
+    file1.close();
+    file2.close();
 
     for(int i = 0; i<=numOfLinesFile1; i++){
-        for(int j = 0; j<=numOfLinesFile2;j++){
-            if( tab1[i] == tab2[j] && !tab1[i].empty()  && !tab2[j].empty() ) {
-                counter++;
-                std::cout << tab1[i] << counter << lengthTab2<< tab2[j] << std::endl;
-            }
-        }
+        if ( tab1[i] == tab2[i] )
+            counter++;
     }
 
-    float P = percentage(counter, lengthTab2+1);
+    float P = percentage(counter, lengthTab2);
     return P;
 }
 
 //===============================================================================================
-bool Compare::passLines(std::string S) {
-    std::string words[] = { "#include", "switch", "main", "return", "using namespace"}; //words that almost every cplusplus code has
-
-    for( const auto & word : words ){
-        if( S.find(word) != std::string::npos || S == "{" || S == "}" )       //if word is found in string or string is empty then true is returned
-            return true;
-    }
-
-    return false;
-}
