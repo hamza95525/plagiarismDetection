@@ -1,3 +1,0 @@
-/home/khamza/repos/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/khamza/repos/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/cmake-build-debug/CMakeFiles/plikExe.dir
-/home/khamza/repos/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/cmake-build-debug/CMakeFiles/edit_cache.dir

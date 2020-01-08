@@ -7,7 +7,6 @@
 #include <QMessageBox>
 #include <QString>
 #include <QDirIterator>
-
 //#include "../../src/mainCompare2Files.cpp"
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -20,7 +19,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     auto SelectFile = new QState(stateMachine);
     auto PathSelected = new QState(stateMachine);
-    // auto Open = new QState(stateMachine);
     auto Error = new QState(stateMachine);
     auto Compare = new QState(stateMachine);
     auto ViewResult = new QState(stateMachine);
@@ -39,15 +37,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     PathSelected->addTransition(ui->pbStart, SIGNAL(clicked()), Compare);
 
-//    Open->assignProperty(ui->pbStart, "enabled", true);
-//    Open->assignProperty(ui->pbStart, "text", "START");
-//    Open->assignProperty(ui->pbSelect, "enabled", true);
-//    Open->addTransition(this, SIGNAL(opened()), Compare);
-
     connect(Compare, SIGNAL(entered()), this, SLOT(open()));
     Compare->assignProperty(ui->pbStart, "text", "CANCEL");
     Compare->assignProperty(ui->pbSelect, "enabled", false);
-    //connect(Compare, SIGNAL(entered()), this, SLOT(compare()));
     Compare->addTransition(ui->pbStart, SIGNAL(clicked()), PathSelected);
     Compare->addTransition(ui->tePath, SIGNAL(textChanged()), PathSelected);
     Compare->addTransition(ui->horizontalSlider, &QSlider::sliderReleased, Compare);
@@ -82,18 +74,7 @@ void MainWindow::dialog()
 
 void MainWindow::open()
 {
-    /*  QDir dir(ui->tePath->toPlainText());
-        QStringList filesList = dir.entryList(QDir::Files | QDir::Readable, QDir::Type); // filtry na rozszerzenia: QStringList() << "*.cpp" << "*.txt",
-        for(QString fileName : filesList) {
-        fileName.prepend((dir.absolutePath()).append("/"));
-        QFile file(fileName);
-        qDebug() << fileName; // okazało się, że QDir::entryList() zbiera ścieżkę względną, wypisuję wczytane pliki do konsoli}
-    */
-
-    // CHECK IF DIRECTORY EXISTS
-
-    QDirIterator dirIter(ui->tePath->toPlainText(), QDir::Files | QDir::Readable, QDirIterator::Subdirectories);
-    QDir dir(ui->tePath->toPlainText());
+QDir dir(ui->tePath->toPlainText());
     if (dir.exists()==0)
     {
         QMessageBox::information(this, tr("Error"), "Directory doesn't exist.");
@@ -101,48 +82,49 @@ void MainWindow::open()
         return;
     }
 
-    // EXTRACT (ALL) NAME FILES
+    std::vector <std::string> allPaths;
 
-     std::vector <std::string> allPaths; // wszystkie pliki dodanego projektu
-    // QStringList allPaths;
+    QDirIterator projectIter(ui->tePath->toPlainText(), QDir::Dirs | QDir::Readable | QDir::NoDotAndDotDot);
 
-    while(dirIter.hasNext())
+    while(projectIter.hasNext())
     {
-        QFile file(dirIter.next());
-        // qDebug() << dirIter.filePath();
-        if (!file.open(QIODevice::ReadOnly)) {
-            QMessageBox::information(this, tr("Error"), file.errorString());
-            emit error();
-            return;
+        QDirIterator fileIter(projectIter.next(), QDir::Files | QDir::Readable, QDirIterator::Subdirectories);
+        while(fileIter.hasNext())
+        {
+            QFile file(fileIter.next());
+            qDebug() << fileIter.filePath();
+            if (!file.open(QIODevice::ReadOnly)) {
+                QMessageBox::information(this, tr("Error"), file.errorString());
+                emit error();
+                return;
+            }
+            else {
+                allPaths.push_back(fileIter.filePath().toStdString());
+                file.close();
+            }
         }
-        else {
-            // compare();
-            // add file to the table
-            //allPaths.append(dirIter.filePath, );
-            allPaths.push_back(dirIter.filePath().toStdString());
-            file.close();
-        }
+        allProjects.push_back(allPaths);
     }
 
-    allProjects.push_back(allPaths); // add to database of projects
-
-    // Teraz co tu ma się . to ja nie wiem
-    // Każdy plik z każdego projektu porównaj z każdym plikiem każdego projektu
-    // plik -> tablica plików projektu -> tablica wszystkich projektów
-
-    std::vector <std::vector <std::vector <std::vector <double>>>> allResults;  // all results of comparing 2 files
+    std::vector <std::vector <std::vector <std::vector <double>>>> allResults;
 
     for(unsigned long a=0;a<allProjects.size(); a++)
     {
+        allResults.resize(a+1);
         for(unsigned long b=0;b<allProjects.size(); b++)
         {
+            allResults[a].resize(b+1);
             if(a!=b) // round-robin for projects
             {
-                for(unsigned long i=0;i<allProjects[a][i].size(); i++)
+                for(unsigned long i=0;i<allProjects[a].size(); i++)
                 {
-                    for(unsigned long j=0;j<allProjects[b][j].size(); j++)
+                    allResults[a][b].resize(i+1);
+                    for(unsigned long j=0;j<allProjects[b].size(); j++)
                     {
+                        allResults[a][b][i].resize(j+1);
+                        qDebug() << QString::fromStdString(allProjects[a][i]) << "\n" << QString::fromStdString(allProjects[b][j]);
                         allResults[a][b][i][j] = compare(allProjects[a][i], allProjects[b][j]); // result of comparing file i with file j, in projects a and project b
+                        qDebug() << QString("%1").arg(allResults[a][b][i][j]) << "\n";
                     }
                 }
             }
@@ -156,6 +138,16 @@ void MainWindow::open()
 
 double MainWindow::compare(std::string, std::string)
 {
-    qDebug() << "Inside comparing function... please implement.";
-    return rand()/100;
+    //qDebug() << "Inside comparing function... please implement.";
+    // KHAMZAT TU MASZ WBIĆ ZE SWOIM KODEM
+    return rand()%100;
 }
+
+/*  DIFFERENT METHOD
+ *  QDir dir(ui->tePath->toPlainText());
+    QStringList filesList = dir.entryList(QDir::Files | QDir::Readable, QDir::Type); // filtry na rozszerzenia: QStringList() << "*.cpp" << "*.txt",
+    for(QString fileName : filesList) {
+    fileName.prepend((dir.absolutePath()).append("/"));
+    QFile file(fileName);
+    qDebug() << fileName; // okazało się, że QDir::entryList() zbiera ścieżkę względną, wypisuję wczytane pliki do konsoli}
+*/
