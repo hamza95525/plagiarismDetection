@@ -11,6 +11,7 @@ class Compare{
 
 public:
     int numOfLines(std::ifstream& file);
-    void simpleCompare(std::ifstream& file1, std::ifstream& file2);
-
+    float percentage(int equalLines, int allLines);
+    float simpleCompare(const std::string &FilePath1, const std::string &FilePath2);
+    void deleteEmptyLines(const std::string &FilePath);
 };
