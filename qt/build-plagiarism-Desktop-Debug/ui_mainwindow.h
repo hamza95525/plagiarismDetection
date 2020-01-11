@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.11.3
+** Created by: Qt User Interface Compiler version 5.12.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -13,11 +13,13 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLCDNumber>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSlider>
+#include <QtWidgets/QTableWidget>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -30,6 +32,7 @@ public:
     QWidget *centralWidget;
     QWidget *gridLayoutWidget;
     QGridLayout *gridLayout;
+    QTableWidget *tableWidget;
     QWidget *verticalLayoutWidget;
     QVBoxLayout *verticalLayout;
     QPushButton *pbSelect;
@@ -46,47 +49,52 @@ public:
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
-            MainWindow->setObjectName(QStringLiteral("MainWindow"));
+            MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
         MainWindow->resize(1000, 600);
         centralWidget = new QWidget(MainWindow);
-        centralWidget->setObjectName(QStringLiteral("centralWidget"));
+        centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         gridLayoutWidget = new QWidget(centralWidget);
-        gridLayoutWidget->setObjectName(QStringLiteral("gridLayoutWidget"));
+        gridLayoutWidget->setObjectName(QString::fromUtf8("gridLayoutWidget"));
         gridLayoutWidget->setGeometry(QRect(9, 9, 731, 581));
         gridLayout = new QGridLayout(gridLayoutWidget);
         gridLayout->setSpacing(6);
         gridLayout->setContentsMargins(11, 11, 11, 11);
-        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         gridLayout->setContentsMargins(0, 0, 0, 0);
+        tableWidget = new QTableWidget(gridLayoutWidget);
+        tableWidget->setObjectName(QString::fromUtf8("tableWidget"));
+
+        gridLayout->addWidget(tableWidget, 0, 0, 1, 1);
+
         verticalLayoutWidget = new QWidget(centralWidget);
-        verticalLayoutWidget->setObjectName(QStringLiteral("verticalLayoutWidget"));
+        verticalLayoutWidget->setObjectName(QString::fromUtf8("verticalLayoutWidget"));
         verticalLayoutWidget->setGeometry(QRect(750, 9, 241, 341));
         verticalLayout = new QVBoxLayout(verticalLayoutWidget);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
         pbSelect = new QPushButton(verticalLayoutWidget);
-        pbSelect->setObjectName(QStringLiteral("pbSelect"));
+        pbSelect->setObjectName(QString::fromUtf8("pbSelect"));
 
         verticalLayout->addWidget(pbSelect);
 
         tePath = new QTextEdit(verticalLayoutWidget);
-        tePath->setObjectName(QStringLiteral("tePath"));
+        tePath->setObjectName(QString::fromUtf8("tePath"));
 
         verticalLayout->addWidget(tePath);
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setSpacing(6);
-        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
+        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
         horizontalLayout_2->setContentsMargins(-1, -1, -1, 0);
         label = new QLabel(verticalLayoutWidget);
-        label->setObjectName(QStringLiteral("label"));
+        label->setObjectName(QString::fromUtf8("label"));
 
         horizontalLayout_2->addWidget(label);
 
         lcdNumber = new QLCDNumber(verticalLayoutWidget);
-        lcdNumber->setObjectName(QStringLiteral("lcdNumber"));
+        lcdNumber->setObjectName(QString::fromUtf8("lcdNumber"));
         lcdNumber->setProperty("intValue", QVariant(20));
 
         horizontalLayout_2->addWidget(lcdNumber);
@@ -95,7 +103,7 @@ public:
         verticalLayout->addLayout(horizontalLayout_2);
 
         horizontalSlider = new QSlider(verticalLayoutWidget);
-        horizontalSlider->setObjectName(QStringLiteral("horizontalSlider"));
+        horizontalSlider->setObjectName(QString::fromUtf8("horizontalSlider"));
         horizontalSlider->setMaximum(100);
         horizontalSlider->setValue(20);
         horizontalSlider->setOrientation(Qt::Horizontal);
@@ -104,14 +112,14 @@ public:
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setSpacing(6);
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         label_3 = new QLabel(verticalLayoutWidget);
-        label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setObjectName(QString::fromUtf8("label_3"));
 
         horizontalLayout->addWidget(label_3);
 
         label_2 = new QLabel(verticalLayoutWidget);
-        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setObjectName(QString::fromUtf8("label_2"));
 
         horizontalLayout->addWidget(label_2, 0, Qt::AlignRight);
 
@@ -119,7 +127,7 @@ public:
         verticalLayout->addLayout(horizontalLayout);
 
         pbStart = new QPushButton(verticalLayoutWidget);
-        pbStart->setObjectName(QStringLiteral("pbStart"));
+        pbStart->setObjectName(QString::fromUtf8("pbStart"));
 
         verticalLayout->addWidget(pbStart);
 

@@ -7,6 +7,7 @@
 #include <QMessageBox>
 #include <QString>
 #include <QDirIterator>
+#include <QTableWidget>
 //#include "../../src/mainCompare2Files.cpp"
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -64,6 +65,34 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::viewResults()
+{
+    int iloscProjektow=2;
+
+    QStringList stringlist;
+    QString nazwy[4] = { "Projekt1" , "Projekt2"};
+
+    //=====================
+    for( int i=0; i<=2; i++)
+        stringlist << nazwy[i];
+
+    //===================== Procenty
+    double wyniki[4] = {0,25,50,100};
+
+    //QTableWidget *point = ui->tablica;
+
+    ui->tableWidget->setRowCount(iloscProjektow);
+    ui->tableWidget->setColumnCount(iloscProjektow);
+
+    int k=0;
+        for(int i=0; i<iloscProjektow; i++)
+        {
+            ui->tableWidget->setHorizontalHeaderItem(i, new QTableWidgetItem(nazwy[i]));
+            ui->tableWidget->setVerticalHeaderItem(i, new QTableWidgetItem(nazwy[i]));
+        }
+
 }
 
 void MainWindow::dialog()
