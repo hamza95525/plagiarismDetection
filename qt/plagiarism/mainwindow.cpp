@@ -67,7 +67,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::viewResults()
+void MainWindow::viewTable()
 {
     int iloscProjektow=2;
 
@@ -81,8 +81,6 @@ void MainWindow::viewResults()
     //===================== Procenty
     double wyniki[4] = {0,25,50,100};
 
-    //QTableWidget *point = ui->tablica;
-
     ui->tableWidget->setRowCount(iloscProjektow);
     ui->tableWidget->setColumnCount(iloscProjektow);
 
@@ -91,6 +89,12 @@ void MainWindow::viewResults()
         {
             ui->tableWidget->setHorizontalHeaderItem(i, new QTableWidgetItem(nazwy[i]));
             ui->tableWidget->setVerticalHeaderItem(i, new QTableWidgetItem(nazwy[i]));
+            for( int j=0; j<iloscProjektow; j++)
+            {
+                double wartosc = wyniki[k++];
+                QString valueAsString = QString::number(wartosc);
+                ui->tableWidget->setItem(i,j, new QTableWidgetItem(valueAsString));
+            }
         }
 
 }
