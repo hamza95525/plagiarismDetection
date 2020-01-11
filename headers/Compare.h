@@ -9,9 +9,16 @@
 
 class Compare{
 
+
 public:
     int numOfLines(std::ifstream& file);
     float percentage(int equalLines, int allLines);
-    float simpleCompare(const std::string &FilePath1, const std::string &FilePath2);
+    void readFile(const std::string &FilePath, std::ifstream &file);
     void deleteEmptyLines(const std::string &FilePath);
+    bool isKeyword(std::string word);
+    bool isOperator(std::string word);
+
+
+    float basicLexicalAnalyzer(const std::string &FilePath1, const std::string &FilePath2);
+    float simpleCompare(const std::string &FilePath1, const std::string &FilePath2);
 };

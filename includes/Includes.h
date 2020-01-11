@@ -7,4 +7,4 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-
+#include <sstream> //for spliting line into words
