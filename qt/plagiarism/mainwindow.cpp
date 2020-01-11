@@ -60,6 +60,7 @@ MainWindow::MainWindow(QWidget *parent) :
     stateMachine->setInitialState(SelectFile);
 
     stateMachine->start();
+    viewTable();
 }
 
 MainWindow::~MainWindow()
@@ -69,31 +70,65 @@ MainWindow::~MainWindow()
 
 void MainWindow::viewTable()
 {
-    int iloscProjektow=2;
+    int numberOfProjects=4;
 
     QStringList stringlist;
-    QString nazwy[4] = { "Projekt1" , "Projekt2"};
+    QString projectsNames[4] = { "Projekt1" , "Projekt2", "Project3", "Project4"};
 
     //=====================
     for( int i=0; i<=2; i++)
-        stringlist << nazwy[i];
+        stringlist << projectsNames[i];
 
     //===================== Procenty
-    double wyniki[4] = {0,25,50,100};
+    double wyniki[16] = {0, 15,25,50,15,25,50,75,25,50,75,100,50,75,100,100};
 
-    ui->tableWidget->setRowCount(iloscProjektow);
-    ui->tableWidget->setColumnCount(iloscProjektow);
+    ui->tableWidget->setRowCount(numberOfProjects);
+    ui->tableWidget->setColumnCount(numberOfProjects);
 
     int k=0;
-        for(int i=0; i<iloscProjektow; i++)
+        for(int i=0; i<numberOfProjects; i++)
         {
-            ui->tableWidget->setHorizontalHeaderItem(i, new QTableWidgetItem(nazwy[i]));
-            ui->tableWidget->setVerticalHeaderItem(i, new QTableWidgetItem(nazwy[i]));
-            for( int j=0; j<iloscProjektow; j++)
+            ui->tableWidget->setHorizontalHeaderItem(i, new QTableWidgetItem(projectsNames[i]));
+            ui->tableWidget->setVerticalHeaderItem(i, new QTableWidgetItem(projectsNames[i]));
+            for( int j=0; j<numberOfProjects; j++)
             {
                 double wartosc = wyniki[k++];
                 QString valueAsString = QString::number(wartosc);
                 ui->tableWidget->setItem(i,j, new QTableWidgetItem(valueAsString));
+
+                //COLORS
+                int red = 255;
+                int green = 255;
+
+                if( wartosc == 0.0)
+                {
+                    red=255;
+                    green=0;
+                }
+                else if( wartosc == 15.0)
+                {
+                    green=65;
+                }
+                else if( wartosc == 25.0)
+                {
+                    red=255;
+                    green=127;
+                }
+                else if( wartosc==50.0)
+                {
+                    red=255;
+                    green=255;
+                }
+                else if( wartosc == 75.0)
+                {
+                    green=255;
+                    red=127;
+                }
+                else {
+                    red=0;
+                }
+
+                ui->tableWidget->item(i,j)->setBackgroundColor(QColor(red, green , 0, 127));
             }
         }
 
