@@ -4,6 +4,7 @@
 #pragma once
 
 #include <fstream>
+#include <vector>
 #include "../includes/Includes.h"
 
 
@@ -15,6 +16,7 @@ public:
     float percentage(int equalLines, int allLines);
     void readFile(const std::string &FilePath, std::ifstream &file);
     void deleteEmptyLines(const std::string &FilePath);
+    std::vector<std::string> split(std::string str);
     bool isKeyword(std::string word);
     bool isOperator(std::string word);
 

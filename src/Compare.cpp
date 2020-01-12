@@ -60,15 +60,15 @@ bool Compare::isKeyword(std::string word) {
 }
 //==============================================================================================
 bool Compare::isOperator(std::string word) {
-    std::string operators[44] = {
-            "::", "()", "[]", "->", ".", "-", "+", "*", "&", "!", "~", "++", "--", ".*", "->*",
+    std::string operators[47] = {
+            "::", "std::cout<<", "std::cout", "std::endl", "()", "[]", "->", ".", "-", "+", "*", "&", "!", "~", "++", "--", ".*", "->*",
             "/", "*", "%", "<<", ">>", "<", ">", "<=", ">=", "==", "!=", "&", "^", "|", "&&",
             "||", "?:", "=", "+=", "-=", "/=", "*=", "%=", "&=", "|=", "^=", "<<=", ">>=", ","
     };
 
     bool flag = 0;
 
-    for(int i = 0; i<45; i++)
+    for(int i = 0; i<47; i++)
         if(word == operators[i]){
             flag = 1;
             break;
@@ -76,6 +76,27 @@ bool Compare::isOperator(std::string word) {
 
     return flag;
 }
+//==============================================================================================
+std::vector<std::string> Compare::split(std::string str) {
+    std::vector<std::string> internal;
+    std::stringstream ss(str);
+    std::string temp;
+
+    while(getline(ss, temp)){
+        std::size_t prev = 0, pos;
+        while((pos = temp.find_first_of( " ';(,*\")", prev)) != std::string::npos)
+        {
+            if(pos>prev)
+                internal.push_back(temp.substr(prev, pos-prev));
+            prev = pos + 1;
+        }
+        if(prev < temp.length())
+            internal.push_back(temp.substr(prev, std::string::npos));
+    }
+
+    return internal;
+}
+
 //==============================================================================================
 void Compare::readFile(const std::string &FilePath, std::ifstream &file) {
     file.open(FilePath);
@@ -152,32 +173,32 @@ float Compare::basicLexicalAnalyzer(const std::string &FilePath1, const std::str
         tab2[i] = temp;
     }
 
+    int keywords1 = 0; int keywords2 = 0;
+    int operators1 = 0; int operators2 = 0;
     for(int i=0; i<numOfLinesFile2; i++){
-        std::string arr1[sizeof(tab1[i])/ sizeof(std::string)];
-        std::string arr2[sizeof(tab2[i])/sizeof(std::string)];
+        std::vector<std::string> words1 = split(tab1[i]);
+        std::vector<std::string> words2 = split(tab2[i]);
 
-        std::stringstream ssin1(tab1[i]);
-        std::stringstream ssin2(tab2[i]);
-
-        int j=0, k=0;
-        while(ssin1.good() && j<sizeof(tab1[i])/sizeof(std::string)){
-            ssin1 >> arr1[i];
-            ++j;
+        for(int j=0; j<words1.size(); j++) {
+            if(isKeyword(words1[j]))
+                keywords1++;
+            if(isOperator(words1[j]))
+                operators1++;
         }
 
-        while(ssin2.good() && j<sizeof(tab2[i])/sizeof(std::string)){
-            ssin2 >> arr2[i];
-            ++k;
-        }
-
-        for(int l=0; l<sizeof(tab1[i])/sizeof(std::string); l++){
-            
+        for(int k=0; k<words2.size(); k++){
+            if(isKeyword(words2[k]))
+                keywords2++;
+            if(isOperator(words2[k]))
+                operators2++;
         }
     }
 
     file1.close();
     file2.close();
+    int all1 = keywords1 + operators1;
+    int all2 = keywords2 + operators2;
 
-
-    return false;
+    float P = percentage(all1, all2);
+    return P;
 }

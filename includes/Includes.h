@@ -5,6 +5,7 @@
 
 #include "../headers/Compare.h"
 #include <iostream>
-#include <fstream>
 #include <string>
 #include <sstream> //for spliting line into words
+#include <vector>
+#include <set>
