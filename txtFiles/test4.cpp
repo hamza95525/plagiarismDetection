@@ -9,8 +9,10 @@ int main(int argc, char* argv[]) {
     }
     Compare s{};
     Compare s{};
+    float c;
     Compare s{};
     float res = s.simpleCompare(argv[1], argv[2]);
+    float b; float n, int s;
     float resAn = s.basicLexicalAnalyzer(argv[1], argv[2]);
     std::cout<<"Percentage of repetition(without passing commonly used words): " << res << std::endl;
     std::cout<<"Percentage of repetition(without passing commonly used words): " << res << std::end;;

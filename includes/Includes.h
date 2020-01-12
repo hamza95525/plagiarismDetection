@@ -8,4 +8,4 @@
 #include <string>
 #include <sstream> //for spliting line into words
 #include <vector>
-#include <set>
+#include <algorithm>

@@ -34,6 +34,7 @@ int Compare::numOfLines(std::ifstream& file){
 
 float Compare::percentage(int equalLines, int allLines) {
     float P = ( float(equalLines) / float(allLines) ) * 100;
+    if(P > 100) P = 100;
     return P;
 }
 //==============================================================================================
@@ -48,11 +49,11 @@ bool Compare::isKeyword(std::string word) {
             "void", "volatile", "wchar_t", "while"
     };
 
-    bool flag = 0;
+    bool flag = false;
 
-    for(int i = 0; i< 59; i++)
-        if(word == keywords[i]){
-            flag = 1;
+    for(const auto & i : keywords)
+        if(word == i){
+            flag = true;
             break;
         }
 
@@ -66,11 +67,11 @@ bool Compare::isOperator(std::string word) {
             "||", "?:", "=", "+=", "-=", "/=", "*=", "%=", "&=", "|=", "^=", "<<=", ">>=", ","
     };
 
-    bool flag = 0;
+    bool flag = false;
 
-    for(int i = 0; i<47; i++)
-        if(word == operators[i]){
-            flag = 1;
+    for(const auto & i : operators)
+        if(word == i){
+            flag = true;
             break;
         }
 
@@ -141,10 +142,55 @@ float Compare::simpleCompare(const std::string &FilePath1, const std::string &Fi
             counter++;
     }
 
-    float P = percentage(counter, numOfLinesFile2);
-    return P;
+    return percentage(counter, numOfLinesFile2);
 }
 
+//===============================================================================================
+float Compare::removeDuplicates(const std::string &FilePath1, const std::string &FilePath2) {
+    std::ifstream file1;
+    readFile(FilePath1, file1);
+    std::ifstream file2;
+    readFile(FilePath2, file2);
+
+    deleteEmptyLines(FilePath1); deleteEmptyLines(FilePath2);
+
+    int numOfLinesFile1 = numOfLines(file1);
+    std::vector<std::string> linesFile1;
+    int numOfLinesFile2 = numOfLines(file2);
+    std::vector<std::string> linesFile2;
+
+    std::string temp; //temporary string to use in getline function
+    for(int i = 0; i< numOfLinesFile1; i++){
+        getline(file1,temp);
+        linesFile1.push_back(temp);
+    }
+
+    for(int i = 0; i< numOfLinesFile2; i++){
+        getline(file2,temp);
+        linesFile2.push_back(temp);
+    }
+
+
+    std::sort(linesFile1.begin(), linesFile1.end());
+    std::sort(linesFile2.begin(), linesFile2.end());
+
+    linesFile1.erase( unique( linesFile1.begin(), linesFile1.end() ), linesFile1.end() ); //removing duplicate lines
+    linesFile2.erase( unique( linesFile2.begin(), linesFile2.end() ), linesFile2.end() );
+
+    for(const auto & i : linesFile2)
+        std::cout<<"line: "<< i<<std::endl;
+
+    int counter = 0;
+    for(const auto & i : linesFile1){
+        for(const auto & j : linesFile2){
+            if(i == j)
+                counter++;
+        }
+    }
+
+    return percentage(counter, linesFile2.size());
+
+}
 //===============================================================================================
 
 float Compare::basicLexicalAnalyzer(const std::string &FilePath1, const std::string &FilePath2) {
@@ -160,7 +206,57 @@ float Compare::basicLexicalAnalyzer(const std::string &FilePath1, const std::str
     int numOfLinesFile2 = numOfLines(file2);
     std::string tab2[numOfLinesFile2];
 
-    int counter = 0; //how many lines was matching
+    std::string temp; //temporary string to use in getline function
+    for(int i = 0; i< numOfLinesFile1; i++){
+        getline(file1,temp);
+        tab1[i] = temp;
+    }
+
+    for(int i = 0; i< numOfLinesFile2; i++){
+        getline(file2,temp);
+        tab2[i] = temp;
+    }
+
+    int keywordsAndOperators1 = 0; int keywordsAndOperators2 = 0;
+    for(int i=0; i<numOfLinesFile2; i++){
+        std::vector<std::string> words1 = split(tab1[i]); //vector of words after spliting the line
+        std::vector<std::string> words2 = split(tab2[i]);
+
+        for(const auto & j : words1) {
+            if(isKeyword(j)) //tak wiem ze warunki tego rodzaju mozna polaczyc w jeden, ale std::bad_alloc mi na to nie pozwala
+                keywordsAndOperators1++;
+            if(isOperator(j))
+                keywordsAndOperators1++;
+        }
+
+        for(const auto & k : words2){
+            if(isKeyword(k))
+                keywordsAndOperators2++;
+            if(isOperator(k))
+                keywordsAndOperators2++;
+        }
+    }
+
+    file1.close();
+    file2.close();
+
+    return percentage(keywordsAndOperators1 , keywordsAndOperators2 );
+}
+//========================================================================================
+
+
+float Compare::lexicalAnalyzer(const std::string &FilePath1, const std::string &FilePath2) {
+    std::ifstream file1;
+    readFile(FilePath1, file1);
+
+    std::ifstream file2;
+    readFile(FilePath2, file2);
+
+    deleteEmptyLines(FilePath1); deleteEmptyLines(FilePath2);
+    int numOfLinesFile1 = numOfLines(file1);
+    std::string tab1[numOfLinesFile1]; // creating array of string to store lines
+    int numOfLinesFile2 = numOfLines(file2);
+    std::string tab2[numOfLinesFile2];
 
     std::string temp; //temporary string to use in getline function
     for(int i = 0; i< numOfLinesFile1; i++){
@@ -173,32 +269,36 @@ float Compare::basicLexicalAnalyzer(const std::string &FilePath1, const std::str
         tab2[i] = temp;
     }
 
-    int keywords1 = 0; int keywords2 = 0;
-    int operators1 = 0; int operators2 = 0;
-    for(int i=0; i<numOfLinesFile2; i++){
+    std::vector<std::string> keywords1;
+    std::vector<std::string> keywords2;
+    for(int i=0; i<numOfLinesFile2; i++) {
         std::vector<std::string> words1 = split(tab1[i]);
         std::vector<std::string> words2 = split(tab2[i]);
 
-        for(int j=0; j<words1.size(); j++) {
-            if(isKeyword(words1[j]))
-                keywords1++;
-            if(isOperator(words1[j]))
-                operators1++;
+        for(const auto & j : words1) {
+            if(isKeyword(j))
+                keywords1.push_back(j);
+            if(isOperator(j))
+                keywords1.push_back(j);
         }
 
-        for(int k=0; k<words2.size(); k++){
-            if(isKeyword(words2[k]))
-                keywords2++;
-            if(isOperator(words2[k]))
-                operators2++;
+        for(const auto & k : words2){
+            if(isKeyword(k))
+                keywords2.push_back(k);
+            if(isOperator(k))
+                keywords2.push_back(k);
         }
     }
 
-    file1.close();
-    file2.close();
-    int all1 = keywords1 + operators1;
-    int all2 = keywords2 + operators2;
+    std::sort(keywords1.begin(), keywords1.end());
+    std::sort(keywords2.begin(), keywords2.end());
 
-    float P = percentage(all1, all2);
-    return P;
+    int counter = 0;
+    for(int i=0; i<keywords2.size(); i++){
+        if(keywords1[i] == keywords2[i]) {
+            counter++;
+        }
+    }
+
+    return percentage(counter, keywords2.size());
 }
