@@ -56,7 +56,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ViewResult->assignProperty(ui->pbSelect, "enabled", true);
     ViewResult->assignProperty(ui->pbStart, "text", "DONE");
     ViewResult->addTransition(ui->tePath, SIGNAL(textChanged()), PathSelected);
-    ViewResult->addTransition(ui->horizontalSlider, &QSlider::sliderReleased, Compare);
+    ViewResult->addTransition(ui->horizontalSlider, &QSlider::sliderReleased, PathSelected);
     ViewResult->addTransition(ui->cbAlgo, SIGNAL(clicked()), PathSelected);
     ViewResult->addTransition(ui->cbAlgo_2, SIGNAL(clicked()), PathSelected);
     ViewResult->addTransition(ui->cbAlgo_3, SIGNAL(clicked()), PathSelected);
@@ -90,11 +90,8 @@ void MainWindow::viewTable()
         stringlist << projectsNames[i];
 
     //===================== Procenty
-<<<<<<< HEAD
-    double wyniki[16] = {0, 15,25,50,15,25,42,75,25,50,75,100,50,75,100,100};
-=======
+
     double wyniki[16] = {0, 15,35,50,15,35,50,65,35,50,65,85,50,65,85,100};
->>>>>>> f641193b27cd119bf4d77a9cfbb0f0ba5e103361
 
     ui->tableWidget->setRowCount(numberOfProjects);
     ui->tableWidget->setColumnCount(numberOfProjects);

@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainwindow.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.12.2)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.11.3)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -12,7 +12,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'mainwindow.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.12.2. It"
+#error "This file was generated using the moc from 5.11.3. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[8];
-    char stringdata0[55];
+    QByteArrayData data[9];
+    char stringdata0[61];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -38,21 +38,22 @@ QT_MOC_LITERAL(3, 18, 4), // "done"
 QT_MOC_LITERAL(4, 23, 6), // "dialog"
 QT_MOC_LITERAL(5, 30, 4), // "open"
 QT_MOC_LITERAL(6, 35, 7), // "compare"
-QT_MOC_LITERAL(7, 43, 11) // "std::string"
+QT_MOC_LITERAL(7, 43, 11), // "std::string"
+QT_MOC_LITERAL(8, 55, 5) // "clear"
 
     },
     "MainWindow\0error\0\0done\0dialog\0open\0"
-    "compare\0std::string"
+    "compare\0std::string\0clear"
 };
 #undef QT_MOC_LITERAL
 
 static const uint qt_meta_data_MainWindow[] = {
 
  // content:
-       8,       // revision
+       7,       // revision
        0,       // classname
        0,    0, // classinfo
-       5,   14, // methods
+       6,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -60,13 +61,14 @@ static const uint qt_meta_data_MainWindow[] = {
        2,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,   39,    2, 0x06 /* Public */,
-       3,    0,   40,    2, 0x06 /* Public */,
+       1,    0,   44,    2, 0x06 /* Public */,
+       3,    0,   45,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       4,    0,   41,    2, 0x0a /* Public */,
-       5,    0,   42,    2, 0x0a /* Public */,
-       6,    2,   43,    2, 0x0a /* Public */,
+       4,    0,   46,    2, 0x0a /* Public */,
+       5,    0,   47,    2, 0x0a /* Public */,
+       6,    3,   48,    2, 0x0a /* Public */,
+       8,    0,   55,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void,
@@ -75,7 +77,8 @@ static const uint qt_meta_data_MainWindow[] = {
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Double, 0x80000000 | 7, 0x80000000 | 7,    2,    2,
+    QMetaType::Double, 0x80000000 | 7, 0x80000000 | 7, QMetaType::Int,    2,    2,    2,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -83,15 +86,16 @@ static const uint qt_meta_data_MainWindow[] = {
 void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        auto *_t = static_cast<MainWindow *>(_o);
+        MainWindow *_t = static_cast<MainWindow *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->error(); break;
         case 1: _t->done(); break;
         case 2: _t->dialog(); break;
         case 3: _t->open(); break;
-        case 4: { double _r = _t->compare((*reinterpret_cast< std::string(*)>(_a[1])),(*reinterpret_cast< std::string(*)>(_a[2])));
+        case 4: { double _r = _t->compare((*reinterpret_cast< std::string(*)>(_a[1])),(*reinterpret_cast< std::string(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3])));
             if (_a[0]) *reinterpret_cast< double*>(_a[0]) = std::move(_r); }  break;
+        case 5: _t->clear(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -113,14 +117,10 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
     }
 }
 
-QT_INIT_METAOBJECT const QMetaObject MainWindow::staticMetaObject = { {
-    &QMainWindow::staticMetaObject,
-    qt_meta_stringdata_MainWindow.data,
-    qt_meta_data_MainWindow,
-    qt_static_metacall,
-    nullptr,
-    nullptr
-} };
+QT_INIT_METAOBJECT const QMetaObject MainWindow::staticMetaObject = {
+    { &QMainWindow::staticMetaObject, qt_meta_stringdata_MainWindow.data,
+      qt_meta_data_MainWindow,  qt_static_metacall, nullptr, nullptr}
+};
 
 
 const QMetaObject *MainWindow::metaObject() const
@@ -142,13 +142,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 5)
+        if (_id < 6)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 5;
+        _id -= 6;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 5)
+        if (_id < 6)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 5;
+        _id -= 6;
     }
     return _id;
 }
