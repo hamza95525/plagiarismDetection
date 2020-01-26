@@ -8,6 +8,7 @@
 #include <QString>
 #include <QDirIterator>
 #include <QTableWidget>
+#include <QtCore/qmath.h>
 //#include "../../src/mainCompare2Files.cpp"
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -89,7 +90,11 @@ void MainWindow::viewTable()
         stringlist << projectsNames[i];
 
     //===================== Procenty
+<<<<<<< HEAD
     double wyniki[16] = {0, 15,25,50,15,25,42,75,25,50,75,100,50,75,100,100};
+=======
+    double wyniki[16] = {0, 15,35,50,15,35,50,65,35,50,65,85,50,65,85,100};
+>>>>>>> f641193b27cd119bf4d77a9cfbb0f0ba5e103361
 
     ui->tableWidget->setRowCount(numberOfProjects);
     ui->tableWidget->setColumnCount(numberOfProjects);
@@ -108,34 +113,12 @@ void MainWindow::viewTable()
                 //COLORS
                 int red = 255;
                 int green = 255;
+                double color = 255/50;    //wspolczynnik koloru dla jednego punktu procentowego
 
-                if( wartosc == 0.0)
-                {
-                    red=255;
-                    green=0;
-                }
-                else if( wartosc == 15.0)
-                {
-                    green=65;
-                }
-                else if( wartosc == 25.0)
-                {
-                    red=255;
-                    green=127;
-                }
-                else if( wartosc==50.0)
-                {
-                    red=255;
-                    green=255;
-                }
-                else if( wartosc == 75.0)
-                {
-                    green=255;
-                    red=127;
-                }
-                else {
-                    red=0;
-                }
+                if( wartosc > 50.0)
+                    green = qFloor((100-wartosc)*color);
+                else if( wartosc < 50.0)
+                    red = qFloor(wartosc*color);
 
                 // test for color palette
                 red=255;
