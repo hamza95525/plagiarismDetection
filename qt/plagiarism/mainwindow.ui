@@ -35,7 +35,7 @@
       <x>750</x>
       <y>9</y>
       <width>241</width>
-      <height>341</height>
+      <height>421</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -100,6 +100,53 @@
         </widget>
        </item>
       </layout>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>Algorithms to use:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="cbAlgo">
+       <property name="text">
+        <string>wpisac</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+       <property name="autoRepeat">
+        <bool>false</bool>
+       </property>
+       <property name="tristate">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="cbAlgo_2">
+       <property name="text">
+        <string>poprawne</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="cbAlgo_3">
+       <property name="text">
+        <string>nazwy</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="cbAlgo_4">
+       <property name="text">
+        <string>algorytmów</string>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QPushButton" name="pbStart">

@@ -10,9 +10,9 @@ Error -down-> PathSelected : <b>tePath</b>  changed()
 PathSelected -right-> Compare : <b>pbStart</b> clicked()
 'Open -right-> Compare : <b>this</b> opened()
 Compare -down-> Error : <b>this</b> error()
-Compare -left-> PathSelected : <b>tePath</b>  changed() \n OR \n <b>horizontalSlider</b>  changed() \nOR\n <b>pbStart</b>  clicked()
+Compare -left-> PathSelected : <b>pbStart</b>  clicked()
 Compare -right-> ViewResult : <b>this</b>  done()
-ViewResult -left-> PathSelected : <b>tePath</b>  changed() \n OR \n <b>horizontalSlider</b>  changed()
+ViewResult -left-> PathSelected : <b>tePath</b>  changed() \n OR \n <b>horizontalSlider</b>  changed() \n OR \n <b>cbAlgo</b>  changed()
 
 
 SelectFile: <b>pbStart</b>  enabled  <b> false</b>
@@ -23,11 +23,11 @@ PathSelected: <b>pbStart</b>  enabled  <b> true</b>
 PathSelected: <b>pbStart</b>  placeholderText  <b> "START"</b>
 PathSelected: <b>pbSelect</b>  enabled  <b> true</b>
 PathSelected: <b>tePath</b>  placeholderText  <b> "/path/to/directory"</b>
+PathSelected: <b>state</b>  entered() ->    <b>this</b>  clear()
 
-Open: <b>state</b>  entered()  ->  <b>this</b>   open()
 Compare: <b>pbStart</b>  placeholderText  <b> "CANCEL"</b>
 Compare: <b>pbSelect</b>  enabled  <b> false</b>
-Compare: <b>state</b>  entered()  ->  <b>this</b>  open()
+Compare: <b>state</b>  entered() ->    <b>this</b>  open()
 
 Error: <b>pbStart</b>  enabled  <b> false</b>
 Error: <b>pbSelect</b>  enabled  <b> true</b>

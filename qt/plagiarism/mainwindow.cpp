@@ -28,6 +28,7 @@ MainWindow::MainWindow(QWidget *parent) :
     SelectFile->assignProperty(ui->pbSelect, "enabled", true);
     SelectFile->assignProperty(ui->tePath, "enabled", true);
     SelectFile->assignProperty(ui->tePath, "placeholderText", "No file selected...");
+    SelectFile->assignProperty(ui->cbAlgo, "checked", true);
 
     connect(ui->pbSelect, SIGNAL(clicked()), this, SLOT(dialog()));
     SelectFile->addTransition(ui->tePath, SIGNAL(textChanged()), PathSelected);
@@ -42,8 +43,7 @@ MainWindow::MainWindow(QWidget *parent) :
     Compare->assignProperty(ui->pbStart, "text", "CANCEL");
     Compare->assignProperty(ui->pbSelect, "enabled", false);
     Compare->addTransition(ui->pbStart, SIGNAL(clicked()), PathSelected);
-    Compare->addTransition(ui->tePath, SIGNAL(textChanged()), PathSelected);
-    Compare->addTransition(ui->horizontalSlider, &QSlider::sliderReleased, Compare);
+
     Compare->addTransition(this, SIGNAL(done()), ViewResult);    
     Compare->addTransition(this, SIGNAL(error()), Error);
 
@@ -56,6 +56,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ViewResult->assignProperty(ui->pbStart, "text", "DONE");
     ViewResult->addTransition(ui->tePath, SIGNAL(textChanged()), PathSelected);
     ViewResult->addTransition(ui->horizontalSlider, &QSlider::sliderReleased, Compare);
+    ViewResult->addTransition(ui->cbAlgo, SIGNAL(clicked()), PathSelected);
+    ViewResult->addTransition(ui->cbAlgo_2, SIGNAL(clicked()), PathSelected);
+    ViewResult->addTransition(ui->cbAlgo_3, SIGNAL(clicked()), PathSelected);
+    ViewResult->addTransition(ui->cbAlgo_4, SIGNAL(clicked()), PathSelected);
 
     stateMachine->setInitialState(SelectFile);
 
@@ -66,6 +70,11 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::clear()
+{
+    allProjects.clear();
 }
 
 void MainWindow::viewTable()
@@ -80,7 +89,7 @@ void MainWindow::viewTable()
         stringlist << projectsNames[i];
 
     //===================== Procenty
-    double wyniki[16] = {0, 15,25,50,15,25,50,75,25,50,75,100,50,75,100,100};
+    double wyniki[16] = {0, 15,25,50,15,25,42,75,25,50,75,100,50,75,100,100};
 
     ui->tableWidget->setRowCount(numberOfProjects);
     ui->tableWidget->setColumnCount(numberOfProjects);
@@ -128,6 +137,19 @@ void MainWindow::viewTable()
                     red=0;
                 }
 
+                // test for color palette
+                red=255;
+                green=255;
+
+                if( wartosc > 50.0)
+                {
+                    green=(100-wartosc)*2*255/100;
+                }
+                else if( wartosc < 50.0)
+                {
+                    red=wartosc*2*255/100;
+                }
+
                 ui->tableWidget->item(i,j)->setBackgroundColor(QColor(red, green , 0, 127));
             }
         }
@@ -150,13 +172,13 @@ QDir dir(ui->tePath->toPlainText());
         return;
     }
 
-    std::vector <std::string> allPaths;
 
     QDirIterator projectIter(ui->tePath->toPlainText(), QDir::Dirs | QDir::Readable | QDir::NoDotAndDotDot);
 
     while(projectIter.hasNext())
-    {
+    {        
         QDirIterator fileIter(projectIter.next(), QDir::Files | QDir::Readable, QDirIterator::Subdirectories);
+        std::vector <std::string> allPaths;
         while(fileIter.hasNext())
         {
             QFile file(fileIter.next());
@@ -172,6 +194,30 @@ QDir dir(ui->tePath->toPlainText());
             }
         }
         allProjects.push_back(allPaths);
+        qDebug() << projectIter.filePath() << " NAZWA PROJEKTU\n";
+
+    }
+
+
+    if(ui->cbAlgo->checkState())
+    {
+        algorithmsUsed|=0x01;
+        numberOfAlgorithmsUsed++;
+    }
+    if(ui->cbAlgo_2->checkState())
+    {
+        algorithmsUsed|=0x02;
+        numberOfAlgorithmsUsed++;
+    }
+    if(ui->cbAlgo_3->checkState())
+    {
+        algorithmsUsed|=0x04;
+        numberOfAlgorithmsUsed++;
+    }
+    if(ui->cbAlgo_4->checkState())
+    {
+        algorithmsUsed|=0x08;
+        numberOfAlgorithmsUsed++;
     }
 
     std::vector <std::vector <std::vector <std::vector <double>>>> allResults;
@@ -182,7 +228,7 @@ QDir dir(ui->tePath->toPlainText());
         for(unsigned long b=0;b<allProjects.size(); b++)
         {
             allResults[a].resize(b+1);
-            if(a!=b) // round-robin for projects
+            if(a<b) // round-robin for projects
             {
                 for(unsigned long i=0;i<allProjects[a].size(); i++)
                 {
@@ -191,31 +237,43 @@ QDir dir(ui->tePath->toPlainText());
                     {
                         allResults[a][b][i].resize(j+1);
                         qDebug() << QString::fromStdString(allProjects[a][i]) << "\n" << QString::fromStdString(allProjects[b][j]);
-                        allResults[a][b][i][j] = compare(allProjects[a][i], allProjects[b][j]); // result of comparing file i with file j, in projects a and project b
+                        allResults[a][b][i][j] = compare(allProjects[a][i], allProjects[b][j], algorithmsUsed); // result of comparing file i with file j, in projects a and project b
+                        qDebug() << QString("%1").arg(allResults[a][b][i][j]) << "\n";
+                    }
+                }
+            }
+            else if(a>b)
+            {
+                allResults[a][b].resize(allProjects[a].size());
+                for(unsigned long i=0;i<allProjects[a].size(); i++)
+                {
+                    allResults[a][b][i].resize(allProjects[b].size());
+                    for(unsigned long j=0;j<allProjects[b].size(); j++)
+                    {
+                        qDebug() << QString::fromStdString(allProjects[a][i]) << "\n" << QString::fromStdString(allProjects[b][j]);
+                        allResults[a][b][i][j] = allResults[b][a][j][i];    // cutting number of compare() usages by half
                         qDebug() << QString("%1").arg(allResults[a][b][i][j]) << "\n";
                     }
                 }
             }
         }
     }
-
+    algorithmsUsed=0;
+    numberOfAlgorithmsUsed=0;
     QMessageBox::information(this, tr("Success"), QString("Directory compared to database."));
     emit done();
-
 }
 
-double MainWindow::compare(std::string, std::string)
+double MainWindow::compare(std::string file1, std::string file2, int algorithmsUsed)
 {
     //qDebug() << "Inside comparing function... please implement.";
-    // KHAMZAT TU MASZ WBIĆ ZE SWOIM KODEM
-    return rand()%100;
-}
+   // qDebug() << "algos used: " << algorithmsUsed;
 
-/*  DIFFERENT METHOD
- *  QDir dir(ui->tePath->toPlainText());
-    QStringList filesList = dir.entryList(QDir::Files | QDir::Readable, QDir::Type); // filtry na rozszerzenia: QStringList() << "*.cpp" << "*.txt",
-    for(QString fileName : filesList) {
-    fileName.prepend((dir.absolutePath()).append("/"));
-    QFile file(fileName);
-    qDebug() << fileName; // okazało się, że QDir::entryList() zbiera ścieżkę względną, wypisuję wczytane pliki do konsoli}
-*/
+    /* Algorytmy, które masz użyć są zapisane binarnie w zmiennej algorithmsUsed
+        wartość 1 to algorytm 1. wartość 2 to algo 2, 3 to algorytmy 1 i 2 itd. */
+
+    // 1. WYBRAĆ WARTOŚĆ Z TABELI WYNIKÓW PORÓWNANIA DWÓCH PLIKÓW
+
+    // 2. ZWRÓCIĆ ŚREDNIĄ TYCH WYNIKÓW DO RETURNA, zmień randa na twój wynik procentowy
+    return rand()%100/numberOfAlgorithmsUsed;
+}

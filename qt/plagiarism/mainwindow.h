@@ -23,12 +23,16 @@ signals:
 public slots:
     void dialog();
     void open();
-    double compare(std::string, std::string);
+    double compare(std::string, std::string,int);
+    void clear();
+
 
 private:
     Ui::MainWindow *ui;
     QString directoryName;
     std::vector <std::vector <std::string>> allProjects;
+    int algorithmsUsed=0x00;
+    int numberOfAlgorithmsUsed=0;
 };
 
 #endif // MAINWINDOW_H
