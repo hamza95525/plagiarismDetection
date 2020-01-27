@@ -11,10 +11,8 @@
 
 int main(int argc, char* argv[]) {
     QApplication a(argc, argv);
-        MainWindow w;
-        w.show();
 
-
+    std::cout<< "Przykladowy cout z maina\n:";
     if( argc < 2 ) {
         perror("Wrong number of parameters!\n");
         return -1;
@@ -35,6 +33,8 @@ int main(int argc, char* argv[]) {
     std::cout<<"Percentage of repetition(basic Lexical Analyzer): " << resBasic << "%\n";
     std::cout<<"Percentage of repetition(Lexical Analyzer): " << resAnalyzer << "%\n";
 
-return a.exec();
+    MainWindow w;
+    w.show();
+    return a.exec();
 
 }

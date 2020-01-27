@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.8.1, 2020-01-27T20:36:45. -->
+<!-- Written by QtCreator 4.8.1, 2020-01-27T21:05:10. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -297,7 +297,7 @@
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">plagiarism2</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/home/student/PLAGIAT/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/qt/plagiarism/plagiarism.pro</value>
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.ProFile">plagiarism.pro</value>
-    <value type="QString" key="RunConfiguration.Arguments">&quot;kot.txt&quot; &quot;kot.txt&quot;</value>
+    <value type="QString" key="RunConfiguration.Arguments">&quot;/home/student/PLAGIAT/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/qt/plagiarism/kot.txt&quot; &quot;/home/student/PLAGIAT/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/qt/plagiarism/kot.txt&quot;</value>
     <value type="uint" key="RunConfiguration.QmlDebugServerPort">3768</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
