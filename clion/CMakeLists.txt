@@ -3,8 +3,8 @@ project(oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym)
 
 set(CMAKE_CXX_STANDARD 14)
 
-set(HEADERS includes/Includes.h headers/simpleCompare.h headers/Compare.h)
-set(SOURCES src/Compare.cpp  src/simpleCompare.cpp)
+set(HEADERS includes/Includes.h headers/simpleCompare.h headers/Compare.h headers/removeDuplicates.h headers/basicLexicalAnalyzer.h headers/lexicalAnalyzer.h)
+set(SOURCES src/Compare.cpp  src/simpleCompare.cpp src/removeDuplicates.cpp src/basicLexicalAnalyzer.cpp src/lexicalAnalyzer.cpp)
 
 
 add_library(plagiarism_lib ${HEADERS} ${SOURCES} )

@@ -134,6 +134,15 @@
 			<Option target="plagiarism_lib"/>
 			<Option target="plagiarism"/>
 		</Unit>
+		<Unit filename="/home/khamza/repos/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/clion/headers/basicLexicalAnalyzer.h">
+			<Option target="plagiarism_lib"/>
+		</Unit>
+		<Unit filename="/home/khamza/repos/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/clion/headers/lexicalAnalyzer.h">
+			<Option target="plagiarism_lib"/>
+		</Unit>
+		<Unit filename="/home/khamza/repos/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/clion/headers/removeDuplicates.h">
+			<Option target="plagiarism_lib"/>
+		</Unit>
 		<Unit filename="/home/khamza/repos/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/clion/headers/simpleCompare.h">
 			<Option target="plagiarism_lib"/>
 		</Unit>
@@ -145,8 +154,17 @@
 			<Option target="plagiarism_lib"/>
 			<Option target="plagiarism"/>
 		</Unit>
+		<Unit filename="/home/khamza/repos/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/clion/src/basicLexicalAnalyzer.cpp">
+			<Option target="plagiarism_lib"/>
+		</Unit>
+		<Unit filename="/home/khamza/repos/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/clion/src/lexicalAnalyzer.cpp">
+			<Option target="plagiarism_lib"/>
+		</Unit>
 		<Unit filename="/home/khamza/repos/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/clion/src/main.cpp">
 			<Option target="plagiarism"/>
+		</Unit>
+		<Unit filename="/home/khamza/repos/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/clion/src/removeDuplicates.cpp">
+			<Option target="plagiarism_lib"/>
 		</Unit>
 		<Unit filename="/home/khamza/repos/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/clion/src/simpleCompare.cpp">
 			<Option target="plagiarism_lib"/>

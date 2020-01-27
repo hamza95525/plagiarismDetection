@@ -166,6 +166,60 @@ src/Compare.cpp.s:
 	$(MAKE) -f CMakeFiles/plagiarism.dir/build.make CMakeFiles/plagiarism.dir/src/Compare.cpp.s
 .PHONY : src/Compare.cpp.s
 
+src/basicLexicalAnalyzer.o: src/basicLexicalAnalyzer.cpp.o
+
+.PHONY : src/basicLexicalAnalyzer.o
+
+# target to build an object file
+src/basicLexicalAnalyzer.cpp.o:
+	$(MAKE) -f CMakeFiles/plagiarism_lib.dir/build.make CMakeFiles/plagiarism_lib.dir/src/basicLexicalAnalyzer.cpp.o
+.PHONY : src/basicLexicalAnalyzer.cpp.o
+
+src/basicLexicalAnalyzer.i: src/basicLexicalAnalyzer.cpp.i
+
+.PHONY : src/basicLexicalAnalyzer.i
+
+# target to preprocess a source file
+src/basicLexicalAnalyzer.cpp.i:
+	$(MAKE) -f CMakeFiles/plagiarism_lib.dir/build.make CMakeFiles/plagiarism_lib.dir/src/basicLexicalAnalyzer.cpp.i
+.PHONY : src/basicLexicalAnalyzer.cpp.i
+
+src/basicLexicalAnalyzer.s: src/basicLexicalAnalyzer.cpp.s
+
+.PHONY : src/basicLexicalAnalyzer.s
+
+# target to generate assembly for a file
+src/basicLexicalAnalyzer.cpp.s:
+	$(MAKE) -f CMakeFiles/plagiarism_lib.dir/build.make CMakeFiles/plagiarism_lib.dir/src/basicLexicalAnalyzer.cpp.s
+.PHONY : src/basicLexicalAnalyzer.cpp.s
+
+src/lexicalAnalyzer.o: src/lexicalAnalyzer.cpp.o
+
+.PHONY : src/lexicalAnalyzer.o
+
+# target to build an object file
+src/lexicalAnalyzer.cpp.o:
+	$(MAKE) -f CMakeFiles/plagiarism_lib.dir/build.make CMakeFiles/plagiarism_lib.dir/src/lexicalAnalyzer.cpp.o
+.PHONY : src/lexicalAnalyzer.cpp.o
+
+src/lexicalAnalyzer.i: src/lexicalAnalyzer.cpp.i
+
+.PHONY : src/lexicalAnalyzer.i
+
+# target to preprocess a source file
+src/lexicalAnalyzer.cpp.i:
+	$(MAKE) -f CMakeFiles/plagiarism_lib.dir/build.make CMakeFiles/plagiarism_lib.dir/src/lexicalAnalyzer.cpp.i
+.PHONY : src/lexicalAnalyzer.cpp.i
+
+src/lexicalAnalyzer.s: src/lexicalAnalyzer.cpp.s
+
+.PHONY : src/lexicalAnalyzer.s
+
+# target to generate assembly for a file
+src/lexicalAnalyzer.cpp.s:
+	$(MAKE) -f CMakeFiles/plagiarism_lib.dir/build.make CMakeFiles/plagiarism_lib.dir/src/lexicalAnalyzer.cpp.s
+.PHONY : src/lexicalAnalyzer.cpp.s
+
 src/main.o: src/main.cpp.o
 
 .PHONY : src/main.o
@@ -192,6 +246,33 @@ src/main.s: src/main.cpp.s
 src/main.cpp.s:
 	$(MAKE) -f CMakeFiles/plagiarism.dir/build.make CMakeFiles/plagiarism.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
+
+src/removeDuplicates.o: src/removeDuplicates.cpp.o
+
+.PHONY : src/removeDuplicates.o
+
+# target to build an object file
+src/removeDuplicates.cpp.o:
+	$(MAKE) -f CMakeFiles/plagiarism_lib.dir/build.make CMakeFiles/plagiarism_lib.dir/src/removeDuplicates.cpp.o
+.PHONY : src/removeDuplicates.cpp.o
+
+src/removeDuplicates.i: src/removeDuplicates.cpp.i
+
+.PHONY : src/removeDuplicates.i
+
+# target to preprocess a source file
+src/removeDuplicates.cpp.i:
+	$(MAKE) -f CMakeFiles/plagiarism_lib.dir/build.make CMakeFiles/plagiarism_lib.dir/src/removeDuplicates.cpp.i
+.PHONY : src/removeDuplicates.cpp.i
+
+src/removeDuplicates.s: src/removeDuplicates.cpp.s
+
+.PHONY : src/removeDuplicates.s
+
+# target to generate assembly for a file
+src/removeDuplicates.cpp.s:
+	$(MAKE) -f CMakeFiles/plagiarism_lib.dir/build.make CMakeFiles/plagiarism_lib.dir/src/removeDuplicates.cpp.s
+.PHONY : src/removeDuplicates.cpp.s
 
 src/simpleCompare.o: src/simpleCompare.cpp.o
 
@@ -233,9 +314,18 @@ help:
 	@echo "... src/Compare.o"
 	@echo "... src/Compare.i"
 	@echo "... src/Compare.s"
+	@echo "... src/basicLexicalAnalyzer.o"
+	@echo "... src/basicLexicalAnalyzer.i"
+	@echo "... src/basicLexicalAnalyzer.s"
+	@echo "... src/lexicalAnalyzer.o"
+	@echo "... src/lexicalAnalyzer.i"
+	@echo "... src/lexicalAnalyzer.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/removeDuplicates.o"
+	@echo "... src/removeDuplicates.i"
+	@echo "... src/removeDuplicates.s"
 	@echo "... src/simpleCompare.o"
 	@echo "... src/simpleCompare.i"
 	@echo "... src/simpleCompare.s"

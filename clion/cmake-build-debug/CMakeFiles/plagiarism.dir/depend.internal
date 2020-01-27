@@ -7,6 +7,9 @@ CMakeFiles/plagiarism.dir/src/Compare.cpp.o
  /home/khamza/repos/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/clion/src/Compare.cpp
 CMakeFiles/plagiarism.dir/src/main.cpp.o
  /home/khamza/repos/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/clion/headers/Compare.h
+ /home/khamza/repos/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/clion/headers/basicLexicalAnalyzer.h
+ /home/khamza/repos/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/clion/headers/lexicalAnalyzer.h
+ /home/khamza/repos/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/clion/headers/removeDuplicates.h
  /home/khamza/repos/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/clion/headers/simpleCompare.h
  /home/khamza/repos/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/clion/includes/Includes.h
  /home/khamza/repos/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/clion/src/main.cpp

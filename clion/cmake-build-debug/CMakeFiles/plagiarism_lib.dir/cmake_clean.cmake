@@ -1,5 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/plagiarism_lib.dir/src/Compare.cpp.o"
+  "CMakeFiles/plagiarism_lib.dir/src/basicLexicalAnalyzer.cpp.o"
+  "CMakeFiles/plagiarism_lib.dir/src/lexicalAnalyzer.cpp.o"
+  "CMakeFiles/plagiarism_lib.dir/src/removeDuplicates.cpp.o"
   "CMakeFiles/plagiarism_lib.dir/src/simpleCompare.cpp.o"
   "libplagiarism_lib.a"
   "libplagiarism_lib.pdb"

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../includes/Includes.h"
-#include "Compare.h"
 
 class simpleCompare : Compare
 {
