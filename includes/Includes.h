@@ -9,3 +9,4 @@
 #include <sstream> //for spliting line into words
 #include <vector>
 #include <algorithm>
+#include <map>

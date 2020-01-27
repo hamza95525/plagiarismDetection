@@ -11,6 +11,8 @@ fstream
 -
 vector
 -
+map
+-
 ../includes/Includes.h
 /home/khamza/repos/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/includes/Includes.h
 
@@ -27,12 +29,12 @@ vector
 -
 algorithm
 -
+map
+-
 
 /home/khamza/repos/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/src/Compare.cpp
 ../includes/Includes.h
 /home/khamza/repos/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/includes/Includes.h
-
-/home/khamza/repos/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/src/main.cpp
-../includes/Includes.h
-/home/khamza/repos/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/includes/Includes.h
+../headers/Compare.h
+/home/khamza/repos/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/headers/Compare.h
 

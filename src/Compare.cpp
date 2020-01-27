@@ -2,6 +2,8 @@
 // Created by khamza on 22.12.2019.
 //
 #include "../includes/Includes.h"
+#include "../headers/Compare.h"
+
 
 void Compare::deleteEmptyLines(const std::string &FilePath)
 {
@@ -32,8 +34,8 @@ int Compare::numOfLines(std::ifstream& file){
 }
 //==============================================================================================
 
-float Compare::percentage(int equalLines, int allLines) {
-    float P = ( float(equalLines) / float(allLines) ) * 100;
+float Compare::percentage(float equalLines, int allLines) {
+    float P = ( equalLines / float(allLines) ) * 100;
     if(P > 100) P = 100;
     return P;
 }
@@ -107,7 +109,7 @@ void Compare::readFile(const std::string &FilePath, std::ifstream &file) {
     }
 }
 //==============================================================================================
-
+//==============================================================================================
 float Compare::simpleCompare(const std::string &FilePath1, const std::string &FilePath2) {
     std::ifstream file1;
     readFile(FilePath1, file1);
@@ -117,32 +119,31 @@ float Compare::simpleCompare(const std::string &FilePath1, const std::string &Fi
     deleteEmptyLines(FilePath1); deleteEmptyLines(FilePath2);
 
     int numOfLinesFile1 = numOfLines(file1);
-    std::string tab1[numOfLinesFile1]; // creating array of string to store lines
+    std::vector<std::string> linesFile1;
     int numOfLinesFile2 = numOfLines(file2);
-    std::string tab2[numOfLinesFile2];
-
-    int counter = 0; //how many lines was matching
+    std::vector<std::string> linesFile2;
 
     std::string temp; //temporary string to use in getline function
     for(int i = 0; i< numOfLinesFile1; i++){
         getline(file1,temp);
-        tab1[i] = temp;
+        linesFile1.push_back(temp);
     }
 
     for(int i = 0; i< numOfLinesFile2; i++){
         getline(file2,temp);
-        tab2[i] = temp;
+        linesFile2.push_back(temp);
     }
-
     file1.close();
     file2.close();
 
-    for(int i = 0; i<=numOfLinesFile2; i++){
-        if ( tab1[i] == tab2[i] )
+    float counter = 0;
+
+    for(int i = 0; i<=linesFile2.size(); i++){
+        if ( linesFile1[i] == linesFile2[i] )
             counter++;
     }
 
-    return percentage(counter, numOfLinesFile2);
+    return percentage(counter, linesFile2.size());
 }
 
 //===============================================================================================
@@ -177,10 +178,8 @@ float Compare::removeDuplicates(const std::string &FilePath1, const std::string 
     linesFile1.erase( unique( linesFile1.begin(), linesFile1.end() ), linesFile1.end() ); //removing duplicate lines
     linesFile2.erase( unique( linesFile2.begin(), linesFile2.end() ), linesFile2.end() );
 
-    for(const auto & i : linesFile2)
-        std::cout<<"line: "<< i<<std::endl;
+    float counter = 0;
 
-    int counter = 0;
     for(const auto & i : linesFile1){
         for(const auto & j : linesFile2){
             if(i == j)
@@ -272,7 +271,7 @@ float Compare::lexicalAnalyzer(const std::string &FilePath1, const std::string &
     std::vector<std::string> keywords1;
     std::vector<std::string> keywords2;
     for(int i=0; i<numOfLinesFile2; i++) {
-        std::vector<std::string> words1 = split(tab1[i]);
+        std::vector<std::string> words1 = split(tab1[i]); //split line i into words
         std::vector<std::string> words2 = split(tab2[i]);
 
         for(const auto & j : words1) {
@@ -289,16 +288,60 @@ float Compare::lexicalAnalyzer(const std::string &FilePath1, const std::string &
                 keywords2.push_back(k);
         }
     }
-
     std::sort(keywords1.begin(), keywords1.end());
     std::sort(keywords2.begin(), keywords2.end());
 
-    int counter = 0;
-    for(int i=0; i<keywords2.size(); i++){
-        if(keywords1[i] == keywords2[i]) {
-            counter++;
+    int pos = 0;    //position where the keyword would be in a map
+    int count = 1; //number of keywords
+    std::map<std::string, int> mapOfKeywords1; // keyword -> number of that keyword
+    auto it = mapOfKeywords1.begin();
+
+    for(int i = 0; i<keywords1.size(); i++){
+        if( keywords1[pos] == keywords1[i])
+            count++;
+        else{
+            mapOfKeywords1.insert(it, {keywords1[pos], count});
+            it++;
+            pos = i;
+            count = 1;
         }
     }
 
-    return percentage(counter, keywords2.size());
+    pos = 0; count = 1;
+    std::map<std::string, int> mapOfKeywords2; // keyword -> number of that keyword
+    auto itr = mapOfKeywords2.begin();
+
+    for(int i = 0; i<keywords2.size(); i++){
+        if( keywords2[pos] == keywords2[i])
+            count++;
+        else{
+            mapOfKeywords2.insert(it, {keywords2[pos], count});
+            itr++;
+            pos = i;
+            count = 1;
+        }
+    }
+
+    float counter = compareValues(mapOfKeywords1, mapOfKeywords2);
+
+    return percentage(counter, mapOfKeywords2.size());
+}
+
+float Compare::compareValues(std::map<std::string, int> &mapOfKeywords1, std::map<std::string, int> &mapOfKeywords2) {
+
+    float value = 0;
+    for(auto & iter : mapOfKeywords1){
+        for(auto & itr : mapOfKeywords2)
+        {
+            if( iter.first == itr.first ){
+                if(iter.second > itr.second)
+                    value += 1;
+                else
+                    value += ((float)iter.second/(float)itr.second);
+            }
+        }
+    }
+
+    return value;
+
 }
