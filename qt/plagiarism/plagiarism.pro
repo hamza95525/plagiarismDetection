@@ -26,10 +26,21 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+    simpleCompare.cpp \
+    removeDuplicates.cpp \
+    basicLexicalAnalyzer.cpp \
+    Compare.cpp \
+    lexicalAnalyzer.cpp
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+    basicLexicalAnalyzer.h \
+    Includes.h \
+    simpleCompare.h \
+    removeDuplicates.h \
+    lexicalAnalyzer.h \
+    Compare.h
 
 FORMS += \
         mainwindow.ui
@@ -38,3 +49,6 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES += \
+    kot
