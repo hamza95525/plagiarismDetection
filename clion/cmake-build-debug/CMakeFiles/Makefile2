@@ -53,12 +53,14 @@ CMAKE_BINARY_DIR = /home/khamza/repos/oop_2019_aplikacja_do_wykrywania_plagiatow
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/plikExe.dir/all
+all: CMakeFiles/plagiarism_lib.dir/all
+all: CMakeFiles/plagiarism.dir/all
 
 .PHONY : all
 
 # The main recursive "clean" target.
-clean: CMakeFiles/plikExe.dir/clean
+clean: CMakeFiles/plagiarism_lib.dir/clean
+clean: CMakeFiles/plagiarism.dir/clean
 
 .PHONY : clean
 
@@ -68,31 +70,58 @@ preinstall:
 .PHONY : preinstall
 
 #=============================================================================
-# Target rules for target CMakeFiles/plikExe.dir
+# Target rules for target CMakeFiles/plagiarism_lib.dir
 
 # All Build rule for target.
-CMakeFiles/plikExe.dir/all:
-	$(MAKE) -f CMakeFiles/plikExe.dir/build.make CMakeFiles/plikExe.dir/depend
-	$(MAKE) -f CMakeFiles/plikExe.dir/build.make CMakeFiles/plikExe.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/khamza/repos/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/clion/cmake-build-debug/CMakeFiles --progress-num=1,2,3 "Built target plikExe"
-.PHONY : CMakeFiles/plikExe.dir/all
+CMakeFiles/plagiarism_lib.dir/all:
+	$(MAKE) -f CMakeFiles/plagiarism_lib.dir/build.make CMakeFiles/plagiarism_lib.dir/depend
+	$(MAKE) -f CMakeFiles/plagiarism_lib.dir/build.make CMakeFiles/plagiarism_lib.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/khamza/repos/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/clion/cmake-build-debug/CMakeFiles --progress-num=4,5,6 "Built target plagiarism_lib"
+.PHONY : CMakeFiles/plagiarism_lib.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/plikExe.dir/rule: cmake_check_build_system
+CMakeFiles/plagiarism_lib.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/khamza/repos/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/clion/cmake-build-debug/CMakeFiles 3
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/plikExe.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/plagiarism_lib.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/khamza/repos/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/clion/cmake-build-debug/CMakeFiles 0
-.PHONY : CMakeFiles/plikExe.dir/rule
+.PHONY : CMakeFiles/plagiarism_lib.dir/rule
 
 # Convenience name for target.
-plikExe: CMakeFiles/plikExe.dir/rule
+plagiarism_lib: CMakeFiles/plagiarism_lib.dir/rule
 
-.PHONY : plikExe
+.PHONY : plagiarism_lib
 
 # clean rule for target.
-CMakeFiles/plikExe.dir/clean:
-	$(MAKE) -f CMakeFiles/plikExe.dir/build.make CMakeFiles/plikExe.dir/clean
-.PHONY : CMakeFiles/plikExe.dir/clean
+CMakeFiles/plagiarism_lib.dir/clean:
+	$(MAKE) -f CMakeFiles/plagiarism_lib.dir/build.make CMakeFiles/plagiarism_lib.dir/clean
+.PHONY : CMakeFiles/plagiarism_lib.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/plagiarism.dir
+
+# All Build rule for target.
+CMakeFiles/plagiarism.dir/all: CMakeFiles/plagiarism_lib.dir/all
+	$(MAKE) -f CMakeFiles/plagiarism.dir/build.make CMakeFiles/plagiarism.dir/depend
+	$(MAKE) -f CMakeFiles/plagiarism.dir/build.make CMakeFiles/plagiarism.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/khamza/repos/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/clion/cmake-build-debug/CMakeFiles --progress-num=1,2,3 "Built target plagiarism"
+.PHONY : CMakeFiles/plagiarism.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/plagiarism.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/khamza/repos/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/clion/cmake-build-debug/CMakeFiles 6
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/plagiarism.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/khamza/repos/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/clion/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/plagiarism.dir/rule
+
+# Convenience name for target.
+plagiarism: CMakeFiles/plagiarism.dir/rule
+
+.PHONY : plagiarism
+
+# clean rule for target.
+CMakeFiles/plagiarism.dir/clean:
+	$(MAKE) -f CMakeFiles/plagiarism.dir/build.make CMakeFiles/plagiarism.dir/clean
+.PHONY : CMakeFiles/plagiarism.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

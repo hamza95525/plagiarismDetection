@@ -1,0 +1,2 @@
+/usr/bin/ar qc libplagiarism_lib.a  CMakeFiles/plagiarism_lib.dir/src/Compare.cpp.o CMakeFiles/plagiarism_lib.dir/src/simpleCompare.cpp.o
+/usr/bin/ranlib libplagiarism_lib.a

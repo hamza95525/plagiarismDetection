@@ -3,4 +3,10 @@ project(oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(plikExe src/main.cpp headers/Compare.h includes/Includes.h src/Compare.cpp)
+set(HEADERS includes/Includes.h headers/simpleCompare.h headers/Compare.h)
+set(SOURCES src/Compare.cpp  src/simpleCompare.cpp)
+
+
+add_library(plagiarism_lib ${HEADERS} ${SOURCES} )
+add_executable(plagiarism src/main.cpp headers/Compare.h includes/Includes.h src/Compare.cpp)
+target_link_libraries(plagiarism plagiarism_lib)

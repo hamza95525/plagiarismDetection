@@ -111,17 +111,30 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named plikExe
+# Target rules for targets named plagiarism_lib
 
 # Build rule for target.
-plikExe: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 plikExe
-.PHONY : plikExe
+plagiarism_lib: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 plagiarism_lib
+.PHONY : plagiarism_lib
 
 # fast build rule for target.
-plikExe/fast:
-	$(MAKE) -f CMakeFiles/plikExe.dir/build.make CMakeFiles/plikExe.dir/build
-.PHONY : plikExe/fast
+plagiarism_lib/fast:
+	$(MAKE) -f CMakeFiles/plagiarism_lib.dir/build.make CMakeFiles/plagiarism_lib.dir/build
+.PHONY : plagiarism_lib/fast
+
+#=============================================================================
+# Target rules for targets named plagiarism
+
+# Build rule for target.
+plagiarism: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 plagiarism
+.PHONY : plagiarism
+
+# fast build rule for target.
+plagiarism/fast:
+	$(MAKE) -f CMakeFiles/plagiarism.dir/build.make CMakeFiles/plagiarism.dir/build
+.PHONY : plagiarism/fast
 
 src/Compare.o: src/Compare.cpp.o
 
@@ -129,7 +142,8 @@ src/Compare.o: src/Compare.cpp.o
 
 # target to build an object file
 src/Compare.cpp.o:
-	$(MAKE) -f CMakeFiles/plikExe.dir/build.make CMakeFiles/plikExe.dir/src/Compare.cpp.o
+	$(MAKE) -f CMakeFiles/plagiarism_lib.dir/build.make CMakeFiles/plagiarism_lib.dir/src/Compare.cpp.o
+	$(MAKE) -f CMakeFiles/plagiarism.dir/build.make CMakeFiles/plagiarism.dir/src/Compare.cpp.o
 .PHONY : src/Compare.cpp.o
 
 src/Compare.i: src/Compare.cpp.i
@@ -138,7 +152,8 @@ src/Compare.i: src/Compare.cpp.i
 
 # target to preprocess a source file
 src/Compare.cpp.i:
-	$(MAKE) -f CMakeFiles/plikExe.dir/build.make CMakeFiles/plikExe.dir/src/Compare.cpp.i
+	$(MAKE) -f CMakeFiles/plagiarism_lib.dir/build.make CMakeFiles/plagiarism_lib.dir/src/Compare.cpp.i
+	$(MAKE) -f CMakeFiles/plagiarism.dir/build.make CMakeFiles/plagiarism.dir/src/Compare.cpp.i
 .PHONY : src/Compare.cpp.i
 
 src/Compare.s: src/Compare.cpp.s
@@ -147,7 +162,8 @@ src/Compare.s: src/Compare.cpp.s
 
 # target to generate assembly for a file
 src/Compare.cpp.s:
-	$(MAKE) -f CMakeFiles/plikExe.dir/build.make CMakeFiles/plikExe.dir/src/Compare.cpp.s
+	$(MAKE) -f CMakeFiles/plagiarism_lib.dir/build.make CMakeFiles/plagiarism_lib.dir/src/Compare.cpp.s
+	$(MAKE) -f CMakeFiles/plagiarism.dir/build.make CMakeFiles/plagiarism.dir/src/Compare.cpp.s
 .PHONY : src/Compare.cpp.s
 
 src/main.o: src/main.cpp.o
@@ -156,7 +172,7 @@ src/main.o: src/main.cpp.o
 
 # target to build an object file
 src/main.cpp.o:
-	$(MAKE) -f CMakeFiles/plikExe.dir/build.make CMakeFiles/plikExe.dir/src/main.cpp.o
+	$(MAKE) -f CMakeFiles/plagiarism.dir/build.make CMakeFiles/plagiarism.dir/src/main.cpp.o
 .PHONY : src/main.cpp.o
 
 src/main.i: src/main.cpp.i
@@ -165,7 +181,7 @@ src/main.i: src/main.cpp.i
 
 # target to preprocess a source file
 src/main.cpp.i:
-	$(MAKE) -f CMakeFiles/plikExe.dir/build.make CMakeFiles/plikExe.dir/src/main.cpp.i
+	$(MAKE) -f CMakeFiles/plagiarism.dir/build.make CMakeFiles/plagiarism.dir/src/main.cpp.i
 .PHONY : src/main.cpp.i
 
 src/main.s: src/main.cpp.s
@@ -174,8 +190,35 @@ src/main.s: src/main.cpp.s
 
 # target to generate assembly for a file
 src/main.cpp.s:
-	$(MAKE) -f CMakeFiles/plikExe.dir/build.make CMakeFiles/plikExe.dir/src/main.cpp.s
+	$(MAKE) -f CMakeFiles/plagiarism.dir/build.make CMakeFiles/plagiarism.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
+
+src/simpleCompare.o: src/simpleCompare.cpp.o
+
+.PHONY : src/simpleCompare.o
+
+# target to build an object file
+src/simpleCompare.cpp.o:
+	$(MAKE) -f CMakeFiles/plagiarism_lib.dir/build.make CMakeFiles/plagiarism_lib.dir/src/simpleCompare.cpp.o
+.PHONY : src/simpleCompare.cpp.o
+
+src/simpleCompare.i: src/simpleCompare.cpp.i
+
+.PHONY : src/simpleCompare.i
+
+# target to preprocess a source file
+src/simpleCompare.cpp.i:
+	$(MAKE) -f CMakeFiles/plagiarism_lib.dir/build.make CMakeFiles/plagiarism_lib.dir/src/simpleCompare.cpp.i
+.PHONY : src/simpleCompare.cpp.i
+
+src/simpleCompare.s: src/simpleCompare.cpp.s
+
+.PHONY : src/simpleCompare.s
+
+# target to generate assembly for a file
+src/simpleCompare.cpp.s:
+	$(MAKE) -f CMakeFiles/plagiarism_lib.dir/build.make CMakeFiles/plagiarism_lib.dir/src/simpleCompare.cpp.s
+.PHONY : src/simpleCompare.cpp.s
 
 # Help Target
 help:
@@ -184,14 +227,18 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
-	@echo "... plikExe"
 	@echo "... edit_cache"
+	@echo "... plagiarism_lib"
+	@echo "... plagiarism"
 	@echo "... src/Compare.o"
 	@echo "... src/Compare.i"
 	@echo "... src/Compare.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/simpleCompare.o"
+	@echo "... src/simpleCompare.i"
+	@echo "... src/simpleCompare.s"
 .PHONY : help
 
 

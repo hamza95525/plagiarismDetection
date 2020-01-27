@@ -1,8 +1,10 @@
 #pragma once
 
+#include "../includes/Includes.h"
 #include "Compare.h"
 
 class simpleCompare : Compare
 {
-    float simpleCompare(const std::string &FilePath1, const std::string &FilePath2); //compare strings line by line
+public:
+    float compare(const std::string &FilePath1, const std::string &FilePath2) override; //compare strings line by line
 };
