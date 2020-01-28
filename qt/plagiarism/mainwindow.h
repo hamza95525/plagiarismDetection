@@ -15,6 +15,7 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void viewTable();
+    std::string getFileExtension(const std::string &s);
 
 signals:
     void error();

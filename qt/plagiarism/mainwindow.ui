@@ -34,7 +34,7 @@
      <rect>
       <x>750</x>
       <y>9</y>
-      <width>241</width>
+      <width>269</width>
       <height>421</height>
      </rect>
     </property>
@@ -111,7 +111,7 @@
      <item>
       <widget class="QCheckBox" name="cbAlgo">
        <property name="text">
-        <string>wpisac</string>
+        <string>Line by line comparison</string>
        </property>
        <property name="checkable">
         <bool>true</bool>
@@ -130,21 +130,28 @@
      <item>
       <widget class="QCheckBox" name="cbAlgo_2">
        <property name="text">
-        <string>poprawne</string>
+        <string>Compare unique lines</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_5">
+       <property name="text">
+        <string>Algorithms above works only with c/cpp</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QCheckBox" name="cbAlgo_3">
        <property name="text">
-        <string>nazwy</string>
+        <string>Ratio between number of keywords</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QCheckBox" name="cbAlgo_4">
        <property name="text">
-        <string>algorytmów</string>
+        <string>Lexycal analyzer</string>
        </property>
       </widget>
      </item>

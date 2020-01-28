@@ -220,9 +220,17 @@ QDir dir(ui->tePath->toPlainText());
                     for(unsigned long j=0;j<allProjects[b].size(); j++)
                     {
                         allResults[a][b][i].resize(j+1);
-                        qDebug() << QString::fromStdString(allProjects[a][i]) << "\n" << QString::fromStdString(allProjects[b][j]);
-                        allResults[a][b][i][j] = compare(allProjects[a][i], allProjects[b][j], algorithmsUsed); // result of comparing file i with file j, in projects a and project b
-                        qDebug() << QString("%1").arg(allResults[a][b][i][j]) << "\n";
+
+                        //compare two files only if extension is the same
+                        std::string firstExtension = getFileExtension(allProjects[a][i]); std::string secondExtension = getFileExtension(allProjects[b][j]);
+                        if(firstExtension == secondExtension){
+                                                allResults[a][b][i][j] = compare(allProjects[a][i], allProjects[b][j], algorithmsUsed); // result of comparing file i with file j, in projects a and project b
+                                                qDebug() << QString::fromStdString(allProjects[a][i]) << "\n" << QString::fromStdString(allProjects[b][j]);
+                                                qDebug() << QString("%1").arg(allResults[a][b][i][j]) << "\n";
+                        }
+                        else
+                            continue;
+
                     }
                 }
             }
@@ -234,9 +242,9 @@ QDir dir(ui->tePath->toPlainText());
                     allResults[a][b][i].resize(allProjects[b].size());
                     for(unsigned long j=0;j<allProjects[b].size(); j++)
                     {
-                        qDebug() << QString::fromStdString(allProjects[a][i]) << "\n" << QString::fromStdString(allProjects[b][j]);
+                        //qDebug() << QString::fromStdString(allProjects[a][i]) << "\n" << QString::fromStdString(allProjects[b][j]);
                         allResults[a][b][i][j] = allResults[b][a][j][i];    // cutting number of compare() usages by half
-                        qDebug() << QString("%1").arg(allResults[a][b][i][j]) << "\n";
+                        //qDebug() << QString("%1").arg(allResults[a][b][i][j]) << "\n";
                     }
                 }
             }
@@ -251,7 +259,7 @@ QDir dir(ui->tePath->toPlainText());
 double MainWindow::compare(std::string file1, std::string file2, int algorithmsUsed)
 {
     qDebug() << "Inside comparing function... please implement.";
-   // qDebug() << "algos used: " << algorithmsUsed;
+    qDebug() << "algos used: " << algorithmsUsed;
 
     /* Algorytmy, które masz użyć są zapisane binarnie w zmiennej algorithmsUsed
         wartość 1 to algorytm 1. wartość 2 to algo 2, 3 to algorytmy 1 i 2 itd. */
@@ -259,11 +267,8 @@ double MainWindow::compare(std::string file1, std::string file2, int algorithmsU
     removeDuplicates r{};
     basicLexicalAnalyzer b{};
     lexicalAnalyzer l{};
-
-
     std::vector<float> res;
 
-    qDebug() << "Inside comparing function... please implement.";
     switch(algorithmsUsed)
     {
         case 1:
@@ -319,15 +324,15 @@ double MainWindow::compare(std::string file1, std::string file2, int algorithmsU
         }
         case 10:
         {
-            res.push_back(l.compare(file1, file2));
             res.push_back(r.compare(file1, file2));
+            res.push_back(l.compare(file1, file2));
             break;
         }
         case 11:
         {
-            res.push_back(l.compare(file1, file2));
             res.push_back(s.compare(file1, file2));
             res.push_back(r.compare(file1, file2));
+            res.push_back(l.compare(file1, file2));
             break;
         }
         case 12:
@@ -338,34 +343,55 @@ double MainWindow::compare(std::string file1, std::string file2, int algorithmsU
         }
         case 13:
         {
-            res.push_back(l.compare(file1, file2));
             res.push_back(s.compare(file1, file2));
+            res.push_back(l.compare(file1, file2));
             res.push_back(b.compare(file1, file2));
             break;
         }
         case 14:
         {
+            res.push_back(r.compare(file1, file2));
             res.push_back(l.compare(file1, file2));
             res.push_back(b.compare(file1, file2));
-            res.push_back(r.compare(file1, file2));
             break;
         }
         case 15:
         {
-            res.push_back(l.compare(file1, file2));
             res.push_back(s.compare(file1, file2));
             res.push_back(r.compare(file1, file2));
+            res.push_back(l.compare(file1, file2));
             res.push_back(b.compare(file1, file2));
             break;
         }
     }
-    qDebug() << "Inside comparing function... please implement.";
 
     // 1. WYBRAĆ WARTOŚĆ Z TABELI WYNIKÓW PORÓWNANIA DWÓCH PLIKÓW
     float result = 0;
-    for(auto i=0; i<res.size(); i++)
-        result += res[i];
+    int noNanValues = 0;
+    for(const auto &i : res){
+        if(std::isnan(i)){
+            noNanValues = 1;
+            break;
+        }
+        else{
+            result += i;
+            noNanValues -=- 1;
+        }
+    }
+
+    res.clear();
 
     // 2. ZWRÓCIĆ ŚREDNIĄ TYCH WYNIKÓW DO RETURNA, zmień randa na twój wynik procentowy
-    return result/numberOfAlgorithmsUsed;
+    return result/noNanValues;
 }
+
+std::string MainWindow::getFileExtension(const std::string &s)
+{
+    size_t i = s.rfind('.', s.length());
+    if( i != std::string::npos ){
+        return(s.substr(i+1, s.length() - i) );
+    }
+
+    return("");
+}
+

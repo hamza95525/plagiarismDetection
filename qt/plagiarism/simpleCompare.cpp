@@ -29,10 +29,14 @@ float simpleCompare::compare(const std::string &FilePath1, const std::string &Fi
 
     float counter = 0;
 
-    for(int i = 0; i<=linesFile2.size(); i++){
-        if ( linesFile1[i] == linesFile2[i] )
+    int iter = 0;
+    for(const auto & i : linesFile1 ){
+        if ( i == linesFile2[iter] ){
             counter++;
+        }
+        iter++;
     }
 
     return percentage(counter, linesFile2.size());
+
 }
