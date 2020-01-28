@@ -9,6 +9,10 @@
 #include <QDirIterator>
 #include <QTableWidget>
 #include <QtCore/qmath.h>
+#include "simpleCompare.h"
+#include "removeDuplicates.h"
+#include "basicLexicalAnalyzer.h"
+#include "lexicalAnalyzer.h"
 //#include "../../src/mainCompare2Files.cpp"
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -246,14 +250,122 @@ QDir dir(ui->tePath->toPlainText());
 
 double MainWindow::compare(std::string file1, std::string file2, int algorithmsUsed)
 {
-    //qDebug() << "Inside comparing function... please implement.";
+    qDebug() << "Inside comparing function... please implement.";
    // qDebug() << "algos used: " << algorithmsUsed;
 
     /* Algorytmy, które masz użyć są zapisane binarnie w zmiennej algorithmsUsed
         wartość 1 to algorytm 1. wartość 2 to algo 2, 3 to algorytmy 1 i 2 itd. */
+    simpleCompare s{};
+    removeDuplicates r{};
+    basicLexicalAnalyzer b{};
+    lexicalAnalyzer l{};
+
+
+    std::vector<float> res;
+
+    qDebug() << "Inside comparing function... please implement.";
+    switch(algorithmsUsed)
+    {
+        case 1:
+        {
+            res.push_back( s.compare(file1, file2) );
+            break;
+        }
+        case 2:
+        {
+            res.push_back(r.compare(file1, file2));
+            break;
+        }
+        case 3:
+        {
+            res.push_back(s.compare(file1, file2));
+            res.push_back(r.compare(file1, file2));
+            break;
+        }
+        case 4:
+        {
+            res.push_back(b.compare(file1, file2));
+            break;
+        }
+        case 5:
+        {
+            res.push_back(s.compare(file1, file2));
+            res.push_back(b.compare(file1, file2));
+            break;
+        }
+        case 6:
+        {
+            res.push_back(r.compare(file1, file2));
+            res.push_back(b.compare(file1, file2));
+            break;
+        }
+        case 7:
+        {
+            res.push_back(s.compare(file1, file2));
+            res.push_back(r.compare(file1, file2));
+            res.push_back(b.compare(file1, file2));
+            break;
+        }
+        case 8:
+        {
+            res.push_back(l.compare(file1, file2));
+            break;
+        }
+        case 9:
+        {
+            res.push_back(s.compare(file1, file2));
+            res.push_back(l.compare(file1, file2));
+            break;
+        }
+        case 10:
+        {
+            res.push_back(l.compare(file1, file2));
+            res.push_back(r.compare(file1, file2));
+            break;
+        }
+        case 11:
+        {
+            res.push_back(l.compare(file1, file2));
+            res.push_back(s.compare(file1, file2));
+            res.push_back(r.compare(file1, file2));
+            break;
+        }
+        case 12:
+        {
+            res.push_back(l.compare(file1, file2));
+            res.push_back(b.compare(file1, file2));
+            break;
+        }
+        case 13:
+        {
+            res.push_back(l.compare(file1, file2));
+            res.push_back(s.compare(file1, file2));
+            res.push_back(b.compare(file1, file2));
+            break;
+        }
+        case 14:
+        {
+            res.push_back(l.compare(file1, file2));
+            res.push_back(b.compare(file1, file2));
+            res.push_back(r.compare(file1, file2));
+            break;
+        }
+        case 15:
+        {
+            res.push_back(l.compare(file1, file2));
+            res.push_back(s.compare(file1, file2));
+            res.push_back(r.compare(file1, file2));
+            res.push_back(b.compare(file1, file2));
+            break;
+        }
+    }
+    qDebug() << "Inside comparing function... please implement.";
 
     // 1. WYBRAĆ WARTOŚĆ Z TABELI WYNIKÓW PORÓWNANIA DWÓCH PLIKÓW
+    float result = 0;
+    for(auto i=0; i<res.size(); i++)
+        result += res[i];
 
     // 2. ZWRÓCIĆ ŚREDNIĄ TYCH WYNIKÓW DO RETURNA, zmień randa na twój wynik procentowy
-    return rand()%100/numberOfAlgorithmsUsed;
+    return result/numberOfAlgorithmsUsed;
 }
