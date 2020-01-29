@@ -35,7 +35,7 @@ private:
     QString directoryName;
     int algorithmsUsed=0x00;
     int numberOfAlgorithmsUsed=0;
-    void averageValuesForProjects();
+    double averageValuesForProjects();
     std::vector <std::vector <std::string>> allProjects;
     std::vector <std::vector <std::vector <std::vector <double>>>> allResults;
     std::vector <std::vector <double>> allProjectsResults;

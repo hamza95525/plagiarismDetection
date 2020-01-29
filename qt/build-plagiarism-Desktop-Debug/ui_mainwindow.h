@@ -57,7 +57,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(1000, 600);
+        MainWindow->resize(1040, 600);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         gridLayoutWidget = new QWidget(centralWidget);
@@ -75,7 +75,7 @@ public:
 
         verticalLayoutWidget = new QWidget(centralWidget);
         verticalLayoutWidget->setObjectName(QString::fromUtf8("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(750, 9, 269, 421));
+        verticalLayoutWidget->setGeometry(QRect(750, 9, 274, 421));
         verticalLayout = new QVBoxLayout(verticalLayoutWidget);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
@@ -190,7 +190,7 @@ public:
         label_4->setText(QApplication::translate("MainWindow", "Algorithms to use:", nullptr));
         cbAlgo->setText(QApplication::translate("MainWindow", "Line by line comparison", nullptr));
         cbAlgo_2->setText(QApplication::translate("MainWindow", "Compare unique lines", nullptr));
-        label_5->setText(QApplication::translate("MainWindow", "Algorithms above works only with c/cpp", nullptr));
+        label_5->setText(QApplication::translate("MainWindow", "Algorithms below works only with c/cpp", nullptr));
         cbAlgo_3->setText(QApplication::translate("MainWindow", "Ratio between number of keywords", nullptr));
         cbAlgo_4->setText(QApplication::translate("MainWindow", "Lexycal analyzer", nullptr));
         pbStart->setText(QApplication::translate("MainWindow", "START", nullptr));

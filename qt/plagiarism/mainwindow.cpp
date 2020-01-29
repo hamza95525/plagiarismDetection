@@ -84,7 +84,7 @@ void MainWindow::clear()
 }
 
 
-void MainWindow::averageValuesForProjects()
+double MainWindow::averageValuesForProjects()
 {
     allProjectsResults.resize(allProjects.size());
 
@@ -99,7 +99,11 @@ void MainWindow::averageValuesForProjects()
                 {
                     for(unsigned long j=0;j<allResults[a][b][i].size(); j++)
                     {
-                        if (max<allResults[a][b][i][j]) max=allResults[a][b][i][j];
+                        if (max<allResults[a][b][i][j]) {
+                            max=allResults[a][b][i][j];
+                            qDebug() << "from average value "<< max;
+                            return max;
+                        }
                     }
                 }
                 allProjectsResults[a][b]=max;
@@ -111,7 +115,7 @@ void MainWindow::averageValuesForProjects()
 
 void MainWindow::viewTable()
 {
-    averageValuesForProjects();
+    double jakisDouble = averageValuesForProjects();
     int numberOfProjects=ProjectNames.size() & INT_MAX;
     //qDebug() << numberOfProjects;
     QStringList stringlist;
@@ -120,8 +124,12 @@ void MainWindow::viewTable()
 
     int l=0;
     for(unsigned long a=0;a<allProjectsResults.size(); a++)
-        for(unsigned long b=0;b<allProjectsResults.size(); b++)
-            wyniki[l++]=allProjectsResults[a][b];
+        for(unsigned long b=0;b<allProjectsResults.size(); b++){
+            //qDebug() << wyniki[l];
+            wyniki[l]=allProjectsResults[a][b];
+            qDebug() << "All projects a/b from viewTable" << allProjectsResults[a][b];
+            l++;
+        }
 
 
     for( unsigned long i=0; i<ProjectNames.size(); i++)               //nazwy katalogów projektów
@@ -141,7 +149,7 @@ void MainWindow::viewTable()
             ui->tableWidget->setVerticalHeaderItem(i, new QTableWidgetItem(projectsNames[i]));
             for( int j=0; j<numberOfProjects; j++)
             {
-                double wartosc = wyniki[k++];
+                double wartosc = wyniki[k];
                 QString valueAsString = QString::number(wartosc);
                 ui->tableWidget->setItem(i,j, new QTableWidgetItem(valueAsString));
 
@@ -169,6 +177,7 @@ void MainWindow::viewTable()
                 }
 
                 ui->tableWidget->item(i,j)->setBackgroundColor(QColor(red, green , 0, 127));
+                k++;
             }
         }
 
@@ -287,7 +296,7 @@ void MainWindow::open()
                     {
                         //qDebug() << QString::fromStdString(allProjects[a][i]) << "\n" << QString::fromStdString(allProjects[b][j]);
                         allResults[a][b][i][j] = allResults[b][a][j][i];    // cutting number of compare() usages by half
-                        //qDebug() << QString("%1").arg(allResults[a][b][i][j]) << "\n";
+                        qDebug() << QString("%1").arg(allResults[a][b][i][j]) << "\n";
                     }
                 }
             }
