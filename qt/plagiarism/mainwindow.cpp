@@ -103,28 +103,36 @@ void MainWindow::averageValuesForProjects()
                     }
                 }
                 allProjectsResults[a][b]=max;
-                std::cout << allProjectsResults[a][b] << "  WYNIK POROWNANIA";
             }
         }
+
+
 }
 
 void MainWindow::viewTable()
 {
     averageValuesForProjects();
-    int numberOfProjects=2;
+    int numberOfProjects=ProjectNames.size() & INT_MAX;
+    //qDebug() << numberOfProjects;
     QStringList stringlist;
     QString *projectsNames = new QString[numberOfProjects];
+    double *wyniki = new double[allProjectsResults.size()*allProjectsResults.size()];
 
-    for( unsigned long i=0; i<2; i++)               //nazwy katalogów projektów
+    int l=0;
+    for(unsigned long a=0;a<allProjectsResults.size(); a++)
+        for(unsigned long b=0;b<allProjectsResults.size(); b++)
+            wyniki[l++]=allProjectsResults[a][b];
+
+
+    for( unsigned long i=0; i<ProjectNames.size(); i++)               //nazwy katalogów projektów
     {
         stringlist << QString::fromStdString(ProjectNames[i]);
         projectsNames[i] = QString::fromStdString(ProjectNames[i]);
     }
 
-    double wyniki[16] = {0, 15,35,50,15,35,50,65,35,50,65,85,50,65,85,100};
-
     ui->tableWidget->setRowCount(numberOfProjects);
     ui->tableWidget->setColumnCount(numberOfProjects);
+
 
     int k=0;
         for(int i=0; i<numberOfProjects; i++)
