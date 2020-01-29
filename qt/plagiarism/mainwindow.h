@@ -14,7 +14,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    void viewTable();
+
     std::string getFileExtension(const std::string &s);
 
 signals:
@@ -26,6 +26,7 @@ public slots:
     void open();
     double compare(std::string, std::string,int);
     void clear();
+    void viewTable();
 
 
 private:
@@ -34,6 +35,9 @@ private:
     std::vector <std::vector <std::string>> allProjects;
     int algorithmsUsed=0x00;
     int numberOfAlgorithmsUsed=0;
+    std::vector <std::vector <std::vector <std::vector <double>>>> allResults;
+    std::vector <std::string> allPaths;
+    std::vector <std::string> ProjectNames;
 };
 
 #endif // MAINWINDOW_H

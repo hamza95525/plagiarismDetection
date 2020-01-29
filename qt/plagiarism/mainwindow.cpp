@@ -56,6 +56,7 @@ MainWindow::MainWindow(QWidget *parent) :
     Error->assignProperty(ui->pbSelect, "enabled", true);
     Error->addTransition(ui->tePath, SIGNAL(textChanged()), PathSelected);
 
+    connect(Compare, SIGNAL(entered()), this, SLOT( viewTable()));
     ViewResult->assignProperty(ui->pbStart, "enabled", false);
     ViewResult->assignProperty(ui->pbSelect, "enabled", true);
     ViewResult->assignProperty(ui->pbStart, "text", "DONE");
@@ -69,7 +70,7 @@ MainWindow::MainWindow(QWidget *parent) :
     stateMachine->setInitialState(SelectFile);
 
     stateMachine->start();
-    viewTable();
+
 }
 
 MainWindow::~MainWindow()
@@ -84,16 +85,15 @@ void MainWindow::clear()
 
 void MainWindow::viewTable()
 {
-    int numberOfProjects=4;
-
+    int numberOfProjects=2;
     QStringList stringlist;
-    QString projectsNames[4] = { "Projekt1" , "Projekt2", "Project3", "Project4"};
+    QString *projectsNames = new QString[numberOfProjects];
 
-    //=====================
-    for( int i=0; i<=2; i++)
-        stringlist << projectsNames[i];
-
-    //===================== Procenty
+    for( unsigned long i=0; i<2; i++)               //nazwy katalogów projektów
+    {
+        stringlist << QString::fromStdString(ProjectNames[i]);
+        projectsNames[i] = QString::fromStdString(ProjectNames[i]);
+    }
 
     double wyniki[16] = {0, 15,35,50,15,35,50,65,35,50,65,85,50,65,85,100};
 
@@ -148,7 +148,7 @@ void MainWindow::dialog()
 
 void MainWindow::open()
 {
-QDir dir(ui->tePath->toPlainText());
+    QDir dir(ui->tePath->toPlainText());
     if (dir.exists()==0)
     {
         QMessageBox::information(this, tr("Error"), "Directory doesn't exist.");
@@ -156,13 +156,12 @@ QDir dir(ui->tePath->toPlainText());
         return;
     }
 
-
     QDirIterator projectIter(ui->tePath->toPlainText(), QDir::Dirs | QDir::Readable | QDir::NoDotAndDotDot);
 
     while(projectIter.hasNext())
     {        
         QDirIterator fileIter(projectIter.next(), QDir::Files | QDir::Readable, QDirIterator::Subdirectories);
-        std::vector <std::string> allPaths;
+        //std::vector <std::string> allPaths;
         while(fileIter.hasNext())
         {
             QFile file(fileIter.next());
@@ -180,6 +179,16 @@ QDir dir(ui->tePath->toPlainText());
         allProjects.push_back(allPaths);
         qDebug() << projectIter.filePath() << " NAZWA PROJEKTU\n";
 
+
+        std::string s = projectIter.filePath().toStdString();
+        std::string delimiter = "/";
+        size_t pos = 0;
+        std::string token;
+        while ((pos = s.find(delimiter)) != std::string::npos) {
+            token = s.substr(0, pos);
+            s.erase(0, pos + delimiter.length());
+        }
+        ProjectNames.push_back(s);
     }
 
 
@@ -203,8 +212,6 @@ QDir dir(ui->tePath->toPlainText());
         algorithmsUsed|=0x08;
         numberOfAlgorithmsUsed++;
     }
-
-    std::vector <std::vector <std::vector <std::vector <double>>>> allResults;
 
     for(unsigned long a=0;a<allProjects.size(); a++)
     {
@@ -259,7 +266,7 @@ QDir dir(ui->tePath->toPlainText());
 double MainWindow::compare(std::string file1, std::string file2, int algorithmsUsed)
 {
     qDebug() << "Inside comparing function... please implement.";
-    qDebug() << "algos used: " << algorithmsUsed;
+    qDebug() << "algos used code: " << algorithmsUsed;
 
     /* Algorytmy, które masz użyć są zapisane binarnie w zmiennej algorithmsUsed
         wartość 1 to algorytm 1. wartość 2 to algo 2, 3 to algorytmy 1 i 2 itd. */
