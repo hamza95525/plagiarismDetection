@@ -84,7 +84,7 @@ void MainWindow::clear()
 }
 
 
-double MainWindow::averageValuesForProjects()
+void MainWindow::averageValuesForProjects()
 {
     allProjectsResults.resize(allProjects.size());
 
@@ -102,11 +102,12 @@ double MainWindow::averageValuesForProjects()
                         if (max<allResults[a][b][i][j]) {
                             max=allResults[a][b][i][j];
                             qDebug() << "from average value "<< max;
-                            return max;
+                            allProjectsResults[a][b]=max;
                         }
                     }
+
+                    max = 0;
                 }
-                allProjectsResults[a][b]=max;
             }
         }
 
@@ -115,7 +116,7 @@ double MainWindow::averageValuesForProjects()
 
 void MainWindow::viewTable()
 {
-    double jakisDouble = averageValuesForProjects();
+    averageValuesForProjects();
     int numberOfProjects=ProjectNames.size() & INT_MAX;
     //qDebug() << numberOfProjects;
     QStringList stringlist;
@@ -177,6 +178,8 @@ void MainWindow::viewTable()
                 }
 
                 ui->tableWidget->item(i,j)->setBackgroundColor(QColor(red, green , 0, 127));
+
+
                 k++;
             }
         }
@@ -273,12 +276,17 @@ void MainWindow::open()
                     {
                         allResults[a][b][i].resize(j+1);
 
+
                         //compare two files only if extension is the same
                         std::string firstExtension = getFileExtension(allProjects[a][i]); std::string secondExtension = getFileExtension(allProjects[b][j]);
                         if(firstExtension == secondExtension){
-                                                allResults[a][b][i][j] = compare(allProjects[a][i], allProjects[b][j], algorithmsUsed); // result of comparing file i with file j, in projects a and project b
-                                                qDebug() << QString::fromStdString(allProjects[a][i]) << "\n" << QString::fromStdString(allProjects[b][j]);
-                                                qDebug() << QString("%1").arg(allResults[a][b][i][j]) << "\n";
+                            if(allProjects[a][i] != allProjects[b][j]){
+                                allResults[a][b][i][j] = compare(allProjects[a][i], allProjects[b][j], algorithmsUsed); // result of comparing file i with file j, in projects a and project b
+                                qDebug() << QString::fromStdString(allProjects[a][i]) << "\n" << QString::fromStdString(allProjects[b][j]);
+                                qDebug() << QString("%1").arg(allResults[a][b][i][j]) << "\n";
+                            }
+                            else
+                                qDebug() << "Identyczne pliki nonono!!";
                         }
                         else
                             continue;
@@ -296,12 +304,13 @@ void MainWindow::open()
                     {
                         //qDebug() << QString::fromStdString(allProjects[a][i]) << "\n" << QString::fromStdString(allProjects[b][j]);
                         allResults[a][b][i][j] = allResults[b][a][j][i];    // cutting number of compare() usages by half
-                        qDebug() << QString("%1").arg(allResults[a][b][i][j]) << "\n";
+                        qDebug() << i << j << ":" << QString("%1").arg(allResults[a][b][i][j]) << "\n";
                     }
                 }
             }
         }
     }
+
     algorithmsUsed=0;
     numberOfAlgorithmsUsed=0;
     QMessageBox::information(this, tr("Success"), QString("Directory compared to database."));

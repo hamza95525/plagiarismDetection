@@ -42,7 +42,15 @@ float basicLexicalAnalyzer::compare(const std::string &FilePath1, const std::str
             if(isOperator(k))
                 keywordsAndOperators2++;
         }
+
+        words1.clear();
+        words2.clear();
     }
+
+    for(int i = 0; i<numOfLinesFile1; i++)
+        tab1[i].erase();
+    for(int i = 0; i<numOfLinesFile2; i++)
+        tab2[i].erase();
 
     file1.close();
     file2.close();

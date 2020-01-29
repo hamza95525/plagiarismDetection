@@ -40,5 +40,8 @@ float removeDuplicates::compare(const std::string &FilePath1, const std::string 
         }
     }
 
-    return percentage(counter, linesFile2.size());
+    Size = linesFile2.size();
+    linesFile1.clear();
+    linesFile2.clear();
+    return percentage(counter, Size);
 }

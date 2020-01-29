@@ -52,7 +52,7 @@ float lexicalAnalyzer::compare(const std::string &FilePath1, const std::string &
     std::map<std::string, int> mapOfKeywords1; // keyword -> number of that keyword
     auto it = mapOfKeywords1.begin();
 
-    for(int i = 0; i<keywords1.size(); i++){
+    for(unsigned long i = 0; i<keywords1.size(); i++){
         if( keywords1[pos] == keywords1[i])
             count++;
         else{
@@ -67,7 +67,7 @@ float lexicalAnalyzer::compare(const std::string &FilePath1, const std::string &
     std::map<std::string, int> mapOfKeywords2; // keyword -> number of that keyword
     auto itr = mapOfKeywords2.begin();
 
-    for(int i = 0; i<keywords2.size(); i++){
+    for(unsigned long i = 0; i<keywords2.size(); i++){
         if( keywords2[pos] == keywords2[i])
             count++;
         else{
