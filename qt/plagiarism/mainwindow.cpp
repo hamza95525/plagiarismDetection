@@ -83,8 +83,34 @@ void MainWindow::clear()
     allProjects.clear();
 }
 
+
+void MainWindow::averageValuesForProjects()
+{
+    allProjectsResults.resize(allProjects.size());
+
+        for(unsigned long a=0;a<allProjectsResults.size(); a++)
+        {
+            allProjectsResults[a].resize(allProjects.size());
+
+            for(unsigned long b=0;b<allProjectsResults.size(); b++)
+            {
+                double max=0;
+                for(unsigned long i=0;i<allResults[a][b].size(); i++)
+                {
+                    for(unsigned long j=0;j<allResults[a][b][i].size(); j++)
+                    {
+                        if (max<allResults[a][b][i][j]) max=allResults[a][b][i][j];
+                    }
+                }
+                allProjectsResults[a][b]=max;
+                std::cout << allProjectsResults[a][b] << "  WYNIK POROWNANIA";
+            }
+        }
+}
+
 void MainWindow::viewTable()
 {
+    averageValuesForProjects();
     int numberOfProjects=2;
     QStringList stringlist;
     QString *projectsNames = new QString[numberOfProjects];
@@ -157,6 +183,8 @@ void MainWindow::open()
     }
 
     QDirIterator projectIter(ui->tePath->toPlainText(), QDir::Dirs | QDir::Readable | QDir::NoDotAndDotDot);
+
+    std::vector <std::string> allPaths;
 
     while(projectIter.hasNext())
     {        

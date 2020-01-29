@@ -16,6 +16,7 @@ public:
     ~MainWindow();
 
     std::string getFileExtension(const std::string &s);
+    //void averageValuesForProjects();
 
 signals:
     void error();
@@ -32,11 +33,12 @@ public slots:
 private:
     Ui::MainWindow *ui;
     QString directoryName;
-    std::vector <std::vector <std::string>> allProjects;
     int algorithmsUsed=0x00;
     int numberOfAlgorithmsUsed=0;
+    void averageValuesForProjects();
+    std::vector <std::vector <std::string>> allProjects;
     std::vector <std::vector <std::vector <std::vector <double>>>> allResults;
-    std::vector <std::string> allPaths;
+    std::vector <std::vector <double>> allProjectsResults;
     std::vector <std::string> ProjectNames;
 };
 
