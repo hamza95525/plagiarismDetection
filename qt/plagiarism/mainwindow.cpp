@@ -176,13 +176,15 @@ void MainWindow::viewTable()
                     red=wartosc*2*255/100;
                 }
 
-                ui->tableWidget->item(i,j)->setBackgroundColor(QColor(red, green , 0, 127));
-
+                if(i!=j)
+                    ui->tableWidget->item(i,j)->setBackgroundColor(QColor(red, green , 0, 127));
+                else{
+                    ui->tableWidget->item(i,j)->setBackgroundColor(QColor(255, 255 , 255, 127));
+                }
 
                 k++;
             }
         }
-
 }
 
 void MainWindow::dialog()

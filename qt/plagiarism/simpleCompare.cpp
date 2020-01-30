@@ -1,5 +1,5 @@
 #include "simpleCompare.h"
-
+#include "QDebug"
 float simpleCompare::compare(const std::string &FilePath1, const std::string &FilePath2) //compare strings line by line
 {
     std::ifstream file1;
@@ -29,12 +29,9 @@ float simpleCompare::compare(const std::string &FilePath1, const std::string &Fi
 
     float counter = 0;
 
-    int iter = 0;
-    for(const auto & i : linesFile1 ){
-        if ( i == linesFile2[iter] ){
+    for(unsigned int i = 0; i<linesFile2.size() && i<linesFile1.size(); i++){
+        if ( linesFile1[i] == linesFile2[i] )
             counter++;
-        }
-        iter++;
     }
 
     Size = linesFile2.size();
