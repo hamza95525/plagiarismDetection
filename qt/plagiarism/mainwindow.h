@@ -31,7 +31,7 @@ private:
     std::vector <std::vector <std::string>> allProjects;
     std::vector <std::vector <std::vector <std::vector <double>>>> allResults;
     std::vector <std::vector <double>> allProjectsResults;
-    std::vector <std::vector <std::vector<std::string>>> allProcetsMaxFileResults;
+    std::vector <std::vector <std::vector<std::string>>> allProjectsMaxFileResults;
     std::vector <std::string> ProjectNames;
     std::vector <std::string> allPaths;
 };

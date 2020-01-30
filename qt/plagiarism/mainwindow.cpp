@@ -76,14 +76,14 @@ void MainWindow::averageValuesForProjects()
 {
 
     allProjectsResults.resize(allProjects.size());
-    allProcetsMaxFileResults.resize(allProjects.size());
+    allProjectsMaxFileResults.resize(allProjects.size());
         for(unsigned long a=0;a<allProjectsResults.size(); a++)
         {
             allProjectsResults[a].resize(allProjects.size());
-            allProcetsMaxFileResults[a].resize(allProjects.size());
+            allProjectsMaxFileResults[a].resize(allProjects.size());
             for(unsigned long b=0;b<allProjectsResults.size(); b++)
             {
-                allProcetsMaxFileResults[a][b].resize(2);
+                allProjectsMaxFileResults[a][b].resize(2);
                 double max=0;
                 std::string file1 = "";
                 std::string file2 = "";
@@ -97,8 +97,8 @@ void MainWindow::averageValuesForProjects()
                             file2 = allProjects[b][j];
                         }
                         allProjectsResults[a][b]=max;
-                        allProcetsMaxFileResults[a][b][0]=file1;
-                        allProcetsMaxFileResults[a][b][1]=file2;
+                        allProjectsMaxFileResults[a][b][0]=file1;
+                        allProjectsMaxFileResults[a][b][1]=file2;
                         max = 0;
                         file1="";
                         file2="";
@@ -168,24 +168,23 @@ void MainWindow::viewTable()
             }
         }
         std::cout << "\n+++++++++++++++++++++++++++\n";
-        for(unsigned int i=0; i< allProcetsMaxFileResults.size(); i++)
-             for(unsigned int j=0; j< allProcetsMaxFileResults.size(); j++)
+        for(unsigned int i=0; i< allProjectsMaxFileResults.size(); i++)
+             for(unsigned int j=0; j< allProjectsMaxFileResults.size(); j++)
              {
                         std::cout << "PLIKI MAKSIMUM DLA PROJEKTU " << i << " oraz " << j << "\n";
-                       std::cout << allProcetsMaxFileResults[i][j][0] << "\n";
-                       std::cout << allProcetsMaxFileResults[i][j][1] << "\n\n";
+                       std::cout << allProjectsMaxFileResults[i][j][0] << "\n";
+                       std::cout << allProjectsMaxFileResults[i][j][1] << "\n\n";
              }
         std::cout << "\n+++++++++++++++++++++++++++\n";
-
 }
 
 void MainWindow::diff()
 {
-    /*int rowNum= ui->tableWidget->selectionModel()->currentIndex().row();
+    int rowNum= ui->tableWidget->selectionModel()->currentIndex().row();
     int colNum= ui->tableWidget->selectionModel()->currentIndex().column();
 
-    std::string TwoProjectsName = ProjectNames[rowNum] + "\t" + ProjectNames[colNum];
-    QMessageBox::information(this, tr("Katalogi"), QString::fromStdString(TwoProjectsName));*/
+    std::string TwoProjectsName = ProjectNames[rowNum] + "\n" + allProjectsMaxFileResults[rowNum][colNum][0] + "\n\n" +ProjectNames[colNum]  + "\n" + allProjectsMaxFileResults[rowNum][colNum][1] ;
+    QMessageBox::information(this, tr("Katalogi"), QString::fromStdString(TwoProjectsName));
 
 }
 void MainWindow::dialog()
@@ -205,7 +204,7 @@ void MainWindow::open()
     QDirIterator projectIter(ui->tePath->toPlainText(), QDir::Dirs | QDir::Readable | QDir::NoDotAndDotDot);
 
     while(projectIter.hasNext())
-    {        
+    {
         QDirIterator fileIter(projectIter.next(), QDir::Files | QDir::Readable, QDirIterator::Subdirectories);
         //std::vector <std::string> allPaths;
         while(fileIter.hasNext())
