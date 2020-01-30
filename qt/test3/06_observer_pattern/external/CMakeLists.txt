@@ -1,5 +1,0 @@
-set(BUILD_GMOCK OFF CACHE BOOL "Suppressing gmock's" FORCE)
-set(INSTALL_GTEST OFF CACHE BOOL "Suppressing gtest's install" FORCE)
-add_subdirectory(googletest)
-set(BENCHMARK_ENABLE_TESTING OFF CACHE BOOL "Suppressing benchmark's tests" FORCE)
-add_subdirectory(benchmark)

@@ -275,24 +275,16 @@ void MainWindow::open()
                     {
                         allResults[a][b][i].resize(j+1);
 
-
-                        //compare two files only if extension is the same
-                        std::string firstExtension = getFileExtension(allProjects[a][i]); std::string secondExtension = getFileExtension(allProjects[b][j]);
-                        if(firstExtension == secondExtension){
-                            if(allProjects[a][i] != allProjects[b][j]){
+                        std::string firstExtension = getFileExtension(allProjects[a][i]);
+                        std::string secondExtension = getFileExtension(allProjects[b][j]);
+                        //prevent compare of the same projects
+                        if( (allProjects[a][i].find(ProjectNames[a]) != std::string::npos) && (allProjects[b][j].find(ProjectNames[b]) != std::string::npos)){
+                            if( firstExtension == secondExtension ){
                                 allResults[a][b][i][j] = compare(allProjects[a][i], allProjects[b][j], algorithmsUsed); // result of comparing file i with file j, in projects a and project b
-
-                                if(allResults[a][b][i][j] != 0){
-                                    qDebug() << QString::fromStdString(allProjects[a][i]) << "\n" << QString::fromStdString(allProjects[b][j]);
-                                    qDebug() << QString("%1").arg(allResults[a][b][i][j]) << "\n";
-                                }
+                                qDebug() << QString::fromStdString(allProjects[a][i]) << "\n" << QString::fromStdString(allProjects[b][j]);
+                                qDebug() << QString("%1").arg(allResults[a][b][i][j]) << "\n";
                             }
-                            else
-                                qDebug() << "Identyczne pliki nonono!!";
                         }
-                        else
-                            continue;
-
                     }
                 }
             }
@@ -430,22 +422,20 @@ double MainWindow::compare(std::string file1, std::string file2, int algorithmsU
 
     // 1. WYBRAĆ WARTOŚĆ Z TABELI WYNIKÓW PORÓWNANIA DWÓCH PLIKÓW
     float result = 0;
-    int noNanValues = 0;
+
     for(const auto &i : res){
         if(std::isnan(i)){
-            noNanValues = 1;
             break;
         }
         else{
             result += i;
-            noNanValues -=- 1;
         }
     }
 
     res.clear();
 
     // 2. ZWRÓCIĆ ŚREDNIĄ TYCH WYNIKÓW DO RETURNA, zmień randa na twój wynik procentowy
-    return result/noNanValues;
+    return result/numberOfAlgorithmsUsed;
 }
 
 std::string MainWindow::getFileExtension(const std::string &s)
