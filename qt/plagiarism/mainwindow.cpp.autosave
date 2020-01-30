@@ -159,7 +159,7 @@ void MainWindow::diff()
 {
     int colNum = ui->tableWidget->selectionModel()->currentIndex().row();
     int rowNum= ui->tableWidget->selectionModel()->currentIndex().column();
-    qDebug() << rowNum ;
+    
 }
 void MainWindow::dialog()
 {

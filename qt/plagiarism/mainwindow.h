@@ -21,6 +21,7 @@ public slots:
     double compare(std::string, std::string,int);
     void clear();
     void viewTable();
+    void diff( );
 private:
     Ui::MainWindow *ui;
     QString directoryName;
