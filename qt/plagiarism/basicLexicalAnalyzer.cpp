@@ -1,4 +1,5 @@
 #include "basicLexicalAnalyzer.h"
+#include "QDebug"
 
 float basicLexicalAnalyzer::compare(const std::string &FilePath1, const std::string &FilePath2) {
     std::ifstream file1;
@@ -24,33 +25,35 @@ float basicLexicalAnalyzer::compare(const std::string &FilePath1, const std::str
         tab2[i] = temp;
     }
 
+    qDebug() << "basic 1";
     int keywordsAndOperators1 = 0; int keywordsAndOperators2 = 0;
-    for(int i=0; i<numOfLinesFile2; i++){
-        std::vector<std::string> words1 = split(tab1[i]); //vector of words after spliting the line
-        std::vector<std::string> words2 = split(tab2[i]);
 
+    for(int i=0 ; i<numOfLinesFile1; i++){
+        std::vector<std::string> words1{};
+
+        words1 = split(tab1[i]); //vector of words after spliting the line
         for(const auto & j : words1) {
             if(isKeyword(j)) //tak wiem ze warunki tego rodzaju mozna polaczyc w jeden, ale std::bad_alloc mi na to nie pozwala
                 keywordsAndOperators1++;
             if(isOperator(j))
                 keywordsAndOperators1++;
         }
-
-        for(const auto & k : words2){
-            if(isKeyword(k))
-                keywordsAndOperators2++;
-            if(isOperator(k))
-                keywordsAndOperators2++;
-        }
-
         words1.clear();
-        words2.clear();
     }
 
-    for(int i = 0; i<numOfLinesFile1; i++)
-        tab1[i].erase();
-    for(int i = 0; i<numOfLinesFile2; i++)
-        tab2[i].erase();
+    for(int i=0; i<numOfLinesFile2; i++)
+    {
+         std::vector<std::string> words2{};
+         words2 = split(tab2[i]);
+
+         for(const auto & k : words2){
+             if(isKeyword(k))
+                 keywordsAndOperators2++;
+             if(isOperator(k))
+                 keywordsAndOperators2++;
+         }
+         words2.clear();
+    }
 
     file1.close();
     file2.close();

@@ -2,7 +2,7 @@
 // Created by khamza on 22.12.2019.
 //
 #include "Includes.h"
-
+#include "QDebug"
 void Compare::deleteEmptyLines(const std::string &FilePath)
 {
     std::ifstream in(FilePath);
