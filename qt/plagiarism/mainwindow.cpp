@@ -101,7 +101,6 @@ void MainWindow::averageValuesForProjects()
                     {
                         if (max<allResults[a][b][i][j]) {
                             max=allResults[a][b][i][j];
-                            qDebug() << "from average value "<< max;
                             allProjectsResults[a][b]=max;
                         }
                     }
@@ -128,7 +127,7 @@ void MainWindow::viewTable()
         for(unsigned long b=0;b<allProjectsResults.size(); b++){
             //qDebug() << wyniki[l];
             wyniki[l]=allProjectsResults[a][b];
-            qDebug() << "All projects a/b from viewTable" << allProjectsResults[a][b];
+            //qDebug() << "All projects a/b from viewTable" << allProjectsResults[a][b];
             l++;
         }
 
@@ -282,8 +281,11 @@ void MainWindow::open()
                         if(firstExtension == secondExtension){
                             if(allProjects[a][i] != allProjects[b][j]){
                                 allResults[a][b][i][j] = compare(allProjects[a][i], allProjects[b][j], algorithmsUsed); // result of comparing file i with file j, in projects a and project b
-                                qDebug() << QString::fromStdString(allProjects[a][i]) << "\n" << QString::fromStdString(allProjects[b][j]);
-                                qDebug() << QString("%1").arg(allResults[a][b][i][j]) << "\n";
+
+                                if(allResults[a][b][i][j] != 0){
+                                    qDebug() << QString::fromStdString(allProjects[a][i]) << "\n" << QString::fromStdString(allProjects[b][j]);
+                                    qDebug() << QString("%1").arg(allResults[a][b][i][j]) << "\n";
+                                }
                             }
                             else
                                 qDebug() << "Identyczne pliki nonono!!";
@@ -304,7 +306,7 @@ void MainWindow::open()
                     {
                         //qDebug() << QString::fromStdString(allProjects[a][i]) << "\n" << QString::fromStdString(allProjects[b][j]);
                         allResults[a][b][i][j] = allResults[b][a][j][i];    // cutting number of compare() usages by half
-                        qDebug() << i << j << ":" << QString("%1").arg(allResults[a][b][i][j]) << "\n";
+                        //qDebug() << i << j << ":" << QString("%1").arg(allResults[a][b][i][j]) << "\n";
                     }
                 }
             }
@@ -319,8 +321,8 @@ void MainWindow::open()
 
 double MainWindow::compare(std::string file1, std::string file2, int algorithmsUsed)
 {
-    qDebug() << "Inside comparing function... please implement.";
-    qDebug() << "algos used code: " << algorithmsUsed;
+    //qDebug() << "Inside comparing function... please implement.";
+    //qDebug() << "algos used code: " << algorithmsUsed;
 
     /* Algorytmy, które masz użyć są zapisane binarnie w zmiennej algorithmsUsed
         wartość 1 to algorytm 1. wartość 2 to algo 2, 3 to algorytmy 1 i 2 itd. */

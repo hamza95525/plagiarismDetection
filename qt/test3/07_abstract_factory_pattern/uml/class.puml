@@ -1,0 +1,83 @@
+@startuml
+namespace gui {
+    interface Widget {
+        + void draw()
+    }
+    note top of Widget
+        Every implementation prints class name in draw() method.
+        Parameters from constructor are also printed.
+    end note
+    class ButtonGnomeWidget {
+        - int gnomeVersion
+        + ButtonGnomeWidget(int gnomeVersion)
+        + void draw()
+    }
+    class ListGnomeWidget {
+        - int gnomeVersion
+        + ListGnomeWidget(int gnomeVersion)
+        + void draw()
+    }
+    class CheckBoxGnomeWidget {
+        - int gnomeVersion
+        + CheckBoxGnomeWidget(int gnomeVersion)
+        + void draw()
+    }
+    class ButtonKdeWidget {
+        - int kdeVersion
+        + ButtonKdeWidget(int kdeVersion)
+        + void draw()
+    }
+    class ListKdeWidget {
+        - int kdeVersion
+        + ListKdeWidget(int kdeVersion)
+        + void draw()
+    }
+    class CheckBoxKdeWidget {
+        - int kdeVersion
+        + CheckBoxKdeWidget(int kdeVersion)
+        + void draw()
+    }
+    Widget <|-- ButtonGnomeWidget
+    Widget <|-- ListGnomeWidget
+    Widget <|-- CheckBoxGnomeWidget
+    Widget <|-- ButtonKdeWidget
+    Widget <|-- ListKdeWidget
+    Widget <|-- CheckBoxKdeWidget
+    interface WidgetFactory {
+        + std::shared_ptr<Widget> create(std::string type)
+    }
+    note right of WidgetFactory
+        Shared pointer is located in <b><memory></b> header.
+        Implementations use <b>std::make_shared<T></b> to create objects.
+        If theme variant is not supported <b>std::runtime_error</b> is thrown.
+    end note
+    class GnomeWidgetFactory {
+        - int gnomeVersion
+        + GnomeWidgetFactory(int gnomeVersion)
+        + std::shared_ptr<Widget> create(std::string type)
+    }
+    WidgetFactory <|-up- GnomeWidgetFactory
+    class KdeWidgetFactory {
+        - int kdeVersion
+        + KdeWidgetFactory(int kdeVersion)
+        + std::shared_ptr<Widget> create(std::string type)
+    }
+    WidgetFactory <|-up- KdeWidgetFactory
+    GnomeWidgetFactory .up.> ButtonGnomeWidget : creates
+    GnomeWidgetFactory .up.> ListGnomeWidget : creates
+    GnomeWidgetFactory .up.> CheckBoxGnomeWidget : creates
+    KdeWidgetFactory .up.> ButtonKdeWidget : creates
+    KdeWidgetFactory .up.> ListKdeWidget : creates
+    KdeWidgetFactory .up.> CheckBoxKdeWidget : creates
+    class Demo {
+        - std::shared_ptr<WidgetFactory> factory
+        + Demo(std::shared_ptr<WidgetFactory> factory)
+        + void run(std::string type)
+    }
+    Demo  o-up- "1" WidgetFactory
+    note right of Demo
+        Run method uses factory to create <b>Widget</b> object and then draws it.
+        <b>Demo</b> is used in <b>main()</b> with various types of factories.
+    end note
+}
+@enduml

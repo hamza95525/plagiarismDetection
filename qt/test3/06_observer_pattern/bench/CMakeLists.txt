@@ -1,0 +1,5 @@
+set(BENCH_HEADERS include/BenchIncludes.h)
+set(BENCH_SOURCES src/DummyBench.cpp)
+add_executable(06_observer_pattern_bench ${BENCH_HEADERS} ${BENCH_SOURCES})
+target_include_directories(06_observer_pattern_bench PUBLIC include)
+target_link_libraries(06_observer_pattern_bench 06_observer_pattern_lib benchmark benchmark_main pthread)

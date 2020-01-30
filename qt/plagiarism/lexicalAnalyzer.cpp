@@ -23,9 +23,6 @@ float lexicalAnalyzer::compare(const std::string &FilePath1, const std::string &
         getline(file2,temp);
         tab2[i] = temp;
     }
-
-    qDebug() << "Flaga dla lexical 1";
-
     std::vector<std::string> keywords1;
     std::vector<std::string> keywords2;
 
@@ -60,7 +57,6 @@ float lexicalAnalyzer::compare(const std::string &FilePath1, const std::string &
     std::sort(keywords1.begin(), keywords1.end());
     std::sort(keywords2.begin(), keywords2.end());
 
-    qDebug() << "Flaga dla lexical 2";
 
     int pos = 0;    //position where the keyword would be in a map
     int count = 1; //number of keywords
@@ -68,7 +64,6 @@ float lexicalAnalyzer::compare(const std::string &FilePath1, const std::string &
     auto it = mapOfKeywords1.begin();
 
     for(unsigned long i = 0; i<keywords1.size(); i++){
-        qDebug() << "Flaga dla lexical 7";
         if( keywords1[pos] == keywords1[i])
             count++;
         else{
@@ -79,15 +74,12 @@ float lexicalAnalyzer::compare(const std::string &FilePath1, const std::string &
         }
     }
 
-    qDebug() << "Flaga dla lexical 3";
 
     pos = 0; count = 1;
     std::map<std::string, int> mapOfKeywords2; // keyword -> number of that keyword
     it = mapOfKeywords2.begin();
 
-    qDebug() << "Flaga dla lexical 5";
     for(unsigned long i = 0; i<keywords2.size(); i++){
-        qDebug() << "Flaga dla lexical 6";
         if( keywords2[pos] == keywords2[i])
             count++;
         else{
@@ -98,18 +90,10 @@ float lexicalAnalyzer::compare(const std::string &FilePath1, const std::string &
         }
     }
 
-    qDebug() << "Flaga dla lexical 4";
 
     float counter = compareValues(mapOfKeywords1, mapOfKeywords2);
 
     Size = mapOfKeywords2.size();
-
-    /*for(it = mapOfKeywords1.begin(); it!=mapOfKeywords1.end(); ++it)
-        mapOfKeywords1.erase(it);
-
-    for(it = mapOfKeywords2.begin(); it!=mapOfKeywords2.end(); ++it)
-        mapOfKeywords2.erase(it);*/
-
     return percentage(counter, Size);
 }
 

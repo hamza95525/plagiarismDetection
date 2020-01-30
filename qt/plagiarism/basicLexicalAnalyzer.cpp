@@ -24,8 +24,6 @@ float basicLexicalAnalyzer::compare(const std::string &FilePath1, const std::str
         getline(file2,temp);
         tab2[i] = temp;
     }
-
-    qDebug() << "basic 1";
     int keywordsAndOperators1 = 0; int keywordsAndOperators2 = 0;
 
     for(int i=0 ; i<numOfLinesFile1; i++){
