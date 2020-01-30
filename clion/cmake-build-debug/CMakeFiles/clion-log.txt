@@ -1,6 +1,4 @@
 /opt/clion-2019.2.1/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/student/PLAGIAT/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/clion
 CMake Error at CMakeLists.txt:1 (cmake_minimum_required):
   CMake 3.15 or higher is required.  You are running version 3.14.5
-
-
 -- Configuring incomplete, errors occurred!

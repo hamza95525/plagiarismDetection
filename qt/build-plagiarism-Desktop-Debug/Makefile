@@ -5,13 +5,9 @@
 # Template: app
 # Command: /home/khamza/Documents/5.12.6/gcc_64/bin/qmake -o Makefile ../plagiarism/plagiarism.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug
 #############################################################################
-
 MAKEFILE      = Makefile
-
 EQ            = =
-
 ####### Compiler, tools and options
-
 CC            = gcc
 CXX           = g++
 DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
@@ -45,13 +41,9 @@ AR            = ar cqs
 RANLIB        = 
 SED           = sed
 STRIP         = strip
-
 ####### Output directory
-
 OBJECTS_DIR   = ./
-
 ####### Files
-
 SOURCES       = ../plagiarism/main.cpp \
 		../plagiarism/mainwindow.cpp \
 		../plagiarism/simpleCompare.cpp \
@@ -277,14 +269,10 @@ DIST          = ../../../../Documents/5.12.6/gcc_64/mkspecs/features/spec_pre.pr
 QMAKE_TARGET  = plagiarism
 DESTDIR       = 
 TARGET        = plagiarism
-
-
 first: all
 ####### Build rules
-
 plagiarism: ui_mainwindow.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
-
 Makefile: ../plagiarism/plagiarism.pro ../../../../Documents/5.12.6/gcc_64/mkspecs/linux-g++/qmake.conf ../../../../Documents/5.12.6/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../../Documents/5.12.6/gcc_64/mkspecs/common/unix.conf \
 		../../../../Documents/5.12.6/gcc_64/mkspecs/common/linux.conf \
@@ -678,15 +666,10 @@ Makefile: ../plagiarism/plagiarism.pro ../../../../Documents/5.12.6/gcc_64/mkspe
 ../plagiarism/plagiarism.pro:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ../plagiarism/plagiarism.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug
-
 qmake_all: FORCE
-
-
 all: Makefile plagiarism
-
 dist: distdir FORCE
 	(cd `dirname $(DISTDIR)` && $(TAR) $(DISTNAME).tar $(DISTNAME) && $(COMPRESS) $(DISTNAME).tar) && $(MOVE) `dirname $(DISTDIR)`/$(DISTNAME).tar.gz . && $(DEL_FILE) -r $(DISTDIR)
-
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
@@ -694,29 +677,18 @@ distdir: FORCE
 	$(COPY_FILE) --parents ../plagiarism/mainwindow.h ../plagiarism/basicLexicalAnalyzer.h ../plagiarism/Includes.h ../plagiarism/simpleCompare.h ../plagiarism/removeDuplicates.h ../plagiarism/lexicalAnalyzer.h ../plagiarism/Compare.h $(DISTDIR)/
 	$(COPY_FILE) --parents ../plagiarism/main.cpp ../plagiarism/mainwindow.cpp ../plagiarism/simpleCompare.cpp ../plagiarism/removeDuplicates.cpp ../plagiarism/basicLexicalAnalyzer.cpp ../plagiarism/Compare.cpp ../plagiarism/lexicalAnalyzer.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../plagiarism/mainwindow.ui $(DISTDIR)/
-
-
 clean: compiler_clean 
 	-$(DEL_FILE) $(OBJECTS)
 	-$(DEL_FILE) *~ core *.core
-
-
 distclean: clean 
 	-$(DEL_FILE) $(TARGET) 
 	-$(DEL_FILE) .qmake.stash
 	-$(DEL_FILE) Makefile
-
-
 ####### Sub-libraries
-
 mocclean: compiler_moc_header_clean compiler_moc_objc_header_clean compiler_moc_source_clean
-
 mocables: compiler_moc_header_make_all compiler_moc_objc_header_make_all compiler_moc_source_make_all
-
 check: first
-
 benchmark: first
-
 compiler_rcc_make_all:
 compiler_rcc_clean:
 compiler_moc_predefs_make_all: moc_predefs.h
@@ -724,7 +696,6 @@ compiler_moc_predefs_clean:
 	-$(DEL_FILE) moc_predefs.h
 moc_predefs.h: ../../../../Documents/5.12.6/gcc_64/mkspecs/features/data/dummy.cpp
 	g++ -pipe -g -std=gnu++11 -Wall -W -dM -E -o moc_predefs.h ../../../../Documents/5.12.6/gcc_64/mkspecs/features/data/dummy.cpp
-
 compiler_moc_header_make_all: moc_mainwindow.cpp
 compiler_moc_header_clean:
 	-$(DEL_FILE) moc_mainwindow.cpp
@@ -838,7 +809,6 @@ moc_mainwindow.cpp: ../plagiarism/mainwindow.h \
 		moc_predefs.h \
 		../../../../Documents/5.12.6/gcc_64/bin/moc
 	/home/khamza/Documents/5.12.6/gcc_64/bin/moc $(DEFINES) --include /home/khamza/repos/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/qt/build-plagiarism-Desktop-Debug/moc_predefs.h -I/home/khamza/Documents/5.12.6/gcc_64/mkspecs/linux-g++ -I/home/khamza/repos/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/qt/plagiarism -I/home/khamza/Documents/5.12.6/gcc_64/include -I/home/khamza/Documents/5.12.6/gcc_64/include/QtWidgets -I/home/khamza/Documents/5.12.6/gcc_64/include/QtGui -I/home/khamza/Documents/5.12.6/gcc_64/include/QtCore -I. -I/usr/include/c++/8 -I/usr/include/x86_64-linux-gnu/c++/8 -I/usr/include/c++/8/backward -I/usr/lib/gcc/x86_64-linux-gnu/8/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../plagiarism/mainwindow.h -o moc_mainwindow.cpp
-
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
@@ -849,7 +819,6 @@ compiler_uic_clean:
 ui_mainwindow.h: ../plagiarism/mainwindow.ui \
 		../../../../Documents/5.12.6/gcc_64/bin/uic
 	/home/khamza/Documents/5.12.6/gcc_64/bin/uic ../plagiarism/mainwindow.ui -o ui_mainwindow.h
-
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
 compiler_yacc_impl_make_all:
@@ -857,9 +826,7 @@ compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
 compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
-
 ####### Compile
-
 main.o: ../plagiarism/main.cpp ../plagiarism/Includes.h \
 		../plagiarism/Compare.h \
 		../plagiarism/simpleCompare.h \
@@ -981,7 +948,6 @@ main.o: ../plagiarism/main.cpp ../plagiarism/Includes.h \
 		../../../../Documents/5.12.6/gcc_64/include/QtGui/qguiapplication.h \
 		../../../../Documents/5.12.6/gcc_64/include/QtGui/qinputmethod.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../plagiarism/main.cpp
-
 mainwindow.o: ../plagiarism/mainwindow.cpp ../plagiarism/mainwindow.h \
 		../../../../Documents/5.12.6/gcc_64/include/QtWidgets/QMainWindow \
 		../../../../Documents/5.12.6/gcc_64/include/QtWidgets/qmainwindow.h \
@@ -1169,48 +1135,290 @@ mainwindow.o: ../plagiarism/mainwindow.cpp ../plagiarism/mainwindow.h \
 		../plagiarism/basicLexicalAnalyzer.h \
 		../plagiarism/lexicalAnalyzer.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../plagiarism/mainwindow.cpp
-
 simpleCompare.o: ../plagiarism/simpleCompare.cpp ../plagiarism/simpleCompare.h \
 		../plagiarism/Includes.h \
-		../plagiarism/Compare.h
+		../plagiarism/Compare.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/QDebug \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qdebug.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qalgorithms.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qglobal.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qconfig.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qtcore-config.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qsystemdetection.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qprocessordetection.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qcompilerdetection.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qtypeinfo.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qsysinfo.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qlogging.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qflags.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qatomic.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qbasicatomic.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qgenericatomic.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qatomic_msvc.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qglobalstatic.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qmutex.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qnumeric.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qversiontagging.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qhash.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qchar.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qiterator.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qlist.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qrefcount.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qarraydata.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qhashfunctions.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qstring.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qbytearray.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qnamespace.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qstringliteral.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qstringalgorithms.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qstringview.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qstringbuilder.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qpair.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qbytearraylist.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qstringlist.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qregexp.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qstringmatcher.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qmap.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qtextstream.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qiodevice.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qobject.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qobjectdefs.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qcoreevent.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qscopedpointer.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qmetatype.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qvarlengtharray.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qcontainerfwd.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qobject_impl.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qlocale.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qvariant.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qshareddata.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qvector.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qpoint.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qset.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qcontiguouscache.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qsharedpointer.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qsharedpointer_impl.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o simpleCompare.o ../plagiarism/simpleCompare.cpp
-
 removeDuplicates.o: ../plagiarism/removeDuplicates.cpp ../plagiarism/removeDuplicates.h \
 		../plagiarism/Includes.h \
 		../plagiarism/Compare.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o removeDuplicates.o ../plagiarism/removeDuplicates.cpp
-
 basicLexicalAnalyzer.o: ../plagiarism/basicLexicalAnalyzer.cpp ../plagiarism/basicLexicalAnalyzer.h \
 		../plagiarism/Includes.h \
-		../plagiarism/Compare.h
+		../plagiarism/Compare.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/QDebug \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qdebug.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qalgorithms.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qglobal.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qconfig.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qtcore-config.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qsystemdetection.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qprocessordetection.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qcompilerdetection.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qtypeinfo.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qsysinfo.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qlogging.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qflags.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qatomic.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qbasicatomic.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qgenericatomic.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qatomic_msvc.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qglobalstatic.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qmutex.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qnumeric.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qversiontagging.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qhash.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qchar.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qiterator.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qlist.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qrefcount.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qarraydata.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qhashfunctions.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qstring.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qbytearray.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qnamespace.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qstringliteral.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qstringalgorithms.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qstringview.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qstringbuilder.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qpair.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qbytearraylist.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qstringlist.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qregexp.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qstringmatcher.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qmap.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qtextstream.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qiodevice.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qobject.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qobjectdefs.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qcoreevent.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qscopedpointer.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qmetatype.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qvarlengtharray.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qcontainerfwd.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qobject_impl.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qlocale.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qvariant.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qshareddata.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qvector.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qpoint.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qset.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qcontiguouscache.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qsharedpointer.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qsharedpointer_impl.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o basicLexicalAnalyzer.o ../plagiarism/basicLexicalAnalyzer.cpp
-
 Compare.o: ../plagiarism/Compare.cpp ../plagiarism/Includes.h \
-		../plagiarism/Compare.h
+		../plagiarism/Compare.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/QDebug \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qdebug.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qalgorithms.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qglobal.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qconfig.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qtcore-config.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qsystemdetection.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qprocessordetection.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qcompilerdetection.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qtypeinfo.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qsysinfo.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qlogging.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qflags.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qatomic.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qbasicatomic.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qgenericatomic.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qatomic_msvc.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qglobalstatic.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qmutex.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qnumeric.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qversiontagging.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qhash.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qchar.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qiterator.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qlist.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qrefcount.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qarraydata.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qhashfunctions.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qstring.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qbytearray.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qnamespace.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qstringliteral.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qstringalgorithms.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qstringview.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qstringbuilder.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qpair.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qbytearraylist.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qstringlist.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qregexp.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qstringmatcher.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qmap.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qtextstream.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qiodevice.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qobject.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qobjectdefs.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qcoreevent.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qscopedpointer.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qmetatype.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qvarlengtharray.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qcontainerfwd.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qobject_impl.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qlocale.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qvariant.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qshareddata.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qvector.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qpoint.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qset.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qcontiguouscache.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qsharedpointer.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qsharedpointer_impl.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Compare.o ../plagiarism/Compare.cpp
-
 lexicalAnalyzer.o: ../plagiarism/lexicalAnalyzer.cpp ../plagiarism/lexicalAnalyzer.h \
 		../plagiarism/Includes.h \
-		../plagiarism/Compare.h
+		../plagiarism/Compare.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/QDebug \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qdebug.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qalgorithms.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qglobal.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qconfig.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qtcore-config.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qsystemdetection.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qprocessordetection.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qcompilerdetection.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qtypeinfo.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qsysinfo.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qlogging.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qflags.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qatomic.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qbasicatomic.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qgenericatomic.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qatomic_msvc.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qglobalstatic.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qmutex.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qnumeric.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qversiontagging.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qhash.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qchar.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qiterator.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qlist.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qrefcount.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qarraydata.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qhashfunctions.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qstring.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qbytearray.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qnamespace.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qstringliteral.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qstringalgorithms.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qstringview.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qstringbuilder.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qpair.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qbytearraylist.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qstringlist.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qregexp.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qstringmatcher.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qmap.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qtextstream.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qiodevice.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qobject.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qobjectdefs.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qcoreevent.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qscopedpointer.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qmetatype.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qvarlengtharray.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qcontainerfwd.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qobject_impl.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qlocale.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qvariant.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qshareddata.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qvector.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qpoint.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qset.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qcontiguouscache.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qsharedpointer.h \
+		../../../../Documents/5.12.6/gcc_64/include/QtCore/qsharedpointer_impl.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o lexicalAnalyzer.o ../plagiarism/lexicalAnalyzer.cpp
-
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
-
 ####### Install
-
 install_target: first FORCE
 	@test -d $(INSTALL_ROOT)/opt/plagiarism/bin || mkdir -p $(INSTALL_ROOT)/opt/plagiarism/bin
 	-$(QINSTALL_PROGRAM) $(QMAKE_TARGET) $(INSTALL_ROOT)/opt/plagiarism/bin/$(QMAKE_TARGET)
-
 uninstall_target: FORCE
 	-$(DEL_FILE) $(INSTALL_ROOT)/opt/plagiarism/bin/$(QMAKE_TARGET)
 	-$(DEL_DIR) $(INSTALL_ROOT)/opt/plagiarism/bin/ 
-
-
 install: install_target  FORCE
-
 uninstall: uninstall_target  FORCE
-
 FORCE:
-

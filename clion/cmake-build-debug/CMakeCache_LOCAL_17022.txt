@@ -9,225 +9,160 @@
 # KEY is the name of a variable in the cache.
 # TYPE is a hint to GUIs for the type of VALUE, DO NOT EDIT TYPE!.
 # VALUE is the current value for the KEY.
-
 ########################
 # EXTERNAL cache entries
 ########################
-
 //Path to a program.
 CMAKE_AR:FILEPATH=/usr/bin/ar
-
 //Choose the type of build, options are: None Debug Release RelWithDebInfo
 // MinSizeRel ...
 CMAKE_BUILD_TYPE:STRING=Debug
-
 //Id string of the compiler for the CodeBlocks IDE. Automatically
 // detected when left empty
 CMAKE_CODEBLOCKS_COMPILER_ID:STRING=
-
 //The CodeBlocks executable
 CMAKE_CODEBLOCKS_EXECUTABLE:FILEPATH=CMAKE_CODEBLOCKS_EXECUTABLE-NOTFOUND
-
 //Additional command line arguments when CodeBlocks invokes make.
 // Enter e.g. -j<some_number> to get parallel builds
 CMAKE_CODEBLOCKS_MAKE_ARGUMENTS:STRING=-j8
-
 //Enable/Disable color output during build.
 CMAKE_COLOR_MAKEFILE:BOOL=ON
-
 //CXX compiler
 CMAKE_CXX_COMPILER:FILEPATH=/usr/bin/c++
-
 //A wrapper around 'ar' adding the appropriate '--plugin' option
 // for the GCC compiler
 CMAKE_CXX_COMPILER_AR:FILEPATH=/usr/bin/gcc-ar-8
-
 //A wrapper around 'ranlib' adding the appropriate '--plugin' option
 // for the GCC compiler
 CMAKE_CXX_COMPILER_RANLIB:FILEPATH=/usr/bin/gcc-ranlib-8
-
 //Flags used by the CXX compiler during all build types.
 CMAKE_CXX_FLAGS:STRING=
-
 //Flags used by the CXX compiler during DEBUG builds.
 CMAKE_CXX_FLAGS_DEBUG:STRING=-g
-
 //Flags used by the CXX compiler during MINSIZEREL builds.
 CMAKE_CXX_FLAGS_MINSIZEREL:STRING=-Os -DNDEBUG
-
 //Flags used by the CXX compiler during RELEASE builds.
 CMAKE_CXX_FLAGS_RELEASE:STRING=-O3 -DNDEBUG
-
 //Flags used by the CXX compiler during RELWITHDEBINFO builds.
 CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG
-
 //C compiler
 CMAKE_C_COMPILER:FILEPATH=/usr/bin/cc
-
 //A wrapper around 'ar' adding the appropriate '--plugin' option
 // for the GCC compiler
 CMAKE_C_COMPILER_AR:FILEPATH=/usr/bin/gcc-ar-8
-
 //A wrapper around 'ranlib' adding the appropriate '--plugin' option
 // for the GCC compiler
 CMAKE_C_COMPILER_RANLIB:FILEPATH=/usr/bin/gcc-ranlib-8
-
 //Flags used by the C compiler during all build types.
 CMAKE_C_FLAGS:STRING=
-
 //Flags used by the C compiler during DEBUG builds.
 CMAKE_C_FLAGS_DEBUG:STRING=-g
-
 //Flags used by the C compiler during MINSIZEREL builds.
 CMAKE_C_FLAGS_MINSIZEREL:STRING=-Os -DNDEBUG
-
 //Flags used by the C compiler during RELEASE builds.
 CMAKE_C_FLAGS_RELEASE:STRING=-O3 -DNDEBUG
-
 //Flags used by the C compiler during RELWITHDEBINFO builds.
 CMAKE_C_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG
-
 //Flags used by the linker during all build types.
 CMAKE_EXE_LINKER_FLAGS:STRING=
-
 //Flags used by the linker during DEBUG builds.
 CMAKE_EXE_LINKER_FLAGS_DEBUG:STRING=
-
 //Flags used by the linker during MINSIZEREL builds.
 CMAKE_EXE_LINKER_FLAGS_MINSIZEREL:STRING=
-
 //Flags used by the linker during RELEASE builds.
 CMAKE_EXE_LINKER_FLAGS_RELEASE:STRING=
-
 //Flags used by the linker during RELWITHDEBINFO builds.
 CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO:STRING=
-
 //Enable/Disable output of compile commands during generation.
 CMAKE_EXPORT_COMPILE_COMMANDS:BOOL=OFF
-
 //Install path prefix, prepended onto install directories.
 CMAKE_INSTALL_PREFIX:PATH=/usr/local
-
 //Path to a program.
 CMAKE_LINKER:FILEPATH=/usr/bin/ld
-
 //Path to a program.
 CMAKE_MAKE_PROGRAM:FILEPATH=/usr/bin/make
-
 //Flags used by the linker during the creation of modules during
 // all build types.
 CMAKE_MODULE_LINKER_FLAGS:STRING=
-
 //Flags used by the linker during the creation of modules during
 // DEBUG builds.
 CMAKE_MODULE_LINKER_FLAGS_DEBUG:STRING=
-
 //Flags used by the linker during the creation of modules during
 // MINSIZEREL builds.
 CMAKE_MODULE_LINKER_FLAGS_MINSIZEREL:STRING=
-
 //Flags used by the linker during the creation of modules during
 // RELEASE builds.
 CMAKE_MODULE_LINKER_FLAGS_RELEASE:STRING=
-
 //Flags used by the linker during the creation of modules during
 // RELWITHDEBINFO builds.
 CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO:STRING=
-
 //Path to a program.
 CMAKE_NM:FILEPATH=/usr/bin/nm
-
 //Path to a program.
 CMAKE_OBJCOPY:FILEPATH=/usr/bin/objcopy
-
 //Path to a program.
 CMAKE_OBJDUMP:FILEPATH=/usr/bin/objdump
-
 //Value Computed by CMake
 CMAKE_PROJECT_DESCRIPTION:STATIC=
-
 //Value Computed by CMake
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
-
 //Value Computed by CMake
 CMAKE_PROJECT_NAME:STATIC=oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym
-
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/usr/bin/ranlib
-
 //Flags used by the linker during the creation of shared libraries
 // during all build types.
 CMAKE_SHARED_LINKER_FLAGS:STRING=
-
 //Flags used by the linker during the creation of shared libraries
 // during DEBUG builds.
 CMAKE_SHARED_LINKER_FLAGS_DEBUG:STRING=
-
 //Flags used by the linker during the creation of shared libraries
 // during MINSIZEREL builds.
 CMAKE_SHARED_LINKER_FLAGS_MINSIZEREL:STRING=
-
 //Flags used by the linker during the creation of shared libraries
 // during RELEASE builds.
 CMAKE_SHARED_LINKER_FLAGS_RELEASE:STRING=
-
 //Flags used by the linker during the creation of shared libraries
 // during RELWITHDEBINFO builds.
 CMAKE_SHARED_LINKER_FLAGS_RELWITHDEBINFO:STRING=
-
 //If set, runtime paths are not added when installing shared libraries,
 // but are added when building.
 CMAKE_SKIP_INSTALL_RPATH:BOOL=NO
-
 //If set, runtime paths are not added when using shared libraries.
 CMAKE_SKIP_RPATH:BOOL=NO
-
 //Flags used by the linker during the creation of static libraries
 // during all build types.
 CMAKE_STATIC_LINKER_FLAGS:STRING=
-
 //Flags used by the linker during the creation of static libraries
 // during DEBUG builds.
 CMAKE_STATIC_LINKER_FLAGS_DEBUG:STRING=
-
 //Flags used by the linker during the creation of static libraries
 // during MINSIZEREL builds.
 CMAKE_STATIC_LINKER_FLAGS_MINSIZEREL:STRING=
-
 //Flags used by the linker during the creation of static libraries
 // during RELEASE builds.
 CMAKE_STATIC_LINKER_FLAGS_RELEASE:STRING=
-
 //Flags used by the linker during the creation of static libraries
 // during RELWITHDEBINFO builds.
 CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO:STRING=
-
 //Path to a program.
 CMAKE_STRIP:FILEPATH=/usr/bin/strip
-
 //If this value is on, makefiles will be generated without the
 // .SILENT directive, and all commands will be echoed to the console
 // during the make.  This is useful for debugging only. With Visual
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
-
 //Path to a program.
 ProcessorCount_cmd_nproc:FILEPATH=/usr/bin/nproc
-
 //Path to a program.
 ProcessorCount_cmd_sysctl:FILEPATH=/sbin/sysctl
-
 //Value Computed by CMake
 oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym_BINARY_DIR:STATIC=/home/m-debian/Documents/Semestr_5/OOP/oop_2019_g2_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/cmake-build-debug
-
 //Value Computed by CMake
 oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym_SOURCE_DIR:STATIC=/home/m-debian/Documents/Semestr_5/OOP/oop_2019_g2_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym
-
-
 ########################
 # INTERNAL cache entries
 ########################
-
 //ADVANCED property for variable: CMAKE_AR
 CMAKE_AR-ADVANCED:INTERNAL=1
 //This is the directory where this CMakeCache.txt was created
@@ -377,4 +312,3 @@ CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 ProcessorCount_cmd_nproc-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: ProcessorCount_cmd_sysctl
 ProcessorCount_cmd_sysctl-ADVANCED:INTERNAL=1
-

@@ -1,5 +1,4 @@
 # Aplikacja do wykrywania plagiatów w kodzie źródłowym
-
 - Aplikacja pozwala na porównanie zestawów N projektów i określenia stopnia podobieństwa pomiędzy nimi (projekt to katalog wewnątrz którego znajduje się wiele innych podkatalogów oraz pliki z kodem źródłowym).
 - W głównym oknie aplikacji widoczna jest tablica N x N gdzie każdy projekt jest porównany z każdym innym i odpowiednim kolorem jest jest zaznaczone podobieństwo (zielony - różne projekty, czerwony - definitywny plagiat + wszystkie odcienie pomiędzy).
 - Aplikacja powinna umożliwiać wybór jednego z wielu algorytmów porównania. Powinna być też dostępna opcja jednoczesnego użycia wielu algorytmów.

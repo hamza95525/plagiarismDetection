@@ -9,19 +9,14 @@
 # KEY is the name of a variable in the cache.
 # TYPE is a hint to GUIs for the type of VALUE, DO NOT EDIT TYPE!.
 # VALUE is the current value for the KEY.
-
 ########################
 # EXTERNAL cache entries
 ########################
-
 //No help, variable specified on the command line.
 CMAKE_BUILD_TYPE:UNINITIALIZED=Debug
-
-
 ########################
 # INTERNAL cache entries
 ########################
-
 //This is the directory where this CMakeCache.txt was created
 CMAKE_CACHEFILE_DIR:INTERNAL=/home/student/PLAGIAT/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/clion/cmake-build-debug
 //Major version of cmake used to create the current loaded cache
@@ -53,4 +48,3 @@ CMAKE_HOME_DIRECTORY:INTERNAL=/home/student/PLAGIAT/oop_2019_aplikacja_do_wykryw
 CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=1
 //Path to CMake installation.
 CMAKE_ROOT:INTERNAL=/opt/clion-2019.2.1/bin/cmake/linux/share/cmake-3.14
-

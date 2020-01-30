@@ -1,5 +1,4 @@
 #include "Includes.h"
-
 class lexicalAnalyzer : Compare
 {
 private:

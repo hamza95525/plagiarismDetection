@@ -1,7 +1,5 @@
 #pragma once
-
 #include "Includes.h"
-
 class removeDuplicates : Compare
 {
 private:
