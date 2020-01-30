@@ -138,7 +138,7 @@ void MainWindow::viewTable()
 
 void MainWindow::dialog()
 {
-    this->directoryName = QFileDialog::getExistingDirectory(this, tr("Open file"), "/home");
+    this->directoryName = QFileDialog::getExistingDirectory(this, tr("Open file"), "..");
     ui->tePath->setPlainText(directoryName);
 }
 
