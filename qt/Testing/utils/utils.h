@@ -3,11 +3,11 @@
 
 #include "utils_global.h"
 
-class UTILSSHARED_EXPORT Utils
+class UTILSSHARED_EXPORT utils
 {
 
 public:
-    Utils();
+    utils();
 };
 
 #endif // UTILS_H

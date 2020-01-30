@@ -1,6 +1,6 @@
 #include "utils.h"
 
 
-Utils::Utils()
+utils::utils()
 {
 }

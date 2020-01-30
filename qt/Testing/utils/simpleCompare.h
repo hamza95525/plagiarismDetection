@@ -1,6 +1,6 @@
 #pragma once
 #include "Includes.h"
-class simpleCompare : Compare
+class UTILSSHARED_EXPORT simpleCompare : Compare
 {
     friend class simpleCompare_test;
 private:

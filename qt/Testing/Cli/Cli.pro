@@ -22,9 +22,9 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../Utils/release/ -lUtils
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../Utils/debug/ -lUtils
-else:unix: LIBS += -L$$OUT_PWD/../Utils/ -lUtils
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../utils/release/ -lUtils
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../utils/debug/ -lUtils
+else:unix: LIBS += -L$$OUT_PWD/../utils/ -lUtils
 
-INCLUDEPATH += $$PWD/../Utils
-DEPENDPATH += $$PWD/../Utils
+INCLUDEPATH += $$PWD/../utils
+DEPENDPATH += $$PWD/../utils

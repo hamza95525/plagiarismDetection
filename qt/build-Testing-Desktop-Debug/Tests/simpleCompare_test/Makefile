@@ -17,7 +17,7 @@ CXX           = g++
 DEFINES       = -DQT_TESTLIB_LIB -DQT_CORE_LIB -DQT_TESTCASE_BUILDDIR='"/home/student/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/qt/build-Testing-Desktop-Debug/Tests/simpleCompare_test"' -DQT_QML_DEBUG
 CFLAGS        = -pipe -g -Wall -W -D_REENTRANT -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -g -Wall -W -D_REENTRANT -fPIC $(DEFINES)
-INCPATH       = -I../../../Testing/Tests/simpleCompare_test -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtTest -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++
+INCPATH       = -I../../../Testing/Tests/simpleCompare_test -I. -I../../../Testing/utils -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtTest -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++
 QMAKE         = /usr/lib/qt5/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -40,7 +40,7 @@ DISTNAME      = simpleCompare_test1.0.0
 DISTDIR = /home/student/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/qt/build-Testing-Desktop-Debug/Tests/simpleCompare_test/.tmp/simpleCompare_test1.0.0
 LINK          = g++
 LFLAGS        = 
-LIBS          = $(SUBLIBS) -lQt5Test -lQt5Core -lpthread   
+LIBS          = $(SUBLIBS) -L/home/student/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/qt/build-Testing-Desktop-Debug/Tests/simpleCompare_test/../../utils/ -lUtils -lQt5Test -lQt5Core -lpthread   
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -372,12 +372,13 @@ compiler_moc_source_make_all: tst_simplecompare_test.moc
 compiler_moc_source_clean:
 	-$(DEL_FILE) tst_simplecompare_test.moc
 tst_simplecompare_test.moc: ../../../Testing/Tests/simpleCompare_test/tst_simplecompare_test.cpp \
-		../../../Testing/Utils/Includes.h \
-		../../../Testing/Utils/Compare.h \
-		../../../Testing/Utils/simpleCompare.h \
+		../../../Testing/utils/simpleCompare.h \
+		../../../Testing/utils/Includes.h \
+		../../../Testing/utils/Compare.h \
+		../../../Testing/utils/utils_global.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/student/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/qt/build-Testing-Desktop-Debug/Tests/simpleCompare_test/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/student/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/qt/Testing/Tests/simpleCompare_test -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtTest -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/8 -I/usr/include/x86_64-linux-gnu/c++/8 -I/usr/include/c++/8/backward -I/usr/lib/gcc/x86_64-linux-gnu/8/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../../../Testing/Tests/simpleCompare_test/tst_simplecompare_test.cpp -o tst_simplecompare_test.moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/student/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/qt/build-Testing-Desktop-Debug/Tests/simpleCompare_test/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/student/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/qt/Testing/Tests/simpleCompare_test -I/home/student/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/qt/Testing/utils -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtTest -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/8 -I/usr/include/x86_64-linux-gnu/c++/8 -I/usr/include/c++/8/backward -I/usr/lib/gcc/x86_64-linux-gnu/8/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../../../Testing/Tests/simpleCompare_test/tst_simplecompare_test.cpp -o tst_simplecompare_test.moc
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -389,9 +390,10 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_source_clean
 
 ####### Compile
 
-tst_simplecompare_test.o: ../../../Testing/Tests/simpleCompare_test/tst_simplecompare_test.cpp ../../../Testing/Utils/Includes.h \
-		../../../Testing/Utils/Compare.h \
-		../../../Testing/Utils/simpleCompare.h \
+tst_simplecompare_test.o: ../../../Testing/Tests/simpleCompare_test/tst_simplecompare_test.cpp ../../../Testing/utils/simpleCompare.h \
+		../../../Testing/utils/Includes.h \
+		../../../Testing/utils/Compare.h \
+		../../../Testing/utils/utils_global.h \
 		tst_simplecompare_test.moc
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tst_simplecompare_test.o ../../../Testing/Tests/simpleCompare_test/tst_simplecompare_test.cpp
 

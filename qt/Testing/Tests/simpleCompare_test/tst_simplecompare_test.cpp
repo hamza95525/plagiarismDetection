@@ -1,6 +1,6 @@
 #include <QtTest>
-#include "../../Utils/Includes.h"
-#include "../../Utils/simpleCompare.h"
+#include "../../utils/Includes.h"
+#include "../../utils/simpleCompare.h"
 
 // add necessary includes here
 
@@ -16,10 +16,10 @@ void simpleCompare_test::test_case1()
 {
     simpleCompare comp{};
     std::ifstream file;
-    std::string path="test";
-    comp.readFile("test", file);
+    std::string path="/home/student/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/qt/Testing/Tests/simpleCompare_test/test";
+    comp.readFile(path, file);
     auto num = comp.numOfLines(file);
-    comp.deleteEmptyLines("test");
+    comp.deleteEmptyLines(path);
     QCOMPARE(comp.numOfLines(file), num-3);
 }
 
