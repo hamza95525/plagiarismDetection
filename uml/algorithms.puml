@@ -1,0 +1,43 @@
+@startuml
+abstract class Compare{
+    + virtual float compare(const std::string &FilePath1, const std::string &FilePath2);
+
+    + int numOfLines(std::ifstream& file);
+    + float percentage(float equalLines, int allLines);
+    + std::vector<std::string> split(std::string str);
+    + bool isKeyword(std::string word);
+    + bool isOperator(std::string word);
+
+    + void deleteEmptyLines(const std::string &FilePath);
+    + static void readFile(const std::string &FilePath1, const std::string &FilePath2);
+}
+
+class simpleCompare{
+    - int Size = 0;
+    + float compare(const std::string &FilePath1, const std::string &FilePath2) override;
+}
+
+class removeDuplicates{
+    - int Size = 0;
+    + float compare(const std::string &FilePath1, const std::string &FilePath2) override;
+}
+
+class basicLexicalAnalyzer{
+    - int Size = 0;
+    + float compare(const std::string &FilePath1, const std::string &FilePath2) override;
+}
+
+class lexicalAnalyzer{
+    - int Size = 0;
+    + float compare(const std::string &FilePath1, const std::string &FilePath2) override;
+    + static float compareValues(std::map<std::string, int> &mapOfKeywords1, std::map<std::string, int> &mapOfKeywords2);
+
+}
+
+
+Compare --|> simpleCompare
+Compare --|> removeDuplicates
+Compare --|> basicLexicalAnalyzer
+Compare --|> lexicalAnalyzer
+
+@enduml
