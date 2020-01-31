@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.8.1, 2020-01-29T20:54:32. -->
+<!-- Written by QtCreator 4.8.1, 2020-01-31T03:01:45. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -295,7 +295,11 @@
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">plagiarism</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">plagiarism2</value>
+<<<<<<< HEAD
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/home/student/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/qt/plagiarism/plagiarism.pro</value>
+=======
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/home/student/nikola/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/qt/plagiarism/plagiarism.pro</value>
+>>>>>>> origin/connecting
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.ProFile">plagiarism.pro</value>
     <value type="QString" key="RunConfiguration.Arguments"></value>
     <value type="uint" key="RunConfiguration.QmlDebugServerPort">3768</value>

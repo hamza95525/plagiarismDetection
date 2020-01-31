@@ -6,35 +6,69 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1000</width>
-    <height>600</height>
+    <width>1278</width>
+    <height>794</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>Is it stolen?</string>
   </property>
   <widget class="QWidget" name="centralWidget">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
    <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
       <x>9</x>
       <y>9</y>
-      <width>731</width>
-      <height>581</height>
+      <width>961</width>
+      <height>771</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetMaximumSize</enum>
+     </property>
      <item row="0" column="0">
-      <widget class="QTableWidget" name="tableWidget"/>
+      <widget class="QTableWidget" name="tableWidget">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <attribute name="horizontalHeaderDefaultSectionSize">
+        <number>57</number>
+       </attribute>
+       <attribute name="horizontalHeaderMinimumSectionSize">
+        <number>48</number>
+       </attribute>
+       <attribute name="verticalHeaderDefaultSectionSize">
+        <number>50</number>
+       </attribute>
+      </widget>
      </item>
     </layout>
    </widget>
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>750</x>
-      <y>9</y>
-      <width>241</width>
+      <x>980</x>
+      <y>10</y>
+      <width>274</width>
       <height>421</height>
      </rect>
     </property>
@@ -54,13 +88,6 @@
        <property name="bottomMargin">
         <number>0</number>
        </property>
-       <item>
-        <widget class="QLabel" name="label">
-         <property name="text">
-          <string>Set up percentage:</string>
-         </property>
-        </widget>
-       </item>
        <item>
         <widget class="QLCDNumber" name="lcdNumber">
          <property name="intValue" stdset="0">
@@ -111,7 +138,7 @@
      <item>
       <widget class="QCheckBox" name="cbAlgo">
        <property name="text">
-        <string>wpisac</string>
+        <string>Line by line comparison</string>
        </property>
        <property name="checkable">
         <bool>true</bool>
@@ -130,21 +157,28 @@
      <item>
       <widget class="QCheckBox" name="cbAlgo_2">
        <property name="text">
-        <string>poprawne</string>
+        <string>Compare unique lines</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_5">
+       <property name="text">
+        <string>Algorithms below works only with c/cpp</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QCheckBox" name="cbAlgo_3">
        <property name="text">
-        <string>nazwy</string>
+        <string>Ratio between number of keywords</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QCheckBox" name="cbAlgo_4">
        <property name="text">
-        <string>algorytmów</string>
+        <string>Lexycal analyzer</string>
        </property>
       </widget>
      </item>

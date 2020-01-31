@@ -1,7 +1,5 @@
 #pragma once
-
 #include "../includes/Includes.h"
-
 class simpleCompare : Compare
 {
 public:
