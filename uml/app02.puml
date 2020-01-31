@@ -27,7 +27,7 @@ Error: <b>pbSelect</b>  enabled  <b> true</b>
 'Compare: <b>pbStart</b>  enabled  <b> true</b>
 ViewResult: <b>pbStart</b>  enabled  <b> false</b>
 note bottom of ViewResult
-    - view results in some way
+    - open results in new window "Most similar files"
 end note
 note bottom of Compare
     - state exists only due to existence of large files,
