@@ -1,6 +1,8 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 #include <QMainWindow>
+#include "differencewindow.h"
+
 namespace Ui {
 class MainWindow;
 }
@@ -11,10 +13,13 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     std::string getFileExtension(const std::string &s);
-    //void averageValuesForProjects();
+    int rowNum;
+    int colNum;
 signals:
     void error();
     void done();
+    void projectLabels(std::string l1, std::string l2);
+    void filesPath( std::string p1, std::string p2);
 public slots:
     void dialog();
     void open();
