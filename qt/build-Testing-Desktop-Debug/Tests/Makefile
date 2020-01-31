@@ -32,7 +32,8 @@ COMPRESS      = gzip -9f
 DISTNAME      = Tests1.0.0
 DISTDIR = /home/student/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/qt/build-Testing-Desktop-Debug/Tests/.tmp/Tests1.0.0
 SUBTARGETS    =  \
-		sub-simpleCompare_test
+		sub-simpleCompare_test \
+		sub-removeDuplicates_test
 
 
 sub-simpleCompare_test-qmake_all:  FORCE
@@ -60,6 +61,31 @@ sub-simpleCompare_test-install_subtargets: FORCE
 sub-simpleCompare_test-uninstall_subtargets: FORCE
 	@test -d simpleCompare_test/ || mkdir -p simpleCompare_test/
 	cd simpleCompare_test/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/student/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/qt/Testing/Tests/simpleCompare_test/simpleCompare_test.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug ) && $(MAKE) -f Makefile uninstall
+sub-removeDuplicates_test-qmake_all:  FORCE
+	@test -d removeDuplicates_test/ || mkdir -p removeDuplicates_test/
+	cd removeDuplicates_test/ && $(QMAKE) -o Makefile /home/student/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/qt/Testing/Tests/removeDuplicates_test/removeDuplicates_test.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug
+	cd removeDuplicates_test/ && $(MAKE) -f Makefile qmake_all
+sub-removeDuplicates_test: FORCE
+	@test -d removeDuplicates_test/ || mkdir -p removeDuplicates_test/
+	cd removeDuplicates_test/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/student/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/qt/Testing/Tests/removeDuplicates_test/removeDuplicates_test.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug ) && $(MAKE) -f Makefile
+sub-removeDuplicates_test-make_first: FORCE
+	@test -d removeDuplicates_test/ || mkdir -p removeDuplicates_test/
+	cd removeDuplicates_test/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/student/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/qt/Testing/Tests/removeDuplicates_test/removeDuplicates_test.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug ) && $(MAKE) -f Makefile 
+sub-removeDuplicates_test-all: FORCE
+	@test -d removeDuplicates_test/ || mkdir -p removeDuplicates_test/
+	cd removeDuplicates_test/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/student/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/qt/Testing/Tests/removeDuplicates_test/removeDuplicates_test.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug ) && $(MAKE) -f Makefile all
+sub-removeDuplicates_test-clean: FORCE
+	@test -d removeDuplicates_test/ || mkdir -p removeDuplicates_test/
+	cd removeDuplicates_test/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/student/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/qt/Testing/Tests/removeDuplicates_test/removeDuplicates_test.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug ) && $(MAKE) -f Makefile clean
+sub-removeDuplicates_test-distclean: FORCE
+	@test -d removeDuplicates_test/ || mkdir -p removeDuplicates_test/
+	cd removeDuplicates_test/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/student/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/qt/Testing/Tests/removeDuplicates_test/removeDuplicates_test.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug ) && $(MAKE) -f Makefile distclean
+sub-removeDuplicates_test-install_subtargets: FORCE
+	@test -d removeDuplicates_test/ || mkdir -p removeDuplicates_test/
+	cd removeDuplicates_test/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/student/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/qt/Testing/Tests/removeDuplicates_test/removeDuplicates_test.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug ) && $(MAKE) -f Makefile install
+sub-removeDuplicates_test-uninstall_subtargets: FORCE
+	@test -d removeDuplicates_test/ || mkdir -p removeDuplicates_test/
+	cd removeDuplicates_test/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/student/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/qt/Testing/Tests/removeDuplicates_test/removeDuplicates_test.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug ) && $(MAKE) -f Makefile uninstall
 
 Makefile: ../../Testing/Tests/Tests.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
@@ -217,25 +243,31 @@ Makefile: ../../Testing/Tests/Tests.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/li
 qmake: FORCE
 	@$(QMAKE) -o Makefile ../../Testing/Tests/Tests.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug
 
-qmake_all: sub-simpleCompare_test-qmake_all FORCE
+qmake_all: sub-simpleCompare_test-qmake_all sub-removeDuplicates_test-qmake_all FORCE
 
-make_first: sub-simpleCompare_test-make_first  FORCE
-all: sub-simpleCompare_test-all  FORCE
-clean: sub-simpleCompare_test-clean  FORCE
-distclean: sub-simpleCompare_test-distclean  FORCE
+make_first: sub-simpleCompare_test-make_first sub-removeDuplicates_test-make_first  FORCE
+all: sub-simpleCompare_test-all sub-removeDuplicates_test-all  FORCE
+clean: sub-simpleCompare_test-clean sub-removeDuplicates_test-clean  FORCE
+distclean: sub-simpleCompare_test-distclean sub-removeDuplicates_test-distclean  FORCE
 	-$(DEL_FILE) Makefile
-install_subtargets: sub-simpleCompare_test-install_subtargets FORCE
-uninstall_subtargets: sub-simpleCompare_test-uninstall_subtargets FORCE
+install_subtargets: sub-simpleCompare_test-install_subtargets sub-removeDuplicates_test-install_subtargets FORCE
+uninstall_subtargets: sub-simpleCompare_test-uninstall_subtargets sub-removeDuplicates_test-uninstall_subtargets FORCE
 
 sub-simpleCompare_test-check:
 	@test -d simpleCompare_test/ || mkdir -p simpleCompare_test/
 	cd simpleCompare_test/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/student/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/qt/Testing/Tests/simpleCompare_test/simpleCompare_test.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug ) && $(MAKE) -f Makefile check
-check: sub-simpleCompare_test-check
+sub-removeDuplicates_test-check:
+	@test -d removeDuplicates_test/ || mkdir -p removeDuplicates_test/
+	cd removeDuplicates_test/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/student/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/qt/Testing/Tests/removeDuplicates_test/removeDuplicates_test.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug ) && $(MAKE) -f Makefile check
+check: sub-simpleCompare_test-check sub-removeDuplicates_test-check
 
 sub-simpleCompare_test-benchmark:
 	@test -d simpleCompare_test/ || mkdir -p simpleCompare_test/
 	cd simpleCompare_test/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/student/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/qt/Testing/Tests/simpleCompare_test/simpleCompare_test.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug ) && $(MAKE) -f Makefile benchmark
-benchmark: sub-simpleCompare_test-benchmark
+sub-removeDuplicates_test-benchmark:
+	@test -d removeDuplicates_test/ || mkdir -p removeDuplicates_test/
+	cd removeDuplicates_test/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/student/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/qt/Testing/Tests/removeDuplicates_test/removeDuplicates_test.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug ) && $(MAKE) -f Makefile benchmark
+benchmark: sub-simpleCompare_test-benchmark sub-removeDuplicates_test-benchmark
 install:install_subtargets  FORCE
 
 uninstall: uninstall_subtargets FORCE
@@ -245,11 +277,15 @@ FORCE:
 dist: distdir FORCE
 	(cd `dirname $(DISTDIR)` && $(TAR) $(DISTNAME).tar $(DISTNAME) && $(COMPRESS) $(DISTNAME).tar) && $(MOVE) `dirname $(DISTDIR)`/$(DISTNAME).tar.gz . && $(DEL_FILE) -r $(DISTDIR)
 
-distdir: sub-simpleCompare_test-distdir FORCE
+distdir: sub-simpleCompare_test-distdir sub-removeDuplicates_test-distdir FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/sanitize.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/gcc-base.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/gcc-base-unix.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/g++-base.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/g++-unix.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/qconfig.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_accessibility_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_bootstrap_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_concurrent.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_concurrent_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_core.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_core_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_dbus.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_dbus_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_devicediscovery_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_edid_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_egl_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_eglfs_kms_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_eglfsdeviceintegration_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_eventdispatcher_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_fb_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_fontdatabase_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_glx_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_gui.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_gui_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_input_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_kms_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_linuxaccessibility_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_network.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_network_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_opengl.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_opengl_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_openglextensions.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_openglextensions_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_platformcompositor_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_printsupport.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_printsupport_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_qml.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_qmltest.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_quick.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_quickwidgets.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_service_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_sql.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_sql_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_testlib.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_testlib_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_theme_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_vulkan_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_widgets.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_widgets_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_xcb_qpa_lib_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_xml.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_xml_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_NetworkManagerQt.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_functions.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf ../.qmake.stash /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resolve_config.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_post.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qml_debug.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/warn_on.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qmake_use.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/file_copies.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/testcase_targets.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exceptions.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf ../../Testing/Tests/Tests.pro $(DISTDIR)/
 
 sub-simpleCompare_test-distdir: FORCE
 	@test -d simpleCompare_test/ || mkdir -p simpleCompare_test/
 	cd simpleCompare_test/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/student/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/qt/Testing/Tests/simpleCompare_test/simpleCompare_test.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug ) && $(MAKE) -e -f Makefile distdir DISTDIR=$(DISTDIR)/simpleCompare_test
+
+sub-removeDuplicates_test-distdir: FORCE
+	@test -d removeDuplicates_test/ || mkdir -p removeDuplicates_test/
+	cd removeDuplicates_test/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/student/oop_2019_aplikacja_do_wykrywania_plagiatow_w_kodzie_zrodlowym/qt/Testing/Tests/removeDuplicates_test/removeDuplicates_test.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug ) && $(MAKE) -e -f Makefile distdir DISTDIR=$(DISTDIR)/removeDuplicates_test
 
