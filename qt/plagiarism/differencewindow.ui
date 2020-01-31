@@ -38,6 +38,11 @@
     </item>
     <item>
      <widget class="QLabel" name="file1Name">
+      <property name="font">
+       <font>
+        <pointsize>8</pointsize>
+       </font>
+      </property>
       <property name="text">
        <string>TextLabel</string>
       </property>
@@ -73,6 +78,11 @@
     </item>
     <item>
      <widget class="QLabel" name="file2Name">
+      <property name="font">
+       <font>
+        <pointsize>8</pointsize>
+       </font>
+      </property>
       <property name="text">
        <string>TextLabel</string>
       </property>

@@ -18,7 +18,7 @@ public:
 private slots:
     void on_pushButton_clicked();
     void setProjectLabels(std::string l1, std::string l2);
-    void setFileLabels(std::string p1, std::string p2);
+    void setFileContentAndLabels(std::string p1, std::string p2);
 
 private:
     Ui::DifferenceWindow *ui;

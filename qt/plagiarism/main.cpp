@@ -14,7 +14,7 @@ int main(int argc, char* argv[]) {
     DifferenceWindow d;
 
     QObject::connect(&w,SIGNAL(projectLabels(std::string , std::string )),&d,SLOT(setProjectLabels(std::string , std::string)));
-    QObject::connect(&w,SIGNAL(filesPath(std::string , std::string )),&d,SLOT(setFileLabels(std::string , std::string)));
+    QObject::connect(&w,SIGNAL(filesPath(std::string , std::string )),&d,SLOT(setFileContentAndLabels(std::string , std::string)));
 
     d.hide();
     w.show();

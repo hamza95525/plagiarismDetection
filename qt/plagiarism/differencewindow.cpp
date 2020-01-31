@@ -27,8 +27,9 @@ void DifferenceWindow::setProjectLabels(std::string l1, std::string l2)
     ui->project2Name->setText(QString::fromStdString(l2));
 }
 
-void DifferenceWindow::setFileLabels(std::string p1, std::string p2)
+void DifferenceWindow::setFileContentAndLabels(std::string p1, std::string p2)
 {
+    //----------displaying content
     QFile file(QString::fromStdString(p1));
     file.open( QIODevice::ReadWrite );
     QString line;
