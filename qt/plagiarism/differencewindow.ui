@@ -28,7 +28,7 @@
       <property name="font">
        <font>
         <family>URW Gothic L</family>
-        <pointsize>15</pointsize>
+        <pointsize>20</pointsize>
        </font>
       </property>
       <property name="text">
@@ -63,7 +63,7 @@
       <property name="font">
        <font>
         <family>URW Gothic L</family>
-        <pointsize>15</pointsize>
+        <pointsize>20</pointsize>
        </font>
       </property>
       <property name="text">
