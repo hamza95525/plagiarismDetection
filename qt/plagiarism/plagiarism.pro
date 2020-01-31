@@ -24,8 +24,7 @@ SOURCES += \
     removeDuplicates.cpp \
     basicLexicalAnalyzer.cpp \
     Compare.cpp \
-    lexicalAnalyzer.cpp \
-    differencewindow.cpp
+    lexicalAnalyzer.cpp
 HEADERS += \
         mainwindow.h \
     basicLexicalAnalyzer.h \
@@ -33,11 +32,9 @@ HEADERS += \
     simpleCompare.h \
     removeDuplicates.h \
     lexicalAnalyzer.h \
-    Compare.h \
-    differencewindow.h
+    Compare.h
 FORMS += \
-        mainwindow.ui \
-    differencewindow.ui
+        mainwindow.ui
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin

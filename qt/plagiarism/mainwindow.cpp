@@ -173,29 +173,18 @@ void MainWindow::viewTable()
              {
                         std::cout << "PLIKI MAKSIMUM DLA PROJEKTU " << i << " oraz " << j << "\n";
                        std::cout << allProjectsMaxFileResults[i][j][0] << "\n";
-                       std::cout << allProjectsMaxFileResults[i][j][1] << "\n";
+                       std::cout << allProjectsMaxFileResults[i][j][1] << "\n\n";
              }
         std::cout << "\n+++++++++++++++++++++++++++\n";
 }
 
 void MainWindow::diff()
 {
-    rowNum= ui->tableWidget->selectionModel()->currentIndex().row();
-    colNum= ui->tableWidget->selectionModel()->currentIndex().column();
+    int rowNum= ui->tableWidget->selectionModel()->currentIndex().row();
+    int colNum= ui->tableWidget->selectionModel()->currentIndex().column();
 
-    std::string l1 = ProjectNames[rowNum];
-    std::string l2 = ProjectNames[colNum];
-    emit projectLabels(l1,l2);
-
-    std::string path1 = allProjectsMaxFileResults[rowNum][colNum][0];
-    std::string path2 = allProjectsMaxFileResults[rowNum][colNum][1];
-
-    emit filesPath(path1, path2);
-    //DifferenceWindow diffWindow;
-   //diffWindow.setModal(true);
-   //diffWindow.exec();
-    //std::string TwoProjectsName = ProjectNames[rowNum] + "\n" + allProjectsMaxFileResults[rowNum][colNum][0] + "\n\n" +ProjectNames[colNum]  + "\n" + allProjectsMaxFileResults[rowNum][colNum][1] ;
-    //QMessageBox::information(this, tr("Katalogi"), QString::fromStdString(TwoProjectsName));
+    std::string TwoProjectsName = ProjectNames[rowNum] + "\n" + allProjectsMaxFileResults[rowNum][colNum][0] + "\n\n" +ProjectNames[colNum]  + "\n" + allProjectsMaxFileResults[rowNum][colNum][1] ;
+    QMessageBox::information(this, tr("Katalogi"), QString::fromStdString(TwoProjectsName));
 
 }
 void MainWindow::dialog()
