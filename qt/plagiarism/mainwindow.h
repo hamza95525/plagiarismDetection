@@ -27,9 +27,11 @@ public slots:
     void clear();
     void viewTable();
     void diff( );
+    void slider(int, int);
 private:
     Ui::MainWindow *ui;
     QString directoryName;
+    double *wyniki;
     int algorithmsUsed=0x00;
     int numberOfAlgorithmsUsed=0;
     void averageValuesForProjects();

@@ -59,6 +59,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ViewResult->addTransition(ui->cbAlgo_4, SIGNAL(clicked()), PathSelected);
 
     connect(ui->tableWidget, SIGNAL(cellClicked(int ,int )), this, SLOT( diff()));
+    connect(ui->tableWidget, SIGNAL(cellClicked(int ,int )), this, SLOT( slider(int, int)));
 
     stateMachine->setInitialState(SelectFile);
 
@@ -114,7 +115,8 @@ void MainWindow::viewTable()
     //qDebug() << numberOfProjects;
     QStringList stringlist;
     QString *projectsNames = new QString[numberOfProjects];
-    double *wyniki = new double[allProjectsResults.size()*allProjectsResults.size()];
+
+    wyniki = new double[allProjectsResults.size()*allProjectsResults.size()];
     int l=0;
     for(unsigned long a=0;a<allProjectsResults.size(); a++)
         for(unsigned long b=0;b<allProjectsResults.size(); b++){
@@ -191,12 +193,15 @@ void MainWindow::diff()
     std::string path2 = allProjectsMaxFileResults[rowNum][colNum][1];
 
     emit filesPath(path1, path2);
-    //DifferenceWindow diffWindow;
-   //diffWindow.setModal(true);
-   //diffWindow.exec();
-    //std::string TwoProjectsName = ProjectNames[rowNum] + "\n" + allProjectsMaxFileResults[rowNum][colNum][0] + "\n\n" +ProjectNames[colNum]  + "\n" + allProjectsMaxFileResults[rowNum][colNum][1] ;
-    //QMessageBox::information(this, tr("Katalogi"), QString::fromStdString(TwoProjectsName));
+}
 
+void MainWindow::slider(int, int)
+{
+    rowNum= ui->tableWidget->selectionModel()->currentIndex().row();
+    colNum= ui->tableWidget->selectionModel()->currentIndex().column();
+
+    ui->horizontalSlider->setValue(allProjectsResults[rowNum][colNum]);
+    ui->horizontalSlider->valueChanged(allProjectsResults[rowNum][colNum]);
 }
 void MainWindow::dialog()
 {
