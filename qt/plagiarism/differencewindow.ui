@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>678</width>
-    <height>658</height>
+    <width>894</width>
+    <height>662</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,7 +18,7 @@
     <rect>
      <x>10</x>
      <y>50</y>
-     <width>321</width>
+     <width>441</width>
      <height>601</height>
     </rect>
    </property>
@@ -56,9 +56,9 @@
   <widget class="QWidget" name="verticalLayoutWidget_2">
    <property name="geometry">
     <rect>
-     <x>350</x>
+     <x>460</x>
      <y>50</y>
-     <width>311</width>
+     <width>421</width>
      <height>601</height>
     </rect>
    </property>
@@ -96,7 +96,7 @@
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>570</x>
+     <x>790</x>
      <y>10</y>
      <width>89</width>
      <height>25</height>
